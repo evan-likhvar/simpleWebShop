@@ -1,0 +1,61 @@
+@extends('admin.adminapp')
+@section('content')
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3>Список артикулов</h3></div>
+        </div>
+    </div>
+
+       {{--{{ dd(Request::input('filter'))}}--}}
+
+    <div class="well" style="background-color: #fff">
+        <table class="table table-hover table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th class="col-sm-1"> </th>
+                <th><a href="{{route('admin.article')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}".>Номер</a></th>
+                <th><a href="{{route('admin.article')}}?sort=name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Название</a></th>
+                <th ><a href="{{route('admin.article')}}?sort=category_id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Категория</a></th>
+                <th ><a href="{{route('admin.article')}}?sort=vendor_id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Производитель</a></th>
+                <th >ЦенаУЕ</th>
+                <th >ЦенаГРН</th>
+                <th ><a href="{{route('admin.article')}}?sort=published&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Опубликована</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($articles as $item)
+                <tr>
+                    <td >
+                        <div style="width: 80px;">
+                            <div style="width: 40px; float: left">
+                                <a class="btn btn-info btn-xs" role="button"
+                                   href="{{route('admin.editArticle',$item->id)}}">Edit</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{$item->id}}</td>
+                    <td  style="font-size: 90%; padding: 5px 0 5px 0;">{{$item->name}}</td>
+                    <td>{{$item->Category->name}}</td>
+                    <td>{{$item->Vendor->name}}</td>
+                    <td>{{$item->priceYE}}</td>
+                    <td>{{$item->priceGRN}}</td>
+                    <td>{{$item->published==0 ? 'Нет' : 'Да'}}</td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+        {{ $articles->appends(Request::input())->links() }}
+{{--        {!! Form::open(['method'=>'GET','action'=>'Admin\ItemController@index','class'=>'form-horizontal']) !!}
+        <div class="form-group">
+            {!! Form::label('name','Фильтр по названию:',['class'=>'control-label col-sm-2']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('filter',null,['class'=>'form-control']) !!}
+            </div>
+            {!! Form::submit('Установить',['class'=>'btn btn-info']) !!}
+        </div>
+        {!! Form::close() !!}--}}
+    </div>
+
+
+@endsection

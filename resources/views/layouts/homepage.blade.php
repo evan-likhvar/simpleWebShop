@@ -9,7 +9,7 @@
                 @if(count($homeArticles))
                     {{--<div class="container">--}}
                     <div class="row well">
-                        <div class="row"><h3>Популярные товары</h3></div>
+                        <div class="row  text-center categoryList"><h3>Популярные товары</h3></div>
                         @foreach(array_chunk($homeArticles->all(),4) as $articleRow)
                             <div class="row">
                                 @foreach($articleRow as $article)
@@ -29,15 +29,7 @@
                 {{--</div>--}}
             </div>
             <div class="col-sm-2 well">
-                <div class="row "><h3>Акции</h3></div>
-                @foreach($homeArticles as $article)
-                    <a href="{{route('showArticle', ['article' => $article->id])}}">
-                        <div class="col-sm-12">
-                            <img class="img-responsive img-thumbnail" src="{{$article->getIntroImg('XS')}}" alt="">
-                            {{$article->name}}
-                        </div>
-                    </a>
-                @endforeach
+                @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
             </div>
         </div>
     </div>

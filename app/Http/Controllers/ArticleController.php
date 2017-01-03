@@ -24,7 +24,7 @@ class ArticleController extends FrontController
 
         $mainMenu = Category::whereNull('parent_id')->get();
         $article = Article::findOrFail($article);
-
-        return view('layouts.article')->with(compact('article','mainMenu','cartItems'));
+        $homeArticles = Article::limit(8)->get();
+        return view('layouts.article')->with(compact('article','mainMenu','cartItems','homeArticles'));
     }
 }

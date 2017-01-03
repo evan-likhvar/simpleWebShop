@@ -7,3 +7,55 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.main-color {color: $brand-success}
+.topborder {border-bottom: solid 1px rgba(104, 112, 102, 0.77)}
+.cart {padding-top: 10px;}
+.top-menu {
+  li {
+    text-transform: uppercase;
+  }
+}
+.well {
+  border: none;
+  box-shadow: none;
+}
+.categoryList {
+  border-bottom: solid 3px $brand-warning;
+  margin-bottom: 25px;
+}
+.promo {
+  border-bottom: solid 1px $brand-warning;
+  margin-bottom: 10px;
+}
+.promoRight {
+  border-top: solid 1px $brand-warning;
+  padding: 10px 0 20px;
+}
+.paddingTop {padding-top: 15px;}
+
+#paramLeft {
+  .panel{
+    border: none;
+    box-shadow: none;
+    padding-right: 20px;
+    .panel-heading {
+      padding: 10px 15px 5px;
+    }
+  }
+}
+
+#categoryArticles {
+  border-left: solid 1px $brand-warning;
+  border-radius: 0px;
+  >div {
+    border-bottom: solid 1px $brand-warning;
+  }
+  :last-child {
+    border-bottom:none;
+  }
+}
+.available {color: $brand-warning}
+.img-thumbnail {
+  border: 1px solid $brand-warning;
+}

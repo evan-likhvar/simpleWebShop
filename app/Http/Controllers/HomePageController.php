@@ -11,7 +11,7 @@ class HomePageController extends FrontController
     public function index()
     {
 
-        $cartItems = $this->getCountCartItems();
+        $countCartItems = $this->getCountCartItems();
 
         $mainMenu = Category::whereNull('parent_id')->get();
 
@@ -19,7 +19,8 @@ class HomePageController extends FrontController
 
         $homeArticles = Article::limit(8)->get();
 
-        //return dd($homeArticle);
-        return view('layouts.homepage')->with(compact('mainMenu','announceCategory','homeArticles','cartItems'));
+        $cartItemsDescription = $this->getCartItems();
+
+        return view('layouts.homepage')->with(compact('mainMenu','announceCategory','homeArticles','countCartItems','cartItemsDescription'));
     }
 }

@@ -10,7 +10,8 @@ class CategoryController extends FrontController
 {
     public function show($categoryId){
 
-        $cartItems = $this->getCountCartItems();
+        $countCartItems = $this->getCountCartItems();
+        $cartItemsDescription = $this->getCartItems();
         $mainMenu = Category::whereNull('parent_id')->get();
         $category = Category::findOrFail($categoryId);
         $homeArticles = Article::limit(8)->get();
@@ -18,9 +19,9 @@ class CategoryController extends FrontController
         //return dd($category->Parameter_groups);
 
         if (count($category->Children)){
-            return view('layouts.categories')->with(compact('category','mainMenu','cartItems','homeArticles'));
+            return view('layouts.categories')->with(compact('category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
         } else {
-            return view('layouts.categoryArticles')->with(compact('category','mainMenu','cartItems','homeArticles'));
+            return view('layouts.categoryArticles')->with(compact('category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
         }
     }
 }

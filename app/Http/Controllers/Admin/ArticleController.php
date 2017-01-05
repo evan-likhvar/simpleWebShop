@@ -51,7 +51,6 @@ class ArticleController extends AdminController
 
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
 
-
         return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));
     }
 
@@ -62,6 +61,7 @@ class ArticleController extends AdminController
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
         return view('admin.articles.new')->with(compact('parGrp','categories','vendors'));
     }
+
     public function store(Request $request)
     {
 
@@ -110,6 +110,67 @@ class ArticleController extends AdminController
         return redirect('admin/article');
     }
 
+    public function copy($oldId)
+    {
+        $type='';
+        $mediaPathOriginal = 'images/articles/'.$oldId.'/intro1/original';
+        $introImageOriginal = Storage::files($mediaPathOriginal);
+        $imageName = basename($introImageOriginal[0]);
+
+        $parGrp = $this->parameterGroups;
+
+        $oldArticle = Article::FindOrFail($oldId);
+        $article = new Article();
+
+
+        $article->category_id = $oldArticle->category_id;
+        $article->vendor_id = $oldArticle->vendor_id;
+        $article->name = $oldArticle->name;
+        $article->priceYE = $oldArticle->priceYE;
+        $article->priceGRN = $oldArticle->priceGRN;
+        $article->description = $oldArticle->description;
+        $article->techDescription = $oldArticle->techDescription;
+        $article->additionInfo = $oldArticle->additionInfo;
+        $article->order = $oldArticle->order;
+        $article->published = $oldArticle->published;
+
+        $article->save();
+
+        $id = $article->id;
+
+        $mediaPathNew = 'images/articles/'.$id.'/intro1/original/';
+
+
+        Storage::deleteDirectory($mediaPathNew);
+
+        $sFile = Storage::copy($introImageOriginal[0],$mediaPathNew.$imageName);
+//return dd($sFile);
+        $md5name = md5("Image".$id);
+        $path = 'images' . DIRECTORY_SEPARATOR . 'articles' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
+        $inp = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$introImageOriginal[0];
+        $out = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$path.$type.DIRECTORY_SEPARATOR.$md5name;//.'jpg';
+
+        $img = Image::make($inp)->resize(110, 82)->save($out.'_XS.jpg');
+        $img = Image::make($inp)->resize(230, 171)->save($out.'_S.jpg');
+        $img = Image::make($inp)->resize(320, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_M.jpg');
+        $img = Image::make($inp)->resize(640, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_L.jpg');
+
+
+        $files['intro1'] = Storage::files($mediaPathOriginal);
+
+
+        $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
+
+        $_parameterGroups = DB::table('getParameterGroupForArticle')->select('parametrDroup_id')->where('article_id','=', $id)->get()->pluck('parametrDroup_id')->toArray();
+        $parameterGroups = Parameter_group::whereIn('id',$_parameterGroups)->get();
+
+        $checkedParameters = DB::table('article_parameter')->select('parameter_id')->where('article_id','=', $id)->get()->pluck('parameter_id')->toArray();
+
+        $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
+
+        return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));
+    }
+
     public function storeMedia(Request $request,$id,$type='')
     {
 
@@ -139,4 +200,15 @@ class ArticleController extends AdminController
         $img = Image::make($inp)->resize(640, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_L.jpg');
     }
 
+    public function recalculatePrices(Request $request){
+
+        $input = $request->all();
+        if(isset($input['course'])&&$input['course']>0){
+            Article::recalculatePrices($input['course']);
+        }
+
+        return redirect('admin/article');
+
+
+    }
 }

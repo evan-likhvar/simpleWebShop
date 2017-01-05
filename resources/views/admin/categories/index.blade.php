@@ -22,13 +22,7 @@ Form::macro('MakeNavigation', function($data) {
                         Form::MakeNavigation($value->submenu);
                     echo '</div>';
                     echo '<div class="panel-footer">';
-            /*                         echo '<div class="row">';
-                                        echo '<a class="btn btn-info btn-xs col-sm-10 col-sm-offset-1" role="button" href="'.route('admin.addCategory',$value->id).'">добавить категорию</a>';
-                                    echo '</div>';
-                                   echo '<div class="row" style="min-height: 5px;"></div>';
-                                    echo '<div class="row">';
-                                        echo '<a class="btn btn-info btn-xs col-sm-10 col-sm-offset-1" role="button" href="'.route('admin.addCategory',$value->id).'">добавить подкатегорию</a>';
-                                    echo '</div>';*/
+
                     echo '</div>';
                 echo '</div>';
             echo '</div>';

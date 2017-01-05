@@ -63,7 +63,7 @@
             </nav>
         </div>
         <div class="col-sm-2 cart">
-            <button type="button" class="btn btn-success">В корзине <span class="badge">{{$cartItems}}</span></button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cart">В корзине <span class="badge">{{$countCartItems}}</span></button>
         </div>
     </div>
     @yield('content')
@@ -71,5 +71,69 @@
 <div class="container-fluid" style="height: 100px;background-color: #67b168">
 
 </div>
+
+<!-- Modal -->
+<div id="cart" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Корзина</h4>
+            </div>
+            <div class="modal-body">
+                @foreach($cartItemsDescription as $article)
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img class="img-responsive" src="{{$article->getIntroImg('S')}}" alt="">
+                        </div>
+                        <div class="col-sm-6">
+                            {{$article->name}}
+                        </div>
+                        <div class="col-sm-4">
+                            {{$article->priceGRN}}
+                        </div>
+                    </div>
+
+                @endforeach
+                <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h4>Оформить заказ</h4>
+                        </div>
+                    </div>
+                <div class=" well">
+                    <div class="row">
+                        <div class="form-group">
+                            {!! Form::label('order','Ваше имя:', ['class'=>'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('order',null,['class'=>'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('order','Телефон:', ['class'=>'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('order',null,['class'=>'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('order','E-mail:', ['class'=>'control-label col-sm-2']) !!}
+                            <div class="col-sm-10">
+                                {!! Form::text('order',null,['class'=>'form-control']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>

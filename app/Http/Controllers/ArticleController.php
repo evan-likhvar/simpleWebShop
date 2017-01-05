@@ -20,11 +20,12 @@ class ArticleController extends FrontController
             //$request->session()->put('cartItem', $article);
           //  return dd($request->all());
         }
-        $cartItems = $this->getCountCartItems();
+        $countCartItems = $this->getCountCartItems();
+        $cartItemsDescription = $this->getCartItems();
 
         $mainMenu = Category::whereNull('parent_id')->get();
         $article = Article::findOrFail($article);
         $homeArticles = Article::limit(8)->get();
-        return view('layouts.article')->with(compact('article','mainMenu','cartItems','homeArticles'));
+        return view('layouts.article')->with(compact('article','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
     }
 }

@@ -31,6 +31,10 @@
                                 <a class="btn btn-info btn-xs" role="button"
                                    href="{{route('admin.editArticle',$item->id)}}">Edit</a>
                             </div>
+                            <div style="width: 40px; float: left">
+                                <a class="btn btn-info btn-xs" role="button"
+                                   href="{{route('admin.copyArticle',$item->id)}}">Copy</a>
+                            </div>
                         </div>
                     </td>
                     <td>{{$item->id}}</td>
@@ -45,6 +49,16 @@
 
             </tbody>
         </table>
+
+        {!! Form::open(['method'=>'POST','action'=>'Admin\ArticleController@recalculatePrices','class'=>'form-horizontal']) !!}
+        <div class="form-group">
+            {!! Form::label('course','Пересчитать розничные цены по курсу:',['class'=>'control-label col-sm-4']) !!}
+            <div class="col-sm-1">
+                {!! Form::text('course',null,['class'=>'form-control']) !!}
+            </div>
+            {!! Form::submit('Пересчитать',['class'=>'btn btn-info']) !!}
+        </div>
+
         {{ $articles->appends(Request::input())->links() }}
 {{--        {!! Form::open(['method'=>'GET','action'=>'Admin\ItemController@index','class'=>'form-horizontal']) !!}
         <div class="form-group">

@@ -34,7 +34,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::patch('/article/{article}', 'ArticleController@update');
     Route::get('/article/create', 'ArticleController@create')->name('admin.createArticle');
     Route::post('/article/create', 'ArticleController@store');
-
+    Route::get('/article/{article}/copy', 'ArticleController@copy')->name('admin.copyArticle');
+    Route::post('/article/recalculatePrices', 'ArticleController@recalculatePrices');
 
     Route::post('/item/storeMedia/{item}/{type?}', 'ArticleController@storeMedia');
 

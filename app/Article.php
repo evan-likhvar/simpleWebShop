@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Article extends Model
 {
@@ -15,6 +16,14 @@ class Article extends Model
     public function Vendor() {return $this->belongsTo('App\Vendor');}
     public function Category() {return $this->belongsTo('App\Category');}
 
+    public static function recalculatePrices($course){
+
+        DB::statement("UPDATE articles set priceGRN = priceYE*? where priceYE>0 ",[$course]) ;
+
+        return;
+    }
+
+
     public function getIntroImg($size){
         $path = '/images/articles/'.$this->id.'/intro1/';
         $name = md5("Image".$this->id);
@@ -23,5 +32,7 @@ class Article extends Model
         // return dd($img);
         return $img;
     }
+
+
 
 }

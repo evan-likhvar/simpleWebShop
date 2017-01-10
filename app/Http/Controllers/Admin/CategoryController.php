@@ -56,7 +56,7 @@ class CategoryController extends AdminController
         //$categories = Category::whereNull('parent_id')->get()->toArray();
         $categories = Category::get();
         $menu=$this->CreateMenu(0,$categories,0);
-
+//return dd($menu);
         return view('admin.categories.index')->with(compact('menu','parGrp'));
     }
 
@@ -101,9 +101,10 @@ class CategoryController extends AdminController
 
     public function edit($id)
     {
-        $mediaPath = 'images/categories/'.$id;      //базовый путь к каталогу с медиа
-        $original = '/intro1/original';         //суфикс к каталогам с оригиналами картинок
-        $files['intro1'] = Storage::files($mediaPath.$original); // собрали линки на картинки в тексте статьи
+
+        $image = $this->getOriginalImage('categories',$id,'intro1');
+        $files['intro1'] = $image['url'];
+
         $category = Category::FindOrFail($id);
         $parGrp = $this->parameterGroups;
         $categories = Category::get();
@@ -112,8 +113,6 @@ class CategoryController extends AdminController
         $parameterGroups = Parameter_group::select('name','id')->get()->pluck('name','id')->toArray();
 
         $checkedParameters = DB::table('category_parameter_group')->select('parameter_group_id')->where('category_id','=', $id)->get()->pluck('parameter_group_id')->toArray();
-
-        //return dd($checkedParameters);
 
         return view('admin.categories.edit')->with(compact('menu','category','parGrp','files','parameterGroups','checkedParameters'));
     }
@@ -145,30 +144,7 @@ class CategoryController extends AdminController
 
     public function storeMedia(Request $request,$id,$type='')
     {
-
-        $path = 'images' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;  //   images/article/19680/
-
-        $OriginalName = $request->file('file')->getClientOriginalName();
-
-        $patterns = array();
-        $patterns[0] = '/ /';
-        $patterns[1] = '/&/';
-        $replacement = '_';
-        $OriginalName = preg_replace($patterns, $replacement, $OriginalName);
-
-        $pathOriginal = $path . $type . DIRECTORY_SEPARATOR . 'original' . DIRECTORY_SEPARATOR; //   images/article/19680/original/
-
-        Storage::deleteDirectory($pathOriginal);
-
-        $sFile = Storage::putFileAs($pathOriginal, $request->file('file'), $OriginalName);
-
-        $md5name = md5("Image".$id);
-
-        $inp = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$pathOriginal.$OriginalName;
-        $out = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$path.$type.DIRECTORY_SEPARATOR.$md5name;//.'jpg';
-        $img = Image::make($inp)->resize(110, 82)->save($out.'_XS.jpg');
-        $img = Image::make($inp)->resize(230, 171)->save($out.'_S.jpg');
-        $img = Image::make($inp)->resize(320, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_M.jpg');
-        $img = Image::make($inp)->resize(640, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_L.jpg');
+        $this->saveOriginalImage($request->file('file')->getClientOriginalName(),$request->file('file'),'categories',$id,$type);
+        return;
     }
 }

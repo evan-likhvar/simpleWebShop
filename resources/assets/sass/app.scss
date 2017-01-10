@@ -1,41 +1,54 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
 // Variables
 @import "variables";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-.main-color {color: $brand-success}
-.topborder {border-bottom: solid 1px rgba(104, 112, 102, 0.77)}
-.cart {padding-top: 10px;}
+.main-color {
+  color: $brand-success
+}
+
+.topborder {
+  border-bottom: solid 1px rgba(104, 112, 102, 0.77)
+}
+
+.cart {
+  padding-top: 10px;
+}
+
 .top-menu {
   li {
     text-transform: uppercase;
   }
 }
+
 .well {
   border: none;
   box-shadow: none;
 }
+
 .categoryList {
   border-bottom: solid 3px $brand-warning;
   margin-bottom: 25px;
 }
+
 .promo {
   border-bottom: solid 1px $brand-warning;
   margin-bottom: 10px;
 }
+
 .promoRight {
   border-top: solid 1px $brand-warning;
   padding: 10px 0 20px;
 }
-.paddingTop {padding-top: 15px;}
+
+.paddingTop {
+  padding-top: 15px;
+}
 
 #paramLeft {
-  .panel{
+  .panel {
     border: none;
     box-shadow: none;
     padding-right: 20px;
@@ -48,14 +61,81 @@
 #categoryArticles {
   border-left: solid 1px $brand-warning;
   border-radius: 0px;
-  >div {
+  > div {
     border-bottom: solid 1px $brand-warning;
   }
   :last-child {
-    border-bottom:none;
+    border-bottom: none;
   }
 }
-.available {color: $brand-warning}
+
+.available {
+  color: $brand-warning
+}
+
 .img-thumbnail {
   border: 1px solid $brand-warning;
 }
+
+.dropdown {
+  .btn-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+  }
+  :hover {
+    background-color: darken(#fcf8e3, 20%);
+    border-color: darken(#faebcc, 20%);
+  }
+}
+
+.btn-warning:active:hover,
+.btn-warning:active:focus,
+.btn-warning.focus:active,
+.open > .btn-warning.dropdown-toggle:hover,
+.open > .btn-warning.dropdown-toggle:focus,
+.open > .btn-warning.dropdown-toggle.focus {
+  background-color: darken(#fcf8e3, 20%);
+  border-color: darken(#faebcc, 20%);
+}
+
+.dropdown-menu {
+  background-color: darken(#fcf8e3, 20%);
+}
+
+.pagination {
+  margin: 0;
+   li {
+     > a {
+       border: none;
+     }
+     > span {
+       border: none;
+     }
+   }
+         .active {
+           a {
+             background-color: darken(#fcf8e3, 20%);
+           }
+           :hover {
+             background-color: darken(#fcf8e3, 40%);
+           }
+
+           >span {
+             background-color: darken(#fcf8e3, 40%);
+           }
+           :hover {
+             background-color: darken(#fcf8e3, 40%);
+           }
+           :focus {
+             background-color: darken(#fcf8e3, 40%);
+           }
+
+         }
+}
+.pagination > .active > .span,
+.pagination > .active > .span:hover,
+.pagination > .active > .span:focus {
+  background-color: darken(#fcf8e3, 40%);
+}
+

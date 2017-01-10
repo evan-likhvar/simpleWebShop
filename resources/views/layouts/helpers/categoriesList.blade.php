@@ -28,7 +28,7 @@
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
                             <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('showArticle', ['article' => $article->id])}}?tocart=1">КУПИТЬ</a>
+                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
                             </div>
                         @endforeach
                     </div>
@@ -72,7 +72,7 @@
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
                             <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('showArticle', ['article' => $article->id])}}?tocart=1">КУПИТЬ</a>
+                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
                             </div>
                         @endforeach
                     </div>

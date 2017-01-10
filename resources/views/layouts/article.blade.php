@@ -16,7 +16,7 @@
                         <div class="available"> <span class="glyphicon glyphicon-ok"></span> в наличии </div><br>
                         <p>Цена - <b>{{$article->priceGRN}}</b> грн.</p>
                         <a class="btn btn-success btn-sm col-sm-2 -col-sm-offset-1" role="button"
-                           href="{{route('showArticle', ['article' => $article->id])}}?tocart=1">КУПИТЬ</a>
+                           href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
                     </div>
                 </div>
                 <div class="row">

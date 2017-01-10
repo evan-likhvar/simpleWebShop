@@ -13,8 +13,8 @@
                 {!! Form::close() !!}
             </div>
             <div class="col-sm-3 ">
-                @if(!empty($files['intro1']['0']))
-                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']['0']) !!}">
+                @if(!empty($files['intro1']))
+                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
                 @endif
             </div>
         </div>

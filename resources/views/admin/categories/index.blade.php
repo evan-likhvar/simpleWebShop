@@ -43,6 +43,38 @@ Form::macro('MakeNavigation', function($data) {
         }
 
     }});
+
+Form::macro('MakeCategoryTable', function($data) {
+
+    foreach ($data as $key => $value) {
+        if($value->submenu) {
+            echo '<tr>';
+                echo '<td style="padding-left: 1px;padding-right: 1px;">';
+                    echo '<a class="btn btn-info btn-xs col-sm-3" role="button" href="'.route('admin.editCategory',$value->id).'">edit</a>';
+                    echo '<a style ="margin-left: 3.333%;" class="btn btn-warning btn-xs col-sm-3" role="button" href="'.route('admin.addCategory',$value->id).'">add</a>';
+                echo '</td>';
+                echo '<td>';
+                    for($i=0;$i<($value->level-2)*3;$i++) {echo '&nbsp;';}
+                    echo $value->name;
+                echo '</td>';
+            echo '</tr>';
+            Form::MakeCategoryTable($value->submenu);
+        }
+        else {
+            echo '<tr>';
+            echo '<td style="padding-left: 1px;padding-right: 1px;">';
+            echo '<a class="btn btn-info btn-xs col-sm-3" role="button" href="'.route('admin.editCategory',$value->id).'">edit</a>';
+            echo '<a style ="margin-left: 3.333%;" class="btn btn-warning btn-xs col-sm-3" role="button" href="'.route('admin.addCategory',$value->id).'">add</a>';
+            echo '<a style ="margin-left: 3.333%;" class="btn btn-danger btn-xs col-sm-3" role="button" href="'.route('admin.delCategory',$value->id).'">del</a>';
+            echo '</td>';
+            echo '<td>';
+            for($i=0;$i<($value->level-2)*3;$i++) {echo '&nbsp;';}
+            echo $value->name;
+            echo '</td>';
+            echo '</tr>';
+        }
+
+    }});
 ?>
 @extends('admin.adminapp')
 
@@ -56,13 +88,21 @@ Form::macro('MakeNavigation', function($data) {
             </div>
             <div class="row">
                 <div class="col-sm-4">
-
-                    <div class="panel-group" id="__accordion">
-
+{{--                    <div class="panel-group" id="__accordion">
                             {{ Form::MakeNavigation($menu) }}
                             <a href="#" class="list-group-item">+++++++++++++++</a>
-                    </div>
-
+                    </div>--}}
+                    <table class="table table-hover table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="col-sm-4"> </th>
+                            <th class="text-center">Категория</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{ Form::MakeCategoryTable($menu) }}
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="col-sm-8">

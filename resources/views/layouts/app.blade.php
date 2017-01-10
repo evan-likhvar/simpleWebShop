@@ -32,6 +32,7 @@
         </div>
     </div>
     <div class="row">
+        @if(isset($mainMenu))
         <div class="col-sm-10 top-menu">
 
             <nav class="navbar">
@@ -45,10 +46,12 @@
                     </div>
                     <ul class="nav navbar-nav">
                         {{--<li class="active"><a href="/">Home</a></li>--}}
+
                         @foreach($mainMenu as $item)
                             <li><a href="{{route('showCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
                             </li>
                         @endforeach
+
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Page 1 <span
                                         class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -62,15 +65,21 @@
                 </div>
             </nav>
         </div>
+
+        @endif
         <div class="col-sm-2 cart">
+            @if(isset($countCartItems))
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cart">В корзине <span class="badge">{{$countCartItems}}</span></button>
+            @endif
         </div>
     </div>
     @yield('content')
 </div>
+@if(isset($countCartItems))
 <div class="container-fluid" style="height: 100px;background-color: #67b168">
 
 </div>
+
 
 <!-- Modal -->
 <div id="cart" class="modal fade" role="dialog">
@@ -134,6 +143,6 @@
 
     </div>
 </div>
-
+@endif
 </body>
 </html>

@@ -28,21 +28,27 @@ class ArticleController extends AdminController
         if ( isset($request->filter) && strlen($request->filter)>0) {$filter = $request->filter; }
         if ( isset($request->order) && strlen($request->order)>0) $order = $request->order;
 
-        $articles = Article::where('name','LIKE', $filter. '%')->orderBy($ordered,$order)->paginate(15);
-
+        $articles = Article::where('name','LIKE', $filter. '%')->orderBy($ordered,$order)->paginate(20);
 
         return view('admin.articles.index')->with(compact('articles','parGrp'));
     }
+
     public function edit($id)
     {
-        $mediaPath = 'images/articles/'.$id;      //базовый путь к каталогу с медиа
-        $original = '/intro1/original';         //суфикс к каталогам с оригиналами картинок
-        $files['intro1'] = Storage::files($mediaPath.$original); // собрали линки на картинки в тексте статьи
+
+        $image = $this->getOriginalImage('articles',$id,'intro1');
+        $files['intro1'] = $image['url'];
 
         $parGrp = $this->parameterGroups;
 
         $article = Article::FindOrFail($id);
-        $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
+
+        $parentCategories = DB::table('categories')
+            ->select('parent_id')
+            ->where('parent_id','>',0)
+            ->distinct()->get()->pluck('parent_id')->toarray();
+
+        $categories = Category::select('name','id')->whereNotIN('id',$parentCategories)->get()->pluck('name','id')->toArray();
 
         $_parameterGroups = DB::table('getParameterGroupForArticle')->select('parametrDroup_id')->where('article_id','=', $id)->get()->pluck('parametrDroup_id')->toArray();
         $parameterGroups = Parameter_group::whereIn('id',$_parameterGroups)->get();
@@ -57,7 +63,14 @@ class ArticleController extends AdminController
     public function create()
     {
         $parGrp = $this->parameterGroups;
-        $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
+
+        $parentCategories = DB::table('categories')
+            ->select('parent_id')
+            ->where('parent_id','>',0)
+            ->distinct()->get()->pluck('parent_id')->toarray();
+
+        $categories = Category::select('name','id')->whereNotIN('id',$parentCategories)->orderBy('name')->get()->pluck('name','id')->toArray();
+
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
         return view('admin.articles.new')->with(compact('parGrp','categories','vendors'));
     }
@@ -65,31 +78,28 @@ class ArticleController extends AdminController
     public function store(Request $request)
     {
 
-
         $parGrp = $this->parameterGroups;
         $input = $request->all();
 
         $article = Article::create($input);
         Session::flash('infomessage','Изменения сохранены');
-        $mediaPath = 'images/articles/'.$article->id;      //базовый путь к каталогу с медиа
-        $original = '/intro1/original';         //суфикс к каталогам с оригиналами картинок
+
+        $image = $this->getOriginalImage('articles',$article->id,'intro1');
+        $files['intro1'] = $image['url'];
+
         $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
-        $files['intro1'] = Storage::files($mediaPath.$original); // собрали линки на картинки в тексте статьи
+
         $_parameterGroups = DB::table('getParameterGroupForArticle')->select('parametrDroup_id')->where('article_id','=', $article->id)->get()->pluck('parametrDroup_id')->toArray();
 
         $parameterGroups = Parameter_group::whereIn('id',$_parameterGroups)->get();
         $checkedParameters = DB::table('article_parameter')->select('parameter_id')->where('article_id','=', $article->id)->get()->pluck('parameter_id')->toArray();
 
-       // return dd($input);
         return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));
 
     }
     public function update(Request $request, $id)
     {
-
-        //return dd($request);
-
 
         $input = $request->all();
         $published = 0;
@@ -106,98 +116,52 @@ class ArticleController extends AdminController
 
         if(Article::find($id)->update($input))
             Session::flash('infomessage','Изменения сохранены');
+        return redirect()->to($input['redirects_to']);
+        //return redirect('admin/article');
+    }
+    public function destroy ($id)
+    {
 
-        return redirect('admin/article');
+        $article = Article::findOrFail($id);
+
+        if($article->delete())
+            Session::flash('infomessage',$article->name.' - deleted');
+
+        return redirect()->back();
+        //return redirect('admin/article');
     }
 
     public function copy($oldId)
     {
-        $type='';
-        $mediaPathOriginal = 'images/articles/'.$oldId.'/intro1/original';
-        $introImageOriginal = Storage::files($mediaPathOriginal);
-        $imageName = basename($introImageOriginal[0]);
 
         $parGrp = $this->parameterGroups;
 
         $oldArticle = Article::FindOrFail($oldId);
-        $article = new Article();
-
-
-        $article->category_id = $oldArticle->category_id;
-        $article->vendor_id = $oldArticle->vendor_id;
-        $article->name = $oldArticle->name;
-        $article->priceYE = $oldArticle->priceYE;
-        $article->priceGRN = $oldArticle->priceGRN;
-        $article->description = $oldArticle->description;
-        $article->techDescription = $oldArticle->techDescription;
-        $article->additionInfo = $oldArticle->additionInfo;
-        $article->order = $oldArticle->order;
-        $article->published = $oldArticle->published;
-
+        $article = $oldArticle->replicate();
         $article->save();
 
         $id = $article->id;
 
-        $mediaPathNew = 'images/articles/'.$id.'/intro1/original/';
+        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'intro1');
 
-
-        Storage::deleteDirectory($mediaPathNew);
-
-        $sFile = Storage::copy($introImageOriginal[0],$mediaPathNew.$imageName);
-//return dd($sFile);
-        $md5name = md5("Image".$id);
-        $path = 'images' . DIRECTORY_SEPARATOR . 'articles' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
-        $inp = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$introImageOriginal[0];
-        $out = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$path.$type.DIRECTORY_SEPARATOR.$md5name;//.'jpg';
-
-        $img = Image::make($inp)->resize(110, 82)->save($out.'_XS.jpg');
-        $img = Image::make($inp)->resize(230, 171)->save($out.'_S.jpg');
-        $img = Image::make($inp)->resize(320, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_M.jpg');
-        $img = Image::make($inp)->resize(640, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_L.jpg');
-
-
-        $files['intro1'] = Storage::files($mediaPathOriginal);
-
+        $image = $this->getOriginalImage('articles',$id,'intro1');
+        $files['intro1'] = $image['url'];
 
         $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
-
         $_parameterGroups = DB::table('getParameterGroupForArticle')->select('parametrDroup_id')->where('article_id','=', $id)->get()->pluck('parametrDroup_id')->toArray();
         $parameterGroups = Parameter_group::whereIn('id',$_parameterGroups)->get();
-
         $checkedParameters = DB::table('article_parameter')->select('parameter_id')->where('article_id','=', $id)->get()->pluck('parameter_id')->toArray();
-
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
 
         return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));
     }
 
-    public function storeMedia(Request $request,$id,$type='')
+    public function storeMedia(Request $request,$id,$type)
     {
 
-        $path = 'images' . DIRECTORY_SEPARATOR . 'articles' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;  //   images/article/19680/
+        $this->saveOriginalImage($request->file('file')->getClientOriginalName(),$request->file('file'),'articles',$id,$type);
 
-        $OriginalName = $request->file('file')->getClientOriginalName();
-
-        $patterns = array();
-        $patterns[0] = '/ /';
-        $patterns[1] = '/&/';
-        $replacement = '_';
-        $OriginalName = preg_replace($patterns, $replacement, $OriginalName);
-
-        $pathOriginal = $path . $type . DIRECTORY_SEPARATOR . 'original' . DIRECTORY_SEPARATOR; //   images/article/19680/original/
-
-        Storage::deleteDirectory($pathOriginal);
-
-        $sFile = Storage::putFileAs($pathOriginal, $request->file('file'), $OriginalName);
-
-        $md5name = md5("Image".$id);
-
-        $inp = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$pathOriginal.$OriginalName;
-        $out = base_path().DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$path.$type.DIRECTORY_SEPARATOR.$md5name;//.'jpg';
-        $img = Image::make($inp)->resize(110, 82)->save($out.'_XS.jpg');
-        $img = Image::make($inp)->resize(230, 171)->save($out.'_S.jpg');
-        $img = Image::make($inp)->resize(320, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_M.jpg');
-        $img = Image::make($inp)->resize(640, null, function ($constraint) {$constraint->aspectRatio();})->save($out.'_L.jpg');
+        return;
     }
 
     public function recalculatePrices(Request $request){
@@ -209,6 +173,7 @@ class ArticleController extends AdminController
 
         return redirect('admin/article');
 
-
     }
+
+
 }

@@ -28,22 +28,40 @@
                 <div class="tab-content">
                     <div id="text1" class="tab-pane fade in active">
                         <div class="row">
+
+{{--
+                            {!! Form::open(['method'=>'POST','files' => true, 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro1']]) !!}
+                            {{Form::file('file')}}
+                            {!! Form::submit('Сохранить',['class'=>'btn btn-info']) !!}
+                            {!! Form::close() !!}
+--}}
+
+
+
+
                             <div class="col-sm-2 ">
-                                {!! Form::open(['method'=>'POST','action'=>['Admin\ArticleController@storeMedia',$article->id,'intro1'],'class'=>'dropzone']) !!}
+                                {!! Form::open(['method'=>'POST', 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro1'],'class'=>'dropzone']) !!}
                                 {!! Form::close() !!}
                             </div>
                             <div class="col-sm-3 ">
-                                @if(!empty($files['intro1']['0']))
-                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']['0']) !!}">
+                                @if(!empty($files['intro1']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
                                 @endif
                             </div>
 
                             {!! Form::model($article, ['method'=>'PATCH','action'=>['Admin\ArticleController@update',$article->id],'class'=>'form-horizontal']) !!}
                             <div class="col-sm-6">
+
                                 <div class="form-group">
                                     {!! Form::label('name','Название:',['class'=>'control-label col-sm-3']) !!}
                                     <div class="col-sm-8">
                                         {!! Form::text('name',null,['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('nomer','Внутренний номер:',['class'=>'control-label col-sm-3']) !!}
+                                    <div class="col-sm-8">
+                                        {!! Form::text('nomer',null,['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -89,6 +107,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                {!! Form::label('metakey','Мета-кей:',['class'=>'control-label col-sm-2']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::text('metakey',null,['class'=>'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('metadescription','Мета-дескрипшин:',['class'=>'control-label col-sm-2']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::text('metadescription',null,['class'=>'form-control']) !!}
+                                </div>
+                            </div>
+
+
                         </div>
                         <div class="form-group">
                             <div class="row well">
@@ -157,6 +189,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
+                    {!! Form::hidden('redirects_to', URL::previous()) !!}
                     {!! Form::submit('Сохранить',['class'=>'btn btn-info']) !!}
                 </div>
             </div>

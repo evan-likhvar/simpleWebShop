@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::post('/article/create', 'ArticleController@store');
     Route::get('/article/{article}/copy', 'ArticleController@copy')->name('admin.copyArticle');
     Route::post('/article/recalculatePrices', 'ArticleController@recalculatePrices');
+    Route::delete('/article/{article}', 'ArticleController@destroy');
 
     Route::post('/item/storeMedia/{item}/{type?}', 'ArticleController@storeMedia');
 
@@ -71,5 +72,12 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index');
 
 Route::get('/article/{article}', 'ArticleController@show')->name('showArticle');
+Route::get('/article/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
+
+
 
 Route::get('/category/{category}', 'CategoryController@show')->name('showCategory');
+
+Route::get('/category/order/{order?}', 'CategoryController@setArticlesOrder')->name('setArticlesOrder');
+Route::post('/category/setParameters', 'CategoryController@setParameters');
+

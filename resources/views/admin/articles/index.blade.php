@@ -13,6 +13,7 @@
             <thead>
             <tr>
                 <th class="col-sm-1"> </th>
+                <th><a href="{{route('admin.article')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}".>Индекс</a></th>
                 <th><a href="{{route('admin.article')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}".>Номер</a></th>
                 <th><a href="{{route('admin.article')}}?sort=name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Название</a></th>
                 <th ><a href="{{route('admin.article')}}?sort=category_id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Категория</a></th>
@@ -26,18 +27,24 @@
             @foreach ($articles as $item)
                 <tr>
                     <td >
-                        <div style="width: 80px;">
-                            <div style="width: 40px; float: left">
+                        <div style="width: 140px;">
+                            <div style="width: 40px; float: left;">
                                 <a class="btn btn-info btn-xs" role="button"
                                    href="{{route('admin.editArticle',$item->id)}}">Edit</a>
                             </div>
-                            <div style="width: 40px; float: left">
+                            <div style="width: 40px; float: left; margin-right: 15px;">
                                 <a class="btn btn-info btn-xs" role="button"
                                    href="{{route('admin.copyArticle',$item->id)}}">Copy</a>
+                            </div>
+                            <div style="width: 40px; float: left;">
+                                {!! Form::open(['method'=>'DELETE','action'=>['Admin\ArticleController@destroy',$item->id]]) !!}
+                                {!! Form::submit('Delete',['class'=>'btn btn-danger btn-xs']) !!}
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </td>
                     <td>{{$item->id}}</td>
+                    <td>{{$item->nomer}}</td>
                     <td  style="font-size: 90%; padding: 5px 0 5px 0;">{{$item->name}}</td>
                     <td>{{$item->Category->name}}</td>
                     <td>{{$item->Vendor->name}}</td>

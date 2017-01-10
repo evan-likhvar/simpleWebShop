@@ -5866,3 +5866,46 @@ button.close {
 
 .img-thumbnail {
   border: 1px solid #f09713; }
+
+.dropdown .btn-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b; }
+
+.dropdown :hover {
+  background-color: #f2e187;
+  border-color: #f1c76f; }
+
+.btn-warning:active:hover,
+.btn-warning:active:focus,
+.btn-warning.focus:active,
+.open > .btn-warning.dropdown-toggle:hover,
+.open > .btn-warning.dropdown-toggle:focus,
+.open > .btn-warning.dropdown-toggle.focus {
+  background-color: #f2e187;
+  border-color: #f1c76f; }
+
+.dropdown-menu {
+  background-color: #f2e187; }
+
+.pagination {
+  margin: 0; }
+  .pagination li > a {
+    border: none; }
+  .pagination li > span {
+    border: none; }
+  .pagination .active a {
+    background-color: #f2e187; }
+  .pagination .active :hover {
+    background-color: #e8ca2b; }
+  .pagination .active > span {
+    background-color: #e8ca2b; }
+  .pagination .active :hover {
+    background-color: #e8ca2b; }
+  .pagination .active :focus {
+    background-color: #e8ca2b; }
+
+.pagination > .active > .span,
+.pagination > .active > .span:hover,
+.pagination > .active > .span:focus {
+  background-color: #e8ca2b; }

@@ -60,9 +60,10 @@ class CategoryController extends AdminController
         return view('admin.categories.index')->with(compact('menu','parGrp'));
     }
 
-    public function addCategory($parent_id) {
+    public function addCategory($parent_id='') {
 
-        $parent = Category::findOrFail($parent_id);
+        if (!empty($parent_id))
+            $parent = Category::findOrFail($parent_id);
         $parGrp = $this->parameterGroups;
         //$categories = Category::whereNull('parent_id')->get()->toArray();
         $categories = Category::get();
@@ -74,12 +75,24 @@ class CategoryController extends AdminController
     public function store(Request $request)
     {
         $input = $request->all();
+
+        if (empty(trim($input['name']))) {
+            Session::flash('infomessage', 'У категории должно быть не пустое название!!!');
+            return redirect('admin/category');
+        }
+
+        if (count(Category::where('name',$input['name'])->get())){
+            Session::flash('infomessage', 'Категория с именем '.$input['name'].' уже существует!!!');
+            return redirect('admin/category');
+        }
+
         $published = 0;
         if (isset($request->published)) if ($request->published == 'on') $published = 1;
         $input['published'] = $published;
 
         unset($input['parent']);
-
+        if ($input['parent_id'] == '') $input['parent_id']= null;
+//return dd($input);
         Category::create($input);
         Session::flash('infomessage','Изменения сохранены');
 
@@ -88,14 +101,19 @@ class CategoryController extends AdminController
     }
     public function destroy ($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         $subcategory = $category->children;
         if (count($subcategory)){
-            Session::flash('infomessage','Нельзя удалить производителя, у которой есть зарегистрированные товары!!!');
+            Session::flash('infomessage','Нельзя удалить категорию, у которой есть подкатегории!!!');
+            return redirect('admin/category');
+        }
+        $articles = $category->articles;
+        if (count($articles)){
+            Session::flash('infomessage','Нельзя удалить категорию, у которой есть товары!!!');
             return redirect('admin/category');
         }
         if($category->delete())
-            Session::flash('infomessage',$category->name.' - deleted');
+            Session::flash('infomessage',$category->name.' - удалена из базы');
         return redirect('admin/category');
     }
 

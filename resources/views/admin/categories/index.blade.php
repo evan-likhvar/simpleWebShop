@@ -87,11 +87,20 @@ Form::macro('MakeCategoryTable', function($data) {
                 </div>
             </div>
             <div class="row">
+                @if(count($errors)>0)
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        @foreach($errors->all() as $error)
+                            {{$error}}<br>
+                        @endforeach
+                    </div>
+                @endif
+                @if(Session::has('infomessage'))
+                    <div class="alert alert-danger">
+                        {!! session('infomessage') !!}
+                    </div>
+                @endif
                 <div class="col-sm-4">
-{{--                    <div class="panel-group" id="__accordion">
-                            {{ Form::MakeNavigation($menu) }}
-                            <a href="#" class="list-group-item">+++++++++++++++</a>
-                    </div>--}}
                     <table class="table table-hover table-bordered table-condensed">
                         <thead>
                         <tr>
@@ -101,6 +110,15 @@ Form::macro('MakeCategoryTable', function($data) {
                         </thead>
                         <tbody>
                         {{ Form::MakeCategoryTable($menu) }}
+
+                        <tr>
+                            <td class="text-center">
+                            </td>
+                            <td>
+                                <a  class="btn btn-warning btn-sm col-sm-8 col-sm-offset-1" role="button" href="{{route('admin.addCategory')}}">Добавить корневую категорию</a>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>

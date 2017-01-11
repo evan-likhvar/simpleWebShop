@@ -19,6 +19,16 @@ class ParameterCategoryController extends AdminController
     public function store(Request $request)
     {
         $input = $request->all();
+
+        if (empty(trim($input['name']))) {
+            Session::flash('infomessage', 'У параметра должно быть не пустое название!!!');
+            return redirect('admin/parameter-category');
+        }
+        if (count(Parameter_group::where('name',$input['name'])->get())){
+            Session::flash('infomessage', 'Параметер с именем '.$input['name'].' уже существует!!!');
+            return redirect('admin/parameter-category');
+        }
+
         Parameter_group::create($input);
         return redirect('admin/parameter-category');
     }
@@ -35,7 +45,7 @@ class ParameterCategoryController extends AdminController
         $parameter_group = Parameter_group::find($id);
         $parameters = $parameter_group->Parameters;
         if (count($parameters)){
-            Session::flash('infomessage','Нельзя удалить класс, у которой есть параметры!!!');
+            Session::flash('infomessage','Нельзя удалить класс, у которого есть параметры!!!');
             return redirect('admin/parameter-category');
         }
         if($parameter_group->delete())

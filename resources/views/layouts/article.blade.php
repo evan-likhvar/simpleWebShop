@@ -2,7 +2,12 @@
 @section('content')
     <div class="container">
         <div class="row">
+<div class="well text-left">
 
+    <a href="{{route('showCategory', ['category' => $article->Category->parent->id])}}">{{ $article->Category->parent->name }}</a>
+    /
+    <a href="{{route('showCategory', ['category' => $article->Category->id])}}">{{ $article->Category->name }}</a>
+</div>
             <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-4">
@@ -13,7 +18,13 @@
                         <h2>{{$article->name}}</h2>
                         <p>Производитель - <b>{{$article->Vendor->name}}</b></p>
 
-                        <div class="available"> <span class="glyphicon glyphicon-ok"></span> в наличии </div><br>
+                        <div class="available">
+                            @if($article->avaliable)
+                                <span class="glyphicon glyphicon-ok"></span> в наличии
+                            @else
+                                наличие уточняйте
+                            @endif
+                        </div><br>
                         <p>Цена - <b>{{$article->priceGRN}}</b> грн.</p>
                         <a class="btn btn-success btn-sm col-sm-2 -col-sm-offset-1" role="button"
                            href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
@@ -36,25 +47,33 @@
                         @endif
                     </ul>
 
-                    <div class="tab-content">
+                    <div id="articleDesc" class="tab-content">
                         @if($article->description)
                             <div id="text1" class="tab-pane fade in active">
-                                {!!$article->description!!}
+                                <div class="well">
+                                    {!!$article->description!!}
+                                </div>
                             </div>
                         @endif
                         @if($article->techDescription)
                             <div id="text2" class="tab-pane fade">
-                                {!!$article->techDescription!!}
+                                <div class="well">
+                                    {!!$article->techDescription!!}
+                                </div>
                             </div>
                         @endif
                         @if($article->additionInfo)
                             <div id="text3" class="tab-pane fade">
-                                {!!$article->additionInfo!!}
+                                <div class="well">
+                                    {!!$article->additionInfo!!}
+                                </div>
                             </div>
                         @endif
                         @if($article->extraInfo)
                             <div id="text4" class="tab-pane fade">
+                                <div class="well">
                                 {!!$article->extraInfo!!}
+                                </div>
                             </div>
                         @endif
                         {{--{{dd($article)}}--}}

@@ -80,6 +80,24 @@ class ArticleController extends AdminController
 
         $parGrp = $this->parameterGroups;
         $input = $request->all();
+        if (empty(trim($input['name']))) {
+            Session::flash('infomessage', 'У товара должно быть не пустое название!!!');
+            return redirect('admin/article/create');
+        }
+        if (empty(trim($input['category_id']))) {
+            Session::flash('infomessage', 'Выберете категорию!!!');
+            return redirect('admin/article/create');
+        }
+        if (empty(trim($input['vendor_id']))) {
+            Session::flash('infomessage', 'Выберете производителя!!!');
+            return redirect('admin/article/create');
+        }
+        if (count(Article::where('name',$input['name'])->get())){
+            Session::flash('infomessage', 'Товар с именем '.$input['name'].' уже существует!!!');
+            return redirect('admin/article/create');
+        }
+
+
 
         $article = Article::create($input);
         Session::flash('infomessage','Изменения сохранены');
@@ -103,6 +121,48 @@ class ArticleController extends AdminController
 
         $input = $request->all();
         $published = 0;
+        $avaliable = 0;
+
+        if (empty(trim($input['name']))) {
+            Session::flash('infomessage', 'У товара должно быть не пустое название!!!');
+            return redirect('admin/article/'.$id.'/edit');
+        }
+        if (empty(trim($input['category_id']))) {
+            Session::flash('infomessage', 'Выберете категорию!!!');
+            return redirect('admin/article/'.$id.'/edit');
+        }
+        if (empty(trim($input['vendor_id']))) {
+            Session::flash('infomessage', 'Выберете производителя!!!');
+            return redirect('admin/article/'.$id.'/edit');
+        }
+        if ($input['priceYE']<0 || $input['priceGRN']<0) {
+            Session::flash('infomessage', 'Ошибка при вводе цены!!!');
+            return redirect('admin/article/'.$id.'/edit');
+        }
+        if ($input['priceYE']+$input['priceGRN']==0) {
+            Session::flash('infomessage', 'Укажите хотя-бы одну цену!!!');
+            return redirect('admin/article/'.$id.'/edit');
+        }
+        //находим все возможные группы параметров для текущей категории
+        $categoryGroupParameters = DB::table('category_parameter_group')
+            ->select('parameter_group_id')
+            ->where('category_id', $input['category_id'])
+            ->distinct()->get()->pluck('parameter_group_id')->toarray();
+        //находим группы параметров, которые использованы
+        if (isset($request->parameter))
+            $keys = array_keys($input['parameter']);
+        $selectedGroupParameters = array();
+        if(!empty($keys))
+            $selectedGroupParameters = DB::table('parameters')
+                ->select('parameter_group_id')
+                ->whereIn('id', $keys)
+                ->distinct()->get()->pluck('parameter_group_id')->toarray();
+
+
+        if (count($categoryGroupParameters)!=count($selectedGroupParameters)){
+            Session::flash('infomessage', 'Указаны не все параметры товара!!!');
+            return redirect('admin/article/'.$id.'/edit');
+        }
 
         if (isset($request->parameter)){
             DB::table('article_parameter')->where('article_id', '=', $id)->delete();
@@ -113,6 +173,9 @@ class ArticleController extends AdminController
 
         if (isset($request->published)) if ($request->published == 'on') $published = 1;
         $input['published'] = $published;
+        if (isset($request->avaliable)) if ($request->avaliable == 'on') $avaliable = 1;
+        $input['avaliable'] = $avaliable;
+
 
         if(Article::find($id)->update($input))
             Session::flash('infomessage','Изменения сохранены');
@@ -148,9 +211,12 @@ class ArticleController extends AdminController
         $files['intro1'] = $image['url'];
 
         $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
+
         $_parameterGroups = DB::table('getParameterGroupForArticle')->select('parametrDroup_id')->where('article_id','=', $id)->get()->pluck('parametrDroup_id')->toArray();
         $parameterGroups = Parameter_group::whereIn('id',$_parameterGroups)->get();
-        $checkedParameters = DB::table('article_parameter')->select('parameter_id')->where('article_id','=', $id)->get()->pluck('parameter_id')->toArray();
+
+
+        $checkedParameters = DB::table('article_parameter')->select('parameter_id')->where('article_id','=', $oldId)->get()->pluck('parameter_id')->toArray();
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
 
         return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));

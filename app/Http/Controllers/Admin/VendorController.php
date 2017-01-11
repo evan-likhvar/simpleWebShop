@@ -21,7 +21,20 @@ class VendorController extends AdminController
 
     public function store(Request $request)
     {
+
         $input = $request->all();
+
+
+        if (empty(trim($input['name']))) {
+            Session::flash('infomessage', 'У производителя должно быть не пустое название!!!');
+            return redirect('admin/vendor');
+        }
+        if (count(Vendor::where('name',$input['name'])->get())){
+            Session::flash('infomessage', 'Производитель с именем '.$input['name'].' уже существует!!!');
+            return redirect('admin/vendor');
+        }
+        //return dd($input);
+
         Vendor::create($input);
         return redirect('admin/vendor');
     }
@@ -46,7 +59,7 @@ class VendorController extends AdminController
             return redirect('admin/vendor');
         }
         if($vendor->delete())
-            Session::flash('infomessage',$vendor->name.' - deleted');
+            Session::flash('infomessage',$vendor->name.' - удален из базы');
         return redirect('admin/vendor');
     }
 

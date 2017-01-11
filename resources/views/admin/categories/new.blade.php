@@ -3,7 +3,10 @@
 
     <div class="container-fluid">
         <div class="row well">
-            Добавление новой категории в категорию {{$parent->name}}
+            Добавление новой категории
+            @if(!empty($parent))
+            в категорию {{$parent->name}}
+            @endif
         </div>
         <div class="row">
             {!! Form::open(['method'=>'POST','action'=>'Admin\CategoryController@store','class'=>'form-horizontal']) !!}
@@ -13,10 +16,12 @@
                     {!! Form::text('name',null,['class'=>'form-control']) !!}
                 </div>
 
+                @if(!empty($parent))
                 {!! Form::label('parent','Родительская категория:',['class'=>'control-label col-sm-3']) !!}
                 <div class="col-sm-4">
                     {!! Form::text('parent',$parent->name,['class' => 'form-control', 'readonly' => 'true']) !!}
                 </div>
+                    @endif
             </div>
             <div class="form-group">
                 {!! Form::label('description','Описание:',['class'=>'control-label col-sm-1']) !!}
@@ -35,7 +40,7 @@
                 <div class="col-sm-1">
                     {!! Form::text('order',0,['class'=>'form-control']) !!}
                 </div>
-                {!! Form::hidden ('parent_id',$parent->id,['class'=>'form-control']) !!}
+                {!! Form::hidden ('parent_id',!empty($parent) ? $parent->id : null,['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Создать',['class'=>'btn btn-info col-sm-offset-3']) !!}

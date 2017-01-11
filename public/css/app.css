@@ -5909,3 +5909,11 @@ button.close {
 .pagination > .active > .span:hover,
 .pagination > .active > .span:focus {
   background-color: #e8ca2b; }
+
+tr:nth-child(2n) {
+  background: #f0f0f0; }
+
+#articleDesc div .well {
+  border: 1px solid #ededed;
+  border-top: none;
+  border-radius: 0; }

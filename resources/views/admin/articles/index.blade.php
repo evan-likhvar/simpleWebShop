@@ -20,6 +20,7 @@
                 <th ><a href="{{route('admin.article')}}?sort=vendor_id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Производитель</a></th>
                 <th >ЦенаУЕ</th>
                 <th >ЦенаГРН</th>
+                <th ><a href="{{route('admin.article')}}?sort=avaliable&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">В наличии</a></th>
                 <th ><a href="{{route('admin.article')}}?sort=published&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Опубликована</a></th>
             </tr>
             </thead>
@@ -50,6 +51,7 @@
                     <td>{{$item->Vendor->name}}</td>
                     <td>{{$item->priceYE}}</td>
                     <td>{{$item->priceGRN}}</td>
+                    <td>{{$item->avaliable==0 ? 'Нет' : 'Да'}}</td>
                     <td>{{$item->published==0 ? 'Нет' : 'Да'}}</td>
                 </tr>
             @endforeach

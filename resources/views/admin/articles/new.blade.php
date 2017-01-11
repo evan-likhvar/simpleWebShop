@@ -16,7 +16,11 @@
                     @endforeach
                 </div>
             @endif
-
+            @if(Session::has('infomessage'))
+                <div class="alert alert-danger">
+                    {!! session('infomessage') !!}
+                </div>
+            @endif
             <div class="row">
                 {!! Form::open(['method'=>'POST','action'=>'Admin\ArticleController@store','files'=>true,'class'=>'form-horizontal']) !!}
                 <div class="col-sm-4">

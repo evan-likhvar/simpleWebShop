@@ -17,12 +17,21 @@
                     @endforeach
                 </div>
             @endif
+
+                @if(Session::has('infomessage'))
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {!! session('infomessage') !!}
+
+                    </div>
+                @endif
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#text1">Основные параметры</a></li>
-                    <li><a data-toggle="tab" href="#text2">Описание</a></li>
+                    <li><a data-toggle="tab" href="#text2">Краткое писание</a></li>
+                    <li><a data-toggle="tab" href="#text6">Описание</a></li>
                     <li><a data-toggle="tab" href="#text3">Технические данные</a></li>
                     <li><a data-toggle="tab" href="#text4">Дополнительная информация</a></li>
-                    <li><a data-toggle="tab" href="#text5">info</a></li>
+                    <li><a data-toggle="tab" href="#text5">Принадлежности</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -67,8 +76,10 @@
                                 <div class="form-group">
                                     {!! Form::label('category_id','Категория:',['class'=>'control-label col-sm-3']) !!}
                                     <div class="col-sm-8">
-                                        {!! Form::select('category_id',[''=>'Choose Category']+$categories,null,['class'=>'form-control']) !!}
+                                        {!! Form::select('category_id',$categories,null,['class'=>'form-control','disabled' => 'disabled']) !!}
+
                                     </div>
+                                    {!! Form::hidden('category_id', $article->category_id) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('vendor_id','Производитель:',['class'=>'control-label col-sm-3']) !!}
@@ -79,13 +90,13 @@
                                 <div class="form-group">
                                     {!! Form::label('priceYE','Цена у.е.:',['class'=>'control-label col-sm-3']) !!}
                                     <div class="col-sm-8">
-                                        {!! Form::text('priceYE',null,['class'=>'form-control']) !!}
+                                        {!! Form::text('priceYE',isset($article->priceYE) ? $article->priceYE : 0 ,['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('priceGRN','Цена грн:',['class'=>'control-label col-sm-3']) !!}
                                     <div class="col-sm-8">
-                                        {!! Form::text('priceGRN',null,['class'=>'form-control']) !!}
+                                        {!! Form::text('priceGRN',isset($article->priceGRN) ? $article->priceGRN : 0,['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -93,10 +104,14 @@
                                     <div class="col-sm-1">
                                         {!! Form::checkbox('published', null) !!}
                                     </div>
+                                    {!! Form::label('avaliable','В наличии:', ['class'=>'control-label col-sm-3']) !!}
+                                    <div class="col-sm-1">
+                                        {!! Form::checkbox('avaliable', null) !!}
+                                    </div>
 
                                     {!! Form::label('order','Приоритет:', ['class'=>'control-label col-sm-3']) !!}
                                     <div class="col-sm-1">
-                                        {!! Form::text('order',null,['class'=>'form-control']) !!}
+                                        {!! Form::text('order',isset($article->order) ? $article->priceYE : 0,['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -146,11 +161,21 @@
                     </div>
                     <div id="text2" class="tab-pane fade">
                         <div class="form-group">
-                            {!! Form::label('description','Описание:',['class'=>'control-label col-sm-1']) !!}
+                            {!! Form::label('description','Краткое описание:',['class'=>'control-label col-sm-1']) !!}
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 {!! Form::textarea('description',null,['class'=>'form-control','class'=>'maincontent','size' => '5x5']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="text6" class="tab-pane fade">
+                        <div class="form-group">
+                            {!! Form::label('fullDescription','Описание:',['class'=>'control-label col-sm-1']) !!}
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                {!! Form::textarea('fullDescription',null,['class'=>'form-control','class'=>'maincontent','size' => '5x5']) !!}
                             </div>
                         </div>
                     </div>

@@ -23,15 +23,15 @@ class AdminController extends Controller
         $parGrp = $this->parameterGroups;
         return view('admin.adminapp')->with(compact('parGrp'));
     }
-
+//это НЕ галерея, а привьюши картинки!!!!
     protected function createImageGallery($objectId,$inp,$out){
 
         $md5name = md5("Image".$objectId);
         $output = $out.$md5name;
 
-        $img = Image::make($inp)->resize(110, 82)->save($output.'_XS.jpg');
-        $img = Image::make($inp)->resize(230, 171)->save($output.'_S.jpg');
-        $img = Image::make($inp)->resize(320, null, function ($constraint) {$constraint->aspectRatio();})->save($output.'_M.jpg');
+        $img = Image::make($inp)->resize(110, null, function ($constraint) {$constraint->aspectRatio();})->save($output.'_XS.jpg');
+        $img = Image::make($inp)->resize(150, null, function ($constraint) {$constraint->aspectRatio();})->save($output.'_S.jpg');
+        $img = Image::make($inp)->resize(300, null, function ($constraint) {$constraint->aspectRatio();})->save($output.'_M.jpg');
         $img = Image::make($inp)->resize(640, null, function ($constraint) {$constraint->aspectRatio();})->save($output.'_L.jpg');
     }
 

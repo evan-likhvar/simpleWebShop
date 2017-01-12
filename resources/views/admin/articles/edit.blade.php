@@ -27,6 +27,7 @@
                 @endif
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#text1">Основные параметры</a></li>
+                    <li><a data-toggle="tab" href="#text7">Галерея товара</a></li>
                     <li><a data-toggle="tab" href="#text2">Краткое писание</a></li>
                     <li><a data-toggle="tab" href="#text6">Описание</a></li>
                     <li><a data-toggle="tab" href="#text3">Технические данные</a></li>
@@ -35,24 +36,72 @@
                 </ul>
 
                 <div class="tab-content">
-                    <div id="text1" class="tab-pane fade in active">
+                    <div id="text7" class="tab-pane fade">
+
                         <div class="row">
-
-{{--
-                            {!! Form::open(['method'=>'POST','files' => true, 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro1']]) !!}
-                            {{Form::file('file')}}
-                            {!! Form::submit('Сохранить',['class'=>'btn btn-info']) !!}
-                            {!! Form::close() !!}
---}}
-
-
-
-
-                            <div class="col-sm-2 ">
+                            <div class="col-sm-3 ">
+                                @if(!empty($files['intro1']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
+                                @endif
+                            </div>
+                            <div class="col-sm-3 ">
+                                @if(!empty($files['intro2']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro2']) !!}">
+                                @endif
+                            </div>
+                            <div class="col-sm-3 ">
+                                @if(!empty($files['intro3']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro3']) !!}">
+                                @endif
+                            </div>
+                            <div class="col-sm-3 ">
+                                @if(!empty($files['intro4']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro4']) !!}">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
                                 {!! Form::open(['method'=>'POST', 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro1'],'class'=>'dropzone']) !!}
                                 {!! Form::close() !!}
                             </div>
-                            <div class="col-sm-3 ">
+                            <div class="col-sm-3">
+                                {!! Form::open(['method'=>'POST', 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro2'],'class'=>'dropzone']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                            <div class="col-sm-3">
+                                {!! Form::open(['method'=>'POST', 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro3'],'class'=>'dropzone']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                            <div class="col-sm-3">
+                                {!! Form::open(['method'=>'POST', 'action'=>['Admin\ArticleController@storeMedia',$article->id,'intro4'],'class'=>'dropzone']) !!}
+                                {!! Form::close() !!}
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div id="text1" class="tab-pane fade in active">
+                        <div class="row">
+
+                            <div class="col-sm-1 ">
+
+                                @if(!empty($files['intro1']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
+                                @endif
+                                @if(!empty($files['intro2']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro2']) !!}">
+                                @endif
+
+                                @if(!empty($files['intro3']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro3']) !!}">
+                                @endif
+
+                                @if(!empty($files['intro4']))
+                                    <img  class="img-responsive img-thumbnail" src="{!! url($files['intro4']) !!}">
+                                @endif
+                            </div>
+                            <div class="col-sm-4 ">
                                 @if(!empty($files['intro1']))
                                     <img  class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
                                 @endif
@@ -159,6 +208,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div id="text2" class="tab-pane fade">
                         <div class="form-group">
                             {!! Form::label('description','Краткое описание:',['class'=>'control-label col-sm-1']) !!}

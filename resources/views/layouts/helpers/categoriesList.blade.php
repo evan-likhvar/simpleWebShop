@@ -16,7 +16,7 @@
                             <a href="{{route('showArticle', ['article' => $article->id])}}">
                                 <div class="col-sm-12">
                                     <img class="img-responsive"
-                                         src="{{$article->getIntroImg('S')}}" alt="">
+                                         src="{{$article->getIntroImg('S','intro1')}}" alt="">
                                     {{$article->name}}<br><br>
                                     Цена - <b>{{$article->priceGRN}}</b>
                                 </div>
@@ -61,7 +61,7 @@
                             <a href="{{route('showArticle', ['article' => $article->id])}}">
                                 <div class="col-sm-4">
                                     <img class="img-responsive"
-                                         src="{{$article->getIntroImg('S')}}" alt="">
+                                         src="{{$article->getIntroImg('S','intro1')}}" alt="">
                                     {{$article->name}}<br><br>
                                     Цена - <b>{{$article->priceGRN}}</b>
                                 </div>

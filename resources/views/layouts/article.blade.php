@@ -2,20 +2,32 @@
 @section('content')
     <div class="container">
         <div class="row">
-<div class="well text-left">
+<div class="well-sm text-left">
 
     <a href="{{route('showCategory', ['category' => $article->Category->parent->id])}}">{{ $article->Category->parent->name }}</a>
     /
     <a href="{{route('showCategory', ['category' => $article->Category->id])}}">{{ $article->Category->name }}</a>
 </div>
             <div class="col-sm-10">
+                <div class="well">
+                <h2>{{$article->name}}</h2>
+                </div>
                 <div class="row">
+                    <div class="col-sm-2">
+                        <img class="img-responsive" style="padding-bottom: 20px;"
+                             src="{{$article->getIntroImg('XS','intro2')}}" alt="">
+                        <img class="img-responsive " style="padding-bottom: 20px;"
+                             src="{{$article->getIntroImg('XS','intro3')}}" alt="">
+                        <img class="img-responsive " style="padding-bottom: 20px;"
+                             src="{{$article->getIntroImg('XS','intro4')}}" alt="">
+                    </div>
                     <div class="col-sm-4">
                         <img class="img-responsive img-thumbnail"
-                             src="{{$article->getIntroImg('L')}}" alt="">
+                             src="{{$article->getIntroImg('L','intro1')}}" alt="">
                     </div>
-                    <div class="col-sm-8">
-                        <h2>{{$article->name}}</h2>
+                    <div class="col-sm-6">
+                        <h6>код товара {{$article->nomer}}</h6>
+
                         <p>Производитель - <b>{{$article->Vendor->name}}</b></p>
 
                         <div class="available">

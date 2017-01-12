@@ -2,7 +2,7 @@
 @foreach($Articles as $article)
     <a href="{{route('showArticle', ['article' => $article->id])}}">
         <div class="col-sm-12 promoRight">
-            <img class="img-responsive " src="{{$article->getIntroImg('S')}}" alt="">
+            <img class="img-responsive " src="{{$article->getIntroImg('S','intro1')}}" alt="">
             {{$article->name}}
         </div>
     </a>

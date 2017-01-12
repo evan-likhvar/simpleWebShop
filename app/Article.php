@@ -24,8 +24,8 @@ class Article extends Model
     }
 
 
-    public function getIntroImg($size){
-        $path = '/images/articles/'.$this->id.'/intro1/';
+    public function getIntroImg($size,$name='intro1'){
+        $path = '/images/articles/'.$this->id.'/'.$name.'/';
         $name = md5("Image".$this->id);
         $img = $path.$name.'_'.$size.'.jpg';
 

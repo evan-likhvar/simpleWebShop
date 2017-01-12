@@ -15,7 +15,7 @@
                                 @foreach($articleRow as $article)
                                 <a href="{{route('showArticle', ['article' => $article->id])}}">
                                     <div class="col-sm-3">
-                                        <img class="img-responsive img-thumbnail" src="{{$article->getIntroImg('S')}}"
+                                        <img class="img-responsive img-thumbnail" src="{{$article->getIntroImg('S','intro1')}}"
                                              alt="">
                                         {{$article->name}}
                                     </div>

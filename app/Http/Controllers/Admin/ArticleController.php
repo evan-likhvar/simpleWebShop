@@ -38,6 +38,12 @@ class ArticleController extends AdminController
 
         $image = $this->getOriginalImage('articles',$id,'intro1');
         $files['intro1'] = $image['url'];
+        $image = $this->getOriginalImage('articles',$id,'intro2');
+        $files['intro2'] = $image['url'];
+        $image = $this->getOriginalImage('articles',$id,'intro3');
+        $files['intro3'] = $image['url'];
+        $image = $this->getOriginalImage('articles',$id,'intro4');
+        $files['intro4'] = $image['url'];
 
         $parGrp = $this->parameterGroups;
 

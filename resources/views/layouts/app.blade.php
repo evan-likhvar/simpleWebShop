@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/css/app.css" type="text/css"/>
+
+    <link rel="stylesheet" href="/css/sfancy.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/sfancybutt.css" type="text/css"/>
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="/css/bootstrap/3.3.7/bootstrap.min.css" type="text/css" />--}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/sfancy.js"></script>
+    <script src="/js/sfancybutt.js"></script>
     {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
       <script src="/js/jquery/1.12.4/jquery.min.js"></script>
       <script src="/js/bootstrap/3.3.7/bootstrap.min.js"></script>

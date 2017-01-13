@@ -139,16 +139,23 @@
   background-color: darken(#fcf8e3, 40%);
 }
 
-tr:nth-child(2n) {
-  background: #f0f0f0;
+/*tr>td:first-child {
+  background-color: #ccc;
 }
+
+.odd {
+  background-color: #ccc;
+}*/
+
+
 
 #articleDesc {
   div {
     .well {
-      border: 1px solid #ededed;
+      border: 1px solid #ddd;
       border-top:none;
       border-radius: 0;
     }
   }
 }
+

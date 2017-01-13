@@ -5910,10 +5910,14 @@ button.close {
 .pagination > .active > .span:focus {
   background-color: #e8ca2b; }
 
-tr:nth-child(2n) {
-  background: #f0f0f0; }
+/*tr>td:first-child {
+  background-color: #ccc;
+}
 
+.odd {
+  background-color: #ccc;
+}*/
 #articleDesc div .well {
-  border: 1px solid #ededed;
+  border: 1px solid #ddd;
   border-top: none;
   border-radius: 0; }

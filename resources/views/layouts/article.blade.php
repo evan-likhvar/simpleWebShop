@@ -29,13 +29,17 @@
 
                     </div>
                     <div id="prev" class="col-sm-4">
-                        <a id="intro1" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro1')}}"><img
+                        <a id="intro1" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro1')}}">
+                            <img class="img-responsive img-thumbnail"
                                     src="{{$article->getIntroImg('M','intro1')}}" alt=""/></a>
-                        <a id="intro2" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro2')}}"><img
+                        <a id="intro2" class="fancybox-effects-1 " href="{{$article->getIntroImg('L','intro2')}}">
+                            <img class="img-responsive img-thumbnail"
                                     src="{{$article->getIntroImg('M','intro2')}}" alt=""/></a>
-                        <a id="intro3" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro3')}}"><img
+                        <a id="intro3" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro3')}}">
+                            <img class="img-responsive img-thumbnail"
                                     src="{{$article->getIntroImg('M','intro3')}}" alt=""/></a>
-                        <a id="intro4" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro4')}}"><img
+                        <a id="intro4" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro4')}}">
+                            <img class="img-responsive img-thumbnail"
                                     src="{{$article->getIntroImg('M','intro4')}}" alt=""/></a>
 
 

@@ -18,29 +18,35 @@
                     <div class="col-sm-2">
                         <img id="intro1" class="img-responsive" style="padding-bottom: 20px;"
                              src="{{$article->getIntroImg('XS','intro1')}}" alt="">
-                        <img id="intro2" class="img-responsive" style="padding-bottom: 20px;"
-                             src="{{$article->getIntroImg('XS','intro2')}}" alt="">
-                        <img id="intro3" class="img-responsive" style="padding-bottom: 20px;"
-                             src="{{$article->getIntroImg('XS','intro3')}}" alt="">
-                        <img id="intro4" class="img-responsive" style="padding-bottom: 20px;"
-                             src="{{$article->getIntroImg('XS','intro4')}}" alt="">
+                        @if($article->getIntroImg('XS','intro2'))
+                            <img id="intro2" class="img-responsive" style="padding-bottom: 20px;"
+                                 src="{{$article->getIntroImg('XS','intro2')}}" alt="">
+                        @endif
+                        @if($article->getIntroImg('XS','intro3'))
+                            <img id="intro3" class="img-responsive" style="padding-bottom: 20px;"
+                                 src="{{$article->getIntroImg('XS','intro3')}}" alt="">
+                        @endif
+                        @if($article->getIntroImg('XS','intro4'))
+                            <img id="intro4" class="img-responsive" style="padding-bottom: 20px;"
+                                 src="{{$article->getIntroImg('XS','intro4')}}" alt="">
+                        @endif
 
                         {{--<div id="text">123</div>--}}
 
                     </div>
-                    <div id="prev" class="col-sm-4">
+                    <div id="prev" class="col-sm-5">
                         <a id="intro1" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro1')}}">
                             <img class="img-responsive img-thumbnail"
-                                    src="{{$article->getIntroImg('M','intro1')}}" alt=""/></a>
+                                 src="{{$article->getIntroImg('M','intro1')}}" alt=""/></a>
                         <a id="intro2" class="fancybox-effects-1 " href="{{$article->getIntroImg('L','intro2')}}">
                             <img class="img-responsive img-thumbnail"
-                                    src="{{$article->getIntroImg('M','intro2')}}" alt=""/></a>
+                                 src="{{$article->getIntroImg('M','intro2')}}" alt=""/></a>
                         <a id="intro3" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro3')}}">
                             <img class="img-responsive img-thumbnail"
-                                    src="{{$article->getIntroImg('M','intro3')}}" alt=""/></a>
+                                 src="{{$article->getIntroImg('M','intro3')}}" alt=""/></a>
                         <a id="intro4" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro4')}}">
                             <img class="img-responsive img-thumbnail"
-                                    src="{{$article->getIntroImg('M','intro4')}}" alt=""/></a>
+                                 src="{{$article->getIntroImg('M','intro4')}}" alt=""/></a>
 
 
                         {{--                        <img id="intro1" class="img-responsive img-thumbnail"
@@ -55,7 +61,7 @@
 
                     {{--<a class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro2')}}"><img src="{{$article->getIntroImg('M','intro2')}}" alt="" /></a>--}}
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <h6><b>код товара {{$article->nomer}}</b></h6>
 
                         <p>Производитель - <b>{{$article->Vendor->name}}</b></p>
@@ -74,7 +80,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <h2>{{$article->name}}</h2>
+                    {{--<h2>{{$article->name}}</h2>--}}
                     <ul class="nav nav-tabs">
                         @if($article->fullDescription)
                             <li class="active"><a data-toggle="tab" href="#text1">Описание</a></li>

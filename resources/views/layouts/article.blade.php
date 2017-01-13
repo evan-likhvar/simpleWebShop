@@ -11,52 +11,37 @@
                 </div>
             </div>
             <div class="col-sm-10">
-                <div class="well" style="border: 1px solid #f09713;">
+                <div class="well text-center" style="border: 1px solid #f09713;">
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
                 <div id="gal" class="row">
-                    <div class="col-sm-2">
-                        <img id="intro1" class="img-responsive" style="padding-bottom: 20px;"
-                             src="{{$article->getIntroImg('XS','intro1')}}" alt="">
-                        @if($article->getIntroImg('XS','intro2'))
-                            <img id="intro2" class="img-responsive" style="padding-bottom: 20px;"
-                                 src="{{$article->getIntroImg('XS','intro2')}}" alt="">
-                        @endif
-                        @if($article->getIntroImg('XS','intro3'))
-                            <img id="intro3" class="img-responsive" style="padding-bottom: 20px;"
-                                 src="{{$article->getIntroImg('XS','intro3')}}" alt="">
-                        @endif
-                        @if($article->getIntroImg('XS','intro4'))
-                            <img id="intro4" class="img-responsive" style="padding-bottom: 20px;"
-                                 src="{{$article->getIntroImg('XS','intro4')}}" alt="">
-                        @endif
+                    @if(count($articleImages)>1)
+                        <div class="col-sm-2">
 
-                        {{--<div id="text">123</div>--}}
 
-                    </div>
+                            @foreach($articleImages as $key=>$item)
+
+                                <img id="{{$key}}" class="img-responsive" style="padding-bottom: 20px;"
+                                     src="{{$item['XS']}}" alt="">
+
+                            @endforeach
+
+                        </div>
+                    @else
+                        <div></div>
+                    @endif
                     <div id="prev" class="col-sm-5">
-                        <a id="intro1" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro1')}}">
-                            <img class="img-responsive img-thumbnail"
-                                 src="{{$article->getIntroImg('M','intro1')}}" alt=""/></a>
-                        <a id="intro2" class="fancybox-effects-1 " href="{{$article->getIntroImg('L','intro2')}}">
-                            <img class="img-responsive img-thumbnail"
-                                 src="{{$article->getIntroImg('M','intro2')}}" alt=""/></a>
-                        <a id="intro3" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro3')}}">
-                            <img class="img-responsive img-thumbnail"
-                                 src="{{$article->getIntroImg('M','intro3')}}" alt=""/></a>
-                        <a id="intro4" class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro4')}}">
-                            <img class="img-responsive img-thumbnail"
-                                 src="{{$article->getIntroImg('M','intro4')}}" alt=""/></a>
+
+                        @foreach($articleImages as $key=>$item)
 
 
-                        {{--                        <img id="intro1" class="img-responsive img-thumbnail"
-                             src="{{$article->getIntroImg('L','intro1')}}" alt="">
-                        <img id="intro2" class="img-responsive img-thumbnail"
-                             src="{{$article->getIntroImg('L','intro2')}}" alt="">
-                        <img id="intro3" class="img-responsive img-thumbnail"
-                             src="{{$article->getIntroImg('L','intro3')}}" alt="">
-                        <img id="intro4" class="img-responsive img-thumbnail"
-                             src="{{$article->getIntroImg('L','intro4')}}" alt="">--}}
+                            <a id="{{$key}}" class="fancybox-effects-1" href="{{$item['L']}}">
+                                <img class="img-responsive img-thumbnail"
+                                     src="{{$item['M']}}" alt=""/></a>
+
+                        @endforeach
+
+
                     </div>
 
                     {{--<a class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro2')}}"><img src="{{$article->getIntroImg('M','intro2')}}" alt="" /></a>--}}
@@ -75,7 +60,7 @@
                         </div>
                         <br>
                         <p>Цена - <b>{{$article->priceGRN}}</b> грн.</p>
-                        <a class="btn btn-success btn-sm col-sm-2 -col-sm-offset-1" role="button"
+                        <a class="btn btn-success btn-sm col-sm-4 -col-sm-offset-1" role="button"
                            href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
                     </div>
                 </div>
@@ -92,7 +77,7 @@
                             <li><a data-toggle="tab" href="#text3">Дополнительная информация</a></li>
                         @endif
                         @if($article->extraInfo)
-                            <li><a data-toggle="tab" href="#text4">info</a></li>
+                            <li><a data-toggle="tab" href="#text4">Принадлежности</a></li>
                         @endif
                     </ul>
 
@@ -125,7 +110,7 @@
                                 </div>
                             </div>
                         @endif
-                        {{--{{dd($article)}}--}}
+
                     </div>
                 </div>
             </div>

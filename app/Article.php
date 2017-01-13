@@ -29,8 +29,14 @@ class Article extends Model
         $name = md5("Image".$this->id);
         $img = $path.$name.'_'.$size.'.jpg';
 
-        // return dd($img);
-        return $img;
+        $fullPath = public_path().$img;
+
+        if (file_exists($fullPath)){
+            return $img;
+        }
+        //return dd($fullPath);
+
+        return 'noImage';
     }
 
 

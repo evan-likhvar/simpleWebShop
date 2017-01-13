@@ -147,7 +147,12 @@
   background-color: #ccc;
 }*/
 
-
+table {
+  border: 1px solid #ddd ;
+  tr {
+    border: 1px solid #ddd ;
+  }
+}
 
 #articleDesc {
   div {

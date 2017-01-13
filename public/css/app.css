@@ -5917,6 +5917,11 @@ button.close {
 .odd {
   background-color: #ccc;
 }*/
+table {
+  border: 1px solid #ddd; }
+  table tr {
+    border: 1px solid #ddd; }
+
 #articleDesc div .well {
   border: 1px solid #ddd;
   border-top: none;

@@ -23,7 +23,13 @@
                                         {!! Form::label($parameter->id,$parameter->name, ['class'=>'control-label col-sm-10']) !!}
                                         <div class="col-sm-1">
                                             {{--{{dd($checkedParameters)}}--}}
-                                            <?php if ( !empty($checkedParameters) && array_key_exists($parameter->id, $checkedParameters) === false) $check = false; else $check = true; //$check = false?>
+                                            @if($unCheckAll)
+                                                <?php
+                                                if ( !empty($checkedParameters) && array_key_exists($parameter->id, $checkedParameters) === false) $check = false; else $check = true;
+                                                ?>
+                                            @else
+                                                {{$check = false}}
+                                            @endif
                                             {!! Form::checkbox($parameter->id, null, $check) !!}
                                         </div>
 
@@ -32,12 +38,11 @@
                                 @endforeach
                             {{--</ul>--}}
                         </div>
-                        {{--<div class="panel-footer"></div>--}}
                     </div>
 
                 @endforeach
 
-
+                    {!! Form::hidden('category',$category->id) !!}
                 {!! Form::close() !!}
 
 

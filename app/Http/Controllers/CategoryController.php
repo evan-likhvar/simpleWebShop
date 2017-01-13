@@ -20,12 +20,17 @@ class CategoryController extends FrontController
         $homeArticles = Article::limit(8)->get();
 
         $checkedParameters = array();
-        $checkedParameters = Session::get('parameters');
+        $checkedParameters = Session::get($categoryId.':parameters');
+
+        if (empty($checkedParameters)) $unCheckAll = false; else $unCheckAll = true;
+
 
 
         $filter = $this->getParametersFilter($checkedParameters,$categoryId);
 
-        $orderBy = '';
+
+
+        $orderBy = 'по популярности';
         $order = Session::get('order');
         if ($order == 'asc') $orderBy = 'по возрастанию цены';
         if ($order == 'desc') $orderBy = 'по убыванию цены';
@@ -41,7 +46,7 @@ class CategoryController extends FrontController
         if (count($category->Children)){
             return view('layouts.categories')->with(compact('category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
         } else {
-            return view('layouts.categoryArticles')->with(compact('articles','orderBy','checkedParameters','category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
+            return view('layouts.categoryArticles')->with(compact('unCheckAll','articles','orderBy','checkedParameters','category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
         }
     }
 
@@ -55,8 +60,14 @@ class CategoryController extends FrontController
     protected function  setParameters (Request $request) {
 
         $input = $request->all();
+
+        $categoryId = $input['category'];
+
+        unset($input['category']);
         unset($input['_token']);
-        Session::put('parameters', $input);
+
+
+        Session::put($categoryId.':parameters', $input);
 
         return redirect()->back();
     }
@@ -86,6 +97,7 @@ class CategoryController extends FrontController
 
         //дописываем НЕ задействованные группы всеми возможными параметрами
         //if(!empty($checkedParameters))
+        $addKeys = array();
         foreach ($categoryGroupParameters as $GroupParameter){
 
             if (empty($checkedParameters) || array_search($GroupParameter,$selectedGroupParameters) === false)

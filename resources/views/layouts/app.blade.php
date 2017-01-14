@@ -81,12 +81,14 @@
     </div>
     @yield('content')
 </div>
+
+{{--<div class="container" style="height: 100px;">
+    <div class="well text-center" style="border: 1px solid #f09713;height: 100px;">
+
+    </div>
+</div>--}}
+
 @if(isset($countCartItems))
-<div class="container-fluid" style="height: 100px;background-color: #67b168">
-
-</div>
-
-
 <!-- Modal -->
 <div id="cart" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">

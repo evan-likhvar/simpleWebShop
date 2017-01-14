@@ -3,7 +3,8 @@
     <div class="container">
         <div class="row">
             <div class="well-sm text-left">
-                <div class="row" style="padding-left: 50px;">
+                <div class="row" style="min-height: 20px;"></div>
+                <div class="row" style="padding-left: 20px;">
                     <a href="/"> Главная </a> <b>></b>
                     <a href="{{route('showCategory', ['category' => $article->Category->parent->id])}}">{{ $article->Category->parent->name }}</a>
                     <b>></b>
@@ -14,6 +15,7 @@
                 <div class="well text-center" style="border: 1px solid #f09713;">
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
+                <div class="row" style="min-height: 20px;"></div>
                 <div id="gal" class="row">
                     @if(count($articleImages)>1)
                         <div class="col-sm-2">
@@ -47,23 +49,64 @@
                     {{--<a class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro2')}}"><img src="{{$article->getIntroImg('M','intro2')}}" alt="" /></a>--}}
 
                     <div class="col-sm-5">
-                        <h6><b>код товара {{$article->nomer}}</b></h6>
 
-                        <p>Производитель - <b>{{$article->Vendor->name}}</b></p>
-
-                        <div class="available">
-                            @if($article->avaliable)
-                                <span class="glyphicon glyphicon-ok"></span> в наличии
-                            @else
-                                <small>наличие уточняйте</small>
-                            @endif
+                        <div class="row">
+                            <div class="col-sm-4">Модель</div>
+                            <div class="col-sm-8">{{$article->name}}</div>
                         </div>
-                        <br>
-                        <p>Цена - <b>{{$article->priceGRN}}</b> грн.</p>
+                        <div class="row" style="min-height: 20px;"></div>
+                        <div class="row">
+                            <div class="col-sm-4">Код товара</div>
+                            <div class="col-sm-8" style="font-size: 120%"><b>{{$article->nomer}}</b></div>
+                        </div>
+
+<hr>
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-4">
+                            <div class="available">
+                                @if($article->avaliable)
+                                    <span style="color: #5cb85c" class="glyphicon glyphicon-ok"></span> <span style="color: #5cb85c">в наличии</span>
+                                @else
+                                    <span >наличие уточняйте</span>
+                                @endif
+                            </div>
+                                </div>
+                        </div>
+
+                        <div class="row" style="min-height: 20px;"></div>
+
+                        <div class="row">
+                            <div class="col-sm-4" style="font-size: 150%">Цена</div>
+                            <div class="col-sm-8" style="font-size: 150%"><b>{{$article->priceGRN}}</b></div>
+                        </div>
+                        <hr>
+                        <div class="row" style="min-height: 20px;"></div>
+
+{{--
                         <a class="btn btn-success btn-sm col-sm-4 -col-sm-offset-1" role="button"
                            href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
+
+
+                        <div class="row">
+                            <input type="number" id="replyNumber" min="1" step="1" data-bind="value:replyNumber" />
+                        </div>
+--}}
+                        <div class="row">
+                            {!! Form::open(['method'=>'POST','action'=>['ArticleController@addArticleToCart',$article->id],'class'=>'form-horizontal']) !!}
+
+                            <div class="col-sm-3">
+                                {!! Form::number('count',1,['class'=>'form-control','min'=>"1", 'step'=>"1"]) !!}
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-1">
+                            {!! Form::submit('КУПИТЬ',['class'=>'btn btn-success col-sm-7']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                        <hr>
+
                     </div>
                 </div>
+                <div class="row" style="min-height: 20px;"></div>
                 <div class="row">
                     {{--<h2>{{$article->name}}</h2>--}}
                     <ul class="nav nav-tabs">

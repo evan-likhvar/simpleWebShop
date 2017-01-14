@@ -47,6 +47,10 @@ class ArticleController extends FrontController
     }
 
     public function addArticleToCart($article){
+
+
+
+
         Session::push('cartItems[]', $article);
         return redirect()->to('article/'.$article);
     }

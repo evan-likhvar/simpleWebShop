@@ -73,7 +73,7 @@ Auth::routes();
 
 Route::get('/article/{article}', 'ArticleController@show')->name('showArticle');
 Route::get('/article/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
-
+Route::post('/article/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
 
 
 Route::get('/category/{category}', 'CategoryController@show')->name('showCategory');

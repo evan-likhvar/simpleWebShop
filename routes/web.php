@@ -63,6 +63,10 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::delete('/parameter/{parameter}', 'ParameterController@destroy');
     Route::patch('/parameter/{parameter}', 'ParameterController@update');
 
+    //order
+    Route::get('/order', 'OrderController@index')->name('admin.order');
+    Route::get('/order/{order}/edit', 'OrderController@edit')->name('admin.editOrder');
+    Route::patch('/order/{order}/update', 'OrderController@update');
 });
 
 Route::get('/', 'HomePageController@index');
@@ -71,13 +75,18 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index');
 
-Route::get('/article/{article}', 'ArticleController@show')->name('showArticle');
-Route::get('/article/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
-Route::post('/article/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
+Route::get('/артикул/{article}', 'ArticleController@show')->name('showArticle');
+Route::get('/артикул/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
+Route::post('/артикул/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
+
+Route::get('/setArticleCount', 'ArticleController@SetArticleCountToCart');
+
+Route::get('/категория/{category}', 'CategoryController@show')->name('showCategory');
+
+Route::get('/категория/order/{order?}', 'CategoryController@setArticlesOrder')->name('setArticlesOrder');
+Route::post('/категория/setParameters', 'CategoryController@setParameters');
 
 
-Route::get('/category/{category}', 'CategoryController@show')->name('showCategory');
-
-Route::get('/category/order/{order?}', 'CategoryController@setArticlesOrder')->name('setArticlesOrder');
-Route::post('/category/setParameters', 'CategoryController@setParameters');
-
+Route::get('/показать-заказ/', 'OrderController@show')->name('showOrder');
+Route::post('/показать-заказ/create', 'OrderController@store');
+Route::get('/успешный-заказ/{id}', 'OrderController@showSuccess')->name('showSuccessOrder');

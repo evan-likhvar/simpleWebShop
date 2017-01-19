@@ -13,7 +13,7 @@
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
                         <div class="col-sm-4">
-                            <a href="{{route('showArticle', ['article' => $article->id])}}">
+                            <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                 <div class="col-sm-12">
                                     <img class="img-responsive"
                                          src="{{$article->getIntroImg('S','intro1')}}" alt="">
@@ -28,7 +28,7 @@
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
                             <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
+                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                             </div>
                         @endforeach
                     </div>
@@ -58,7 +58,7 @@
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
 
-                            <a href="{{route('showArticle', ['article' => $article->id])}}">
+                            <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                 <div class="col-sm-4">
                                     <img class="img-responsive"
                                          src="{{$article->getIntroImg('S','intro1')}}" alt="">
@@ -72,7 +72,7 @@
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
                             <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
+                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                             </div>
                         @endforeach
                     </div>

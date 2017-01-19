@@ -18,18 +18,21 @@ class FrontController extends Controller
 
     protected function getCountCartItems()
     {
-        return count(Session::get('cartItems[]'));
+        return count(Session::get('cartItems'));
     }
 
     protected function getCartItems()
     {
 
         $cartItems = array();
-        if (count(Session::get('cartItems[]'))) {
-            foreach (Session::get('cartItems[]') as $item) {
-                $cartItems[] = Article::findOrFail($item);
+        if (count(Session::get('cartItems'))) {
+            foreach (Session::get('cartItems') as $article=>$count) {
+                $cartItems[] = [$count,Article::findOrFail($article)];
             }
         }
+
+        //return dd($cartItems);
+
         return $cartItems;
     }
 

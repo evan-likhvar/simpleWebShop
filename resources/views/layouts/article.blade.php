@@ -92,7 +92,7 @@
                         </div>
 --}}
                         <div class="row">
-                            {!! Form::open(['method'=>'POST','action'=>['ArticleController@addArticleToCart',$article->id],'class'=>'form-horizontal']) !!}
+                            {!! Form::open(['method'=>'POST','action'=>['ArticleController@addArticleToCart',$article->getArticleLink()],'class'=>'form-horizontal']) !!}
 
                             <div class="col-sm-3">
                                 {!! Form::number('count',1,['class'=>'form-control','min'=>"1", 'step'=>"1"]) !!}

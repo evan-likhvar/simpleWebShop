@@ -52,6 +52,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOrders">Заказы</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOrders" class="panel-collapse collapse in">
+                        <div class="list-group">
+                            <a href="{{route('admin.order')}}" class="list-group-item">Заказы</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseArticle">Товары</a>
                         </h4>
                     </div>
@@ -97,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="col-sm-10">

@@ -13,7 +13,7 @@
                         @foreach(array_chunk($homeArticles->all(),4) as $articleRow)
                             <div class="row">
                                 @foreach($articleRow as $article)
-                                <a href="{{route('showArticle', ['article' => $article->id])}}">
+                                <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                     <div class="col-sm-3">
                                         <img class="img-responsive img-thumbnail" src="{{$article->getIntroImg('S','intro1')}}"
                                              alt="">

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Events\OrderCreated;
 use App\orderHeader;
 use App\orderRow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends FrontController
@@ -45,6 +47,8 @@ class OrderController extends FrontController
         }
 
         Session::forget('cartItems');
+
+        Event::fire(new OrderCreated($newHeader));
 
         return redirect()->route('showSuccessOrder', ['id' => $newHeader->id]);
     }

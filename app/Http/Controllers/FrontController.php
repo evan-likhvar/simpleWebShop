@@ -18,7 +18,9 @@ class FrontController extends Controller
 
     protected function getCountCartItems()
     {
-        return count(Session::get('cartItems'));
+        if (Session::has('cartItems')) {
+            return array_sum(Session::get('cartItems'));}
+        return 0;
     }
 
     protected function getCartItems()

@@ -204,24 +204,37 @@
                     NewCount = 1;
                 }
                 ;
+
                 SetSessionArticles(ArticleId, NewCount);
                 $('div#OrderAmount').text(OrderAmount());
+                $('span.badge').text(OrderCount());
             }
 
             function OrderAmount() {
                 var sum = 0;
+                var count = 0;
                 $('div#ArticleAmount').each(function () {
                     sum += Number($(this).text());
                 });
                 return sum;
             }
 
+            function OrderCount() {
+                var count = 0;
+
+                $('div#ArticleCount input').each(function () {
+                    count += Number($(this).val());
+                });
+
+                return count;
+            }
             function RemoveArticle(e) {
                 e.preventDefault();
                 var ArticleId = $(this).parent().parent() [0].children[0].innerText;
                 SetSessionArticles(ArticleId, 0);
                 $(this).parents('div#cartRow').remove();
                 $('div#OrderAmount').text(OrderAmount());
+                $('span.badge').text(OrderCount());
             }
 
             function SetSessionArticles(ArticleId, Count) {

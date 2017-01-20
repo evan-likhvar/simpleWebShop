@@ -12,6 +12,12 @@
                 </div>
             </div>
             <div class="col-sm-10">
+                @if (Session::has('ItemAdded'))
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {!! session('ItemAdded') !!}
+                    </div>
+                @endif
                 <div class="well text-center" style="border: 1px solid #f09713;">
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>

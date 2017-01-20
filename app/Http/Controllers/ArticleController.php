@@ -50,6 +50,10 @@ class ArticleController extends FrontController
 
         $request = Request::capture();
 
+        $cartArticle = Article::find($article);
+        if (!$cartArticle)
+            return 'invalid article!!!';
+
         $itemCount = 1;
         if (isset($request['count']))
             $itemCount = $request['count'];
@@ -72,9 +76,9 @@ class ArticleController extends FrontController
             Session::put('cartItems', $cartItem);
         }
 
+        $message = 'В корзину добавлен товар '.$cartArticle->name.' - '.$itemCount.' шт.';
 
-        //return dd(Session::get('tst5cartItems'));
-
+        Session::flash('ItemAdded',$message);
 
         return redirect()->to('артикул/'.$article);
     }

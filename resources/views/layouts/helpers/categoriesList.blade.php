@@ -12,7 +12,7 @@
                     <div class="row">
                         @foreach($category->Articles as $aindex=>$article)
                             @if($aindex>2) @break @endif
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 artBox">
                             <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                 <div class="col-sm-12">
                                     <img class="img-responsive"

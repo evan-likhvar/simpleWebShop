@@ -18,8 +18,8 @@ class OrderController extends FrontController
 
         $mainMenu = Category::whereNull('parent_id')->get();
         $cartItemsDescription = $this->getCartItems();
-
-        return view('layouts.order')->with(compact('cartItemsDescription','mainMenu'));
+        $count = $this->getCountCartItems();
+        return view('layouts.order')->with(compact('cartItemsDescription','mainMenu','count'));
     }
     public function store(Request $request){
 

@@ -37,7 +37,7 @@ class OrderShipped extends Mailable
         return $this->from('elikhvarshops@gmail.com')
             ->to($this->order->e_mail)
             ->subject('заказ на сайте КУПЕРХАНТЕР.УКР')
-            ->view('layouts.email.qwerty')
+            ->view('layouts.email.orderNotificator')
             ->with([
                 'order' => $this->order
             ]);

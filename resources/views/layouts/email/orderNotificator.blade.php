@@ -29,7 +29,8 @@
                         <td style="vertical-align:top">
                             <table cellpadding="0" cellspacing="0" style="border-bottom:1px solid #cccccc;border-collapse:collapse;width:100%">
                                 <tr>
-                                    <td style="padding:0 30px 0 27px;vertical-align:top">
+                                    <td style="padding:0 30px 0 27px; vertical-align:top">
+
                                         <table cellpadding="0" cellspacing="0" style="border:0;border-collapse:collapse;line-height:24px;width:580px">
                                             <tr>
                                                 <td colspan="2" style="vertical-align:baseline">
@@ -85,7 +86,7 @@
                                                     </table>
                                                 </td>
                                             </tr>
-                                            @if(isset($order->description) && !empty($order->description)))
+                                            @if(isset($order->description) && !empty($order->description))
                                             <tr>
                                                 <td colspan="3" style="border-top:1px solid #f0f0f0;padding-top:17px;padding-bottom:17px">
                                                     <table cellpadding="0" cellspacing="0" style="border:0;border-collapse:collapse;width:100%">

@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Config;
 
-class OrderShipped extends Mailable
+class OrderShipped extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -34,8 +34,10 @@ class OrderShipped extends Mailable
     {
 
         //return dd(Config::get('mail'));
+
+
+
         return $this->from('elikhvarshops@gmail.com')
-            ->to($this->order->e_mail)
             ->subject('заказ на сайте КУПЕРХАНТЕР.УКР')
             ->view('layouts.email.orderNotificator')
             ->with([

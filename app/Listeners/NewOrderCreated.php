@@ -30,8 +30,10 @@ class NewOrderCreated
     {
         //
         //return dd($event->newOrder);
-        Mail::to('evan.likhvar@gmail.com')->send(new OrderShipped($event->newOrder));
-
+//        Mail::to('evan.likhvar@gmail.com')->send(new OrderShipped($event->newOrder));
+        Mail::to('evan.likhvar@gmail.com')->queue(new OrderShipped($event->newOrder));
+        Mail::to('serj.sadiy@gmail.com')->queue(new OrderShipped($event->newOrder));
+        Mail::to($event->newOrder->e_mail)->queue(new OrderShipped($event->newOrder));
 
         //$newOrder=$event->orderHeader;
     }

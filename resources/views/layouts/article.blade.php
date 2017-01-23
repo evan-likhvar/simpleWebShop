@@ -61,11 +61,13 @@
                             <div class="col-sm-8">{{$article->name}}</div>
                         </div>
                         <div class="row" style="min-height: 20px;"></div>
+                        @if(!empty($article->nomer))
                         <div class="row">
                             <div class="col-sm-4">Код товара</div>
                             <div class="col-sm-8" style="font-size: 120%"><b>{{$article->nomer}}</b></div>
                         </div>
 
+                        @endif
 <hr>
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-4">

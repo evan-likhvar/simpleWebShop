@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Article;
 use App\Category;
 use App\Events\OrderCreated;
+use App\Http\Requests\OrderControllerRequest;
 use App\orderHeader;
 use App\orderRow;
 use Illuminate\Http\Request;
@@ -21,15 +23,26 @@ class OrderController extends FrontController
         $count = $this->getCountCartItems();
         return view('layouts.order')->with(compact('cartItemsDescription','mainMenu','count'));
     }
-    public function store(Request $request){
 
+
+
+    public function store(OrderControllerRequest $request){
+
+/*        $this->validate($request, [
+
+            'contact_name'=>'required|alpha'
+        ]);*/
 
         $input = $request->All();
 
         $inputRows = $input['art'];
         unset($input['art']);
 
-        //return dd($inpurRows);
+        if ( strlen((trim($input['e_mail'])))==0 )
+            $input['e_mail'] = 'elikhvarshops@gmail.com';
+
+
+        //return dd($input);
 
         $newHeader = orderHeader::create($input);
 

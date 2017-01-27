@@ -6,7 +6,9 @@
                 <div class="row" style="min-height: 20px;"></div>
                 <div class="row" style="padding-left: 20px;">
                     <a href="/"> Главная </a> <b>></b>
+                    @if(count($article->Category->parent))
                     <a href="{{route('showCategory', ['category' => $article->Category->parent->id])}}">{{ $article->Category->parent->name }}</a>
+                    @endif
                     <b>></b>
                     <a href="{{route('showCategory', ['category' => $article->Category->id])}}">{{ $article->Category->name }}</a>
                 </div>

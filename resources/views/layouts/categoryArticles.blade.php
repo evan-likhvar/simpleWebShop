@@ -2,6 +2,18 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="well-sm text-left">
+                <div class="row" style="min-height: 20px;"></div>
+                <div class="row" style="padding-left: 20px;">
+                    <a href="/"> Главная </a> <b>></b>
+                    @if(count($category->parent))
+                        <a href="{{route('showCategory', ['category' => $category->parent->id])}}">{{ $category->parent->name }}</a>
+                        <b>></b>
+                    @endif
+
+                    <a href="{{route('showCategory', ['category' => $category->id])}}">{{ $category->name }}</a>
+                </div>
+            </div>
             <div class="row categoryList text-right"> <h3>{{$category->name}}</h3></div>
 
             <div id="paramLeft" class="col-sm-3">

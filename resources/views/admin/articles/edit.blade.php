@@ -160,7 +160,7 @@
 
                                     {!! Form::label('order','Приоритет:', ['class'=>'control-label col-sm-3']) !!}
                                     <div class="col-sm-1">
-                                        {!! Form::text('order',isset($article->order) ? $article->priceYE : 0,['class'=>'form-control']) !!}
+                                        {!! Form::text('order',isset($article->order) ? $article->order : 0,['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group">

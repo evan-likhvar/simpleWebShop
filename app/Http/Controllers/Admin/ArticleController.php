@@ -129,6 +129,14 @@ class ArticleController extends AdminController
         $published = 0;
         $avaliable = 0;
 
+
+        if (empty(trim($input['priceGRN']))) {
+            $input['priceGRN']=0;
+        }
+        if (empty(trim($input['priceYE']))) {
+            $input['priceYE']=0;
+        }
+
         if (empty(trim($input['name']))) {
             Session::flash('infomessage', 'У товара должно быть не пустое название!!!');
             return redirect('admin/article/'.$id.'/edit');

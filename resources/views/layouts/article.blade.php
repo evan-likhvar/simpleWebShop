@@ -8,8 +8,9 @@
                     <a href="/"> Главная </a> <b>></b>
                     @if(count($article->Category->parent))
                     <a href="{{route('showCategory', ['category' => $article->Category->parent->id])}}">{{ $article->Category->parent->name }}</a>
+                        <b>></b>
                     @endif
-                    <b>></b>
+
                     <a href="{{route('showCategory', ['category' => $article->Category->id])}}">{{ $article->Category->name }}</a>
                 </div>
             </div>
@@ -138,7 +139,7 @@
                         @if($article->fullDescription)
                             <div id="text1" class="tab-pane fade in active">
                                 <div class="well">
-                                    {!!$article->description!!}
+                                    {!!$article->fullDescription!!}
                                 </div>
                             </div>
                         @endif

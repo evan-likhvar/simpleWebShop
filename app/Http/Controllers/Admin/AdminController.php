@@ -69,9 +69,53 @@ class AdminController extends Controller
 
         return $imageAttributes;
     }
+    protected function getFiles($objectPath,$objectId,$imageType=''){
+
+        $basePath = '/images/'.$objectPath.DIRECTORY_SEPARATOR.$objectId.DIRECTORY_SEPARATOR.$imageType.DIRECTORY_SEPARATOR;
+
+        $imageAttributes = array();
+
+        $imageAttributes['relativePath'] = '';
+        $imageAttributes['fullPath'] = '';
+        $imageAttributes['fullPathToImageGallery'] = '';
+        $imageAttributes['imageFileName'] = '';
+        $imageAttributes['qualifiedImageName'] = '';
+        $imageAttributes['url'] = '';
+
+        $imageAttributes['relativePath'] = $basePath.'original/';
+        $imageAttributes['fullPathToImageGallery'] = public_path().$basePath;
+        $imageAttributes['fullPath'] = public_path().$imageAttributes['relativePath'];
+
+        $articleFiles = array();
+        if (file_exists($imageAttributes['fullPath'])) {
+            //$files = scandir($imageAttributes['fullPath'],1);
+            $files = array_diff(scandir($imageAttributes['fullPath'],1), array('..', '.'));
+
+            foreach ($files as $file) {
+                $fileAttributes['relativePath'] = $imageAttributes['relativePath'];
+                $fileAttributes['fullPath'] = $imageAttributes['fullPath'];
+                $fileAttributes['fullPathToImageGallery'] = $imageAttributes['fullPathToImageGallery'];
+                $fileAttributes['imageFileName'] = $file;
+                $fileAttributes['qualifiedImageName'] = $fileAttributes['fullPath'].$fileAttributes['imageFileName'];
+                $fileAttributes['url'] = $fileAttributes['relativePath'] .$fileAttributes['imageFileName'];
+                $articleFiles[]=$fileAttributes;
+                unset($fileAttributes);
+            }
+        }
+
+        //return dd($articleFiles,$files);
+
+        return $articleFiles;
+    }
+
+    protected function deleteFile ($file){
+
+        unlink ( $file );
+
+        return;
+    }
 
     protected function saveOriginalImage($imageName,$file,$objectPath,$objectId,$imageType){
-
 
         $patterns = array();
         $patterns[0] = '/ /';
@@ -80,15 +124,19 @@ class AdminController extends Controller
         $OriginalName = preg_replace($patterns, $replacement, $imageName);
 
         $newImage = $this->getOriginalImage($objectPath,$objectId,$imageType);
-
-        Storage::deleteDirectory($newImage['relativePath']);
-
+        if ($imageType!='files') {
+            Storage::deleteDirectory($newImage['relativePath']);
+        }
         $sFile = Storage::putFileAs($newImage['relativePath'] , $file, $OriginalName);
 
         unset($newImage);
-        $newImage = $this->getOriginalImage($objectPath,$objectId,$imageType);
 
-        $this->createImageGallery($objectId,$newImage['qualifiedImageName'],$newImage['fullPathToImageGallery']);
+        if ($imageType!='files') {
+
+            $newImage = $this->getOriginalImage($objectPath, $objectId, $imageType);
+
+            $this->createImageGallery($objectId, $newImage['qualifiedImageName'], $newImage['fullPathToImageGallery']);
+        }
 
         return;
     }
@@ -103,10 +151,11 @@ class AdminController extends Controller
         copy ( $oldImage['qualifiedImageName'],  $newImage['fullPath'].$oldImage['imageFileName']);
 
         unset($newImage);
-        $newImage = $this->getOriginalImage($objectPath,$id,$imageType);
+        if ($imageType!='files') {
+            $newImage = $this->getOriginalImage($objectPath, $id, $imageType);
 
-        $this->createImageGallery($id,$newImage['qualifiedImageName'],$newImage['fullPathToImageGallery']);
-        
+            $this->createImageGallery($id, $newImage['qualifiedImageName'], $newImage['fullPathToImageGallery']);
+        }
         return;
     }
     

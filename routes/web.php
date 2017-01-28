@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::delete('/article/{article}', 'ArticleController@destroy');
 
     Route::post('/item/storeMedia/{item}/{type?}', 'ArticleController@storeMedia');
+    Route::delete('/article/deletefile/{file}', 'ArticleController@deleteArticleFile');
 
     //vendor
     Route::get('/vendor', 'VendorController@index')->name('admin.vendor');

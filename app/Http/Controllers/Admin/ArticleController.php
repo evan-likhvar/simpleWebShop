@@ -44,6 +44,8 @@ class ArticleController extends AdminController
         $files['intro3'] = $image['url'];
         $image = $this->getOriginalImage('articles',$id,'intro4');
         $files['intro4'] = $image['url'];
+        $image = $this->getFiles('articles',$id,'files');
+        $files['files'] = $image;
 
         $parGrp = $this->parameterGroups;
 
@@ -129,6 +131,7 @@ class ArticleController extends AdminController
         $published = 0;
         $avaliable = 0;
 
+    //    return dd($input);
 
         if (empty(trim($input['priceGRN']))) {
             $input['priceGRN']=0;
@@ -193,7 +196,12 @@ class ArticleController extends AdminController
 
         if(Article::find($id)->update($input))
             Session::flash('infomessage','Изменения сохранены');
-        return redirect()->to($input['redirects_to']);
+
+
+
+        return redirect()->to(url("admin/article/$id/edit"));
+
+
         //return redirect('admin/article');
     }
     public function destroy ($id)
@@ -219,10 +227,27 @@ class ArticleController extends AdminController
 
         $id = $article->id;
 
-        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'intro1');
 
+
+
+        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'intro1');
+        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'intro2');
+        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'intro3');
+        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'intro4');
+        $this->copyOriginalImageWithResizing('articles',$oldId,$id,'files');
         $image = $this->getOriginalImage('articles',$id,'intro1');
         $files['intro1'] = $image['url'];
+        $image = $this->getOriginalImage('articles',$id,'intro2');
+        $files['intro2'] = $image['url'];
+        $image = $this->getOriginalImage('articles',$id,'intro3');
+        $files['intro3'] = $image['url'];
+        $image = $this->getOriginalImage('articles',$id,'intro4');
+        $files['intro4'] = $image['url'];
+        $image = $this->getFiles('articles',$id,'files');
+        $files['files'] = $image;
+
+
+
 
         $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
 
@@ -242,6 +267,14 @@ class ArticleController extends AdminController
         $this->saveOriginalImage($request->file('file')->getClientOriginalName(),$request->file('file'),'articles',$id,$type);
 
         return;
+    }
+
+    public function deleteArticleFile($file)
+    {
+
+        $this->deleteFile(str_replace(['~','!'],['/','.'],$file));
+
+        return redirect()->back();
     }
 
     public function recalculatePrices(Request $request){

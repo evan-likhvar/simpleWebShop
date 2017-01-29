@@ -54,26 +54,26 @@
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/">
                                 <div>
-                                    Кондиционирование<br>вентиляция отопление
+                                    LOGO
                                 </div>
                             </a>
                         </div>
                         <ul class="nav navbar-nav">
                             @foreach($mainMenu as $item)
-                                @if(count($item->children))
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
-                                                            href="">{{$item->name}}<span
-                                                    class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            @foreach($item->children as $child)
-                                                <a href="{{route('showCategory', ['categoryId' => $child->id])}}">{{$child->name}}</a>
-                                            @endforeach
-                                        </ul>
-                                @else
-                                    <li>
+                                {{--@if(count($item->children))--}}
+                                    {{--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"--}}
+                                                            {{--href="">{{$item->name}}<span--}}
+                                                    {{--class="caret"></span></a>--}}
+                                        {{--<ul class="dropdown-menu">--}}
+                                            {{--@foreach($item->children as $child)--}}
+                                                {{--<a href="{{route('showCategory', ['categoryId' => $child->id])}}">{{$child->name}}</a>--}}
+                                            {{--@endforeach--}}
+                                        {{--</ul>--}}
+                                {{--@else--}}
+                                    <li {{$topActive == $item->id ? 'class=active' : '' }}>
                                         <a href="{{route('showCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
                                     </li>
-                                @endif
+                                {{--@endif--}}
                             @endforeach
 
                             {{--                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Page 1 <span
@@ -93,6 +93,7 @@
         @endif
 
     </div>
+    @include('layouts.helpers.category_submenu', ['mainMenu' => $mainMenu])
     @yield('content')
 </div>
 

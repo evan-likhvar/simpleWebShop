@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -36,6 +37,57 @@ class FrontController extends Controller
         //return dd($cartItems);
 
         return $cartItems;
+    }
+
+    protected function getTopActiveMenu()
+    {
+
+        $activeTopId = 0;
+
+        $url = rawurldecode(Request::capture()->path());
+        list($type,$id) = explode('/',$url);
+        if (strlen(trim($type))>0) {
+            if (mb_strpos($id,'-'))
+                $id = mb_substr($id,0,mb_strpos($id,'-'));
+
+            if ($type == 'артикул') {
+                $article = Article::findorfail($id);
+                $id = $article->category_id;
+            }
+
+            $category = Category::findorfail($id);
+
+            if ($category->parent_id > 0)
+                $activeTopId = $category->parent_id;
+            else
+                $activeTopId = $category->id;
+
+            //return dd($url,$type,$id,$category,$activeTopId);
+        }
+        return $activeTopId;
+    }
+
+    protected function getSubActiveMenu()
+    {
+
+        $activeSubId = 0;
+
+        $url = rawurldecode(Request::capture()->path());
+        list($type,$id) = explode('/',$url);
+        if (strlen(trim($type))>0) {
+            if (mb_strpos($id,'-'))
+                $id = mb_substr($id,0,mb_strpos($id,'-'));
+
+            if ($type == 'артикул') {
+                $article = Article::findorfail($id);
+                $activeSubId = $article->category_id;
+            }
+            if ($type == 'категория') {
+                $activeSubId = $id;
+            }
+
+        }
+        return $activeSubId;
     }
 
 }

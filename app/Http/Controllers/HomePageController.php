@@ -10,6 +10,8 @@ class HomePageController extends FrontController
 {
     public function index()
     {
+        $activeSubId = $this->getSubActiveMenu();
+        $topActive = $this->getTopActiveMenu();
 
         $countCartItems = $this->getCountCartItems();
 
@@ -21,6 +23,6 @@ class HomePageController extends FrontController
 
         $cartItemsDescription = $this->getCartItems();
 
-        return view('layouts.homepage')->with(compact('mainMenu','announceCategory','homeArticles','countCartItems','cartItemsDescription'));
+        return view('layouts.homepage')->with(compact('activeSubId','topActive','mainMenu','announceCategory','homeArticles','countCartItems','cartItemsDescription'));
     }
 }

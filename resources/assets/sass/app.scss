@@ -237,3 +237,13 @@ tr {
   vertical-align: middle;
 
 }
+
+li.active {
+  border-bottom:solid 3px $brand-warning;
+  background: lighten($brand-warning, 45%) none repeat scroll 0 0;
+}
+
+div.sub_active {
+  border-bottom:solid 2px $brand-warning;
+  background: lighten($brand-warning, 45%) none repeat scroll 0 0;
+}

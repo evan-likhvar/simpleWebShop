@@ -128,13 +128,15 @@ class CategoryController extends FrontController
             ->distinct()->get()->pluck('article_id')->toarray();
 
         //пересекаем полученные массивы параметров
-        foreach ($keysArray as $lKeys){
+        if (isset($keysArray)) {
+            foreach ($keysArray as $lKeys) {
 
-            $articleArrayFiltered = DB::table('article_parameter')
-                ->select('article_id')
-                ->whereIn('parameter_id', $lKeys)
-                ->distinct()->get()->pluck('article_id')->toarray();
-            $articleArray = array_intersect($articleArray,$articleArrayFiltered);
+                $articleArrayFiltered = DB::table('article_parameter')
+                    ->select('article_id')
+                    ->whereIn('parameter_id', $lKeys)
+                    ->distinct()->get()->pluck('article_id')->toarray();
+                $articleArray = array_intersect($articleArray, $articleArrayFiltered);
+            }
         }
 
         //return dd($articleArray);

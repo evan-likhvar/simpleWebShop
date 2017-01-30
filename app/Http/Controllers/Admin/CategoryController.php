@@ -143,9 +143,9 @@ class CategoryController extends AdminController
 
         $input = $request->all();
         $published = 0;
-
+        DB::table('category_parameter_group')->where('category_id', '=', $id)->delete();
         if (isset($request->parameter_groups)){
-            DB::table('category_parameter_group')->where('category_id', '=', $id)->delete();
+
             foreach ($request->parameter_groups as $key=>$group){
                 DB::table('category_parameter_group')->insert(['category_id' => $id, 'parameter_group_id' => $key]);
             }

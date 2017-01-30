@@ -87,6 +87,13 @@ class CategoryController extends FrontController
             ->where('category_id', $categoryId)
             ->distinct()->get()->pluck('parameter_group_id')->toarray();
 
+        if (empty($categoryGroupParameters))
+            // у категории нет параметров!!
+        {
+            $articleArray = Article::where('category_id','=',$categoryId)->get()->toArray();
+            return  $articleArray;
+        }
+
         //находим группы параметров, которые задействованы в фильте
         if(!empty($checkedParameters))
         $selectedGroupParameters = DB::table('parameters')
@@ -141,7 +148,7 @@ class CategoryController extends FrontController
             }
         }
 
-        //return dd($articleArray);
+        //         return dd($articleArray);
 
         return $articleArray;
 

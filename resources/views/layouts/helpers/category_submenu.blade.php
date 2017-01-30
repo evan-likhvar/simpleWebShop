@@ -2,7 +2,7 @@
 
         @foreach($mainMenu as $item)
             @if($topActive == $item->id && count($item->children))
-            <div class="row category{{$item->id}}">
+            <div class="row category{{$item->id}} animated fadeInDown">
 
             @foreach($item->children as $child)
                     <a href="{{route('showCategory', ['categoryId' => $child->id])}}">

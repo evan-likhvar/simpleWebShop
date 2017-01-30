@@ -90,7 +90,7 @@ class CategoryController extends FrontController
         if (empty($categoryGroupParameters))
             // у категории нет параметров!!
         {
-            $articleArray = Article::where('category_id','=',$categoryId)->get()->toArray();
+            $articleArray = Article::where('category_id','=',$categoryId)->get()->pluck('id')->toArray();
             return  $articleArray;
         }
 

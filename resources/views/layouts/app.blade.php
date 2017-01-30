@@ -51,40 +51,25 @@
 
                 <nav class="navbar">
                     <div class="container-fluid">
-                        <div class="navbar-header">
+                        <div class="navbar-header" style="padding-right: 180px;">
                             <a class="navbar-brand" href="/">
-                                <div>
+                                <div style="padding-right: 50px">
                                     LOGO
                                 </div>
                             </a>
                         </div>
                         <ul class="nav navbar-nav">
                             @foreach($mainMenu as $item)
-                                {{--@if(count($item->children))--}}
-                                    {{--<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"--}}
-                                                            {{--href="">{{$item->name}}<span--}}
-                                                    {{--class="caret"></span></a>--}}
-                                        {{--<ul class="dropdown-menu">--}}
-                                            {{--@foreach($item->children as $child)--}}
-                                                {{--<a href="{{route('showCategory', ['categoryId' => $child->id])}}">{{$child->name}}</a>--}}
-                                            {{--@endforeach--}}
-                                        {{--</ul>--}}
-                                {{--@else--}}
-                                    <li {{$topActive == $item->id ? 'class=active' : '' }}>
+
+                            <div class="menu-wrap {{$topActive == $item->id ? ' active' : ' menu-decoration'}}">
+                                    <li style="padding-top: 12px;" {{$topActive == $item->id ? 'class=active' : '' }}>
                                         <a href="{{route('showCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
                                     </li>
+                            </div>
                                 {{--@endif--}}
                             @endforeach
 
-                            {{--                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Page 1 <span
-                                                                        class="caret"></span></a>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="google.com">Page 1-1</a></li>
-                                                                <li><a href="#">Page 1-2</a></li>
-                                                                <li><a href="#">Page 1-3</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="/">Контакты</a></li>--}}
+
                         </ul>
                     </div>
                 </nav>
@@ -148,34 +133,6 @@
                         </b>
                     </div>
 
-                    {{--                    <hr>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <h4>Оформить заказ</h4>
-                                            </div>
-                                        </div>
-                                        <div class=" well">
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    {!! Form::label('order','Ваше имя:', ['class'=>'control-label col-sm-2']) !!}
-                                                    <div class="col-sm-10">
-                                                        {!! Form::text('order',null,['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    {!! Form::label('order','Телефон:', ['class'=>'control-label col-sm-2']) !!}
-                                                    <div class="col-sm-10">
-                                                        {!! Form::text('order',null,['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    {!! Form::label('order','E-mail:', ['class'=>'control-label col-sm-2']) !!}
-                                                    <div class="col-sm-10">
-                                                        {!! Form::text('order',null,['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>--}}
                 </div>
 
                 <div class="modal-footer">

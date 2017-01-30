@@ -5,14 +5,25 @@
             <div class="row category{{$item->id}}">
 
             @foreach($item->children as $child)
+                    <a href="{{route('showCategory', ['categoryId' => $child->id])}}">
+                    <div id="shadowBox" class="col-xs-3 {{$activeSubId == $child->id ? 'sub_active' : '' }}" >
+                        <div class="row itemSubMenu" style="min-height: 65px">
+                            <div class="col-sm-3">
+                                <img class="img-responsive" src="{{$child->getIntroImg('S')}}"
+                                     alt="">
+                            </div>
+                            <div class="col-sm-9">
+                                {{--<a href="{{route('showCategory', ['categoryId' => $child->id])}}">{{$child->name}}</a>--}}
+                                {{$child->name}}
+                            </div>
 
-                    <div class="col-xs-3 {{$activeSubId == $child->id ? 'sub_active' : '' }}">
-                <a href="{{route('showCategory', ['categoryId' => $child->id])}}">{{$child->name}}</a>
+                        </div>
                     </div>
+                </a>
             @endforeach
-
-            @endif
             </div>
+            @endif
+
         @endforeach
 
 </div>

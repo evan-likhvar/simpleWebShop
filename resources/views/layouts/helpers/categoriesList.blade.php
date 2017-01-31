@@ -15,8 +15,11 @@
                         <div class="col-sm-4 artBox">
                             <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                 <div class="col-sm-12">
+
                                     <img class="img-responsive"
                                          src="{{$article->getIntroImg('S','intro1')}}" alt="">
+
+
                                     {{$article->name}}<br><br>
                                     Цена - <b>{{$article->priceGRN}}</b>
                                 </div>
@@ -38,16 +41,20 @@
                         </div>
                     </div>                </div>
                 <div class="col-sm-4">
+                    <a href="{{route('showCategory', ['categoryId' => $category->id])}}">
                     <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
                          alt="">
+                        </a>
                 </div>
 
 
             @else
                 <div class="row text-left categoryList"><h3><a href="{{route('showCategory', ['categoryId' => $category->id])}}">{{$category->name}}</a></h3></div>
                 <div class="col-sm-4">
+                    <a href="{{route('showCategory', ['categoryId' => $category->id])}}">
                     <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
                          alt="">
+                        </a>
                 </div>
                 <div class="col-sm-8">
                     <div class="row text-justify">

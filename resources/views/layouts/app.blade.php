@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/sfancy.css" type="text/css"/>
     <link rel="stylesheet" href="/css/sfancybutt.css" type="text/css"/>
+    <link rel="icon" type="image/png" href="/favicon.png" />
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="/css/bootstrap/3.3.7/bootstrap.min.css" type="text/css" />--}}

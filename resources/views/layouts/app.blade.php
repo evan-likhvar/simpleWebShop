@@ -78,7 +78,9 @@
         @endif
 
     </div>
+    @if(isset($mainMenu))
     @include('layouts.helpers.category_submenu', ['mainMenu' => $mainMenu])
+    @endif
     @yield('content')
 </div>
 

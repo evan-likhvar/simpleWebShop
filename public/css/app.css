@@ -5949,55 +5949,53 @@ button.close {
   .topborder .main-color {
     color: #5cb85c; }
 
-.top-menu .navbar-header {
-  padding-right: 180px; }
-  .top-menu .navbar-header div {
-    padding-right: 50px; }
-
-.top-menu .menu-wrap {
-  padding-bottom: 3px;
-  display: inline-block;
-  height: 100%;
-  position: relative; }
-  .top-menu .menu-wrap li {
-    padding: 12px 15px 0; }
-    .top-menu .menu-wrap li a {
-      text-decoration: none;
-      text-transform: uppercase; }
-    .top-menu .menu-wrap li :hover, .top-menu .menu-wrap li :focus {
-      color: #636b6f; }
-  .top-menu .menu-wrap .active a {
-    font-weight: bold; }
-  .top-menu .menu-wrap .active {
-    border-bottom: 3px solid transparent;
-    border-image: radial-gradient(#f09713 60%, #fff 100%);
-    border-image-slice: 1; }
-
-.top-menu .menu-decoration::before {
-  background: #f09713 none repeat scroll 0 0;
-  bottom: 0;
-  content: "";
-  height: 3px;
-  position: absolute;
-  transition: all 0.3s ease-in-out 0s;
-  width: 5px;
-  right: 50%; }
-
-.top-menu .menu-decoration:hover::before {
-  width: 45%; }
-
-.top-menu .menu-decoration::after {
-  background: #f09713 none repeat scroll 0 0;
-  bottom: 0;
-  content: "";
-  height: 3px;
-  position: absolute;
-  transition: all 0.3s ease-in-out 0s;
-  width: 5px;
-  left: 50%; }
-
-.top-menu .menu-decoration:hover::after {
-  width: 45%; }
+.top-menu {
+  /*  .navbar-header {
+    padding-right: 180px;
+    div {
+      padding-right: 50px;
+    }
+  }*/ }
+  .top-menu .menu-wrap {
+    padding-bottom: 3px;
+    display: inline-block;
+    height: 100%;
+    position: relative; }
+    .top-menu .menu-wrap li {
+      padding: 12px 15px 0; }
+      .top-menu .menu-wrap li a {
+        text-decoration: none;
+        text-transform: uppercase; }
+      .top-menu .menu-wrap li :hover, .top-menu .menu-wrap li :focus {
+        color: #636b6f; }
+    .top-menu .menu-wrap .active a {
+      font-weight: bold; }
+    .top-menu .menu-wrap .active {
+      border-bottom: 3px solid transparent;
+      border-image: radial-gradient(#f09713 60%, #fff 100%);
+      border-image-slice: 1; }
+  .top-menu .menu-decoration::before {
+    background: #f09713 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    position: absolute;
+    transition: all 0.3s ease-in-out 0s;
+    width: 5px;
+    right: 50%; }
+  .top-menu .menu-decoration:hover::before {
+    width: 45%; }
+  .top-menu .menu-decoration::after {
+    background: #f09713 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    position: absolute;
+    transition: all 0.3s ease-in-out 0s;
+    width: 5px;
+    left: 50%; }
+  .top-menu .menu-decoration:hover::after {
+    width: 45%; }
 
 #submenu #shadowBox {
   border: 1px solid #f09713;

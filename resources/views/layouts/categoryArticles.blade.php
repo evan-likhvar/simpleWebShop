@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="well-sm text-left">
+{{--            <div class="well-sm text-left">
                 <div class="row" style="min-height: 20px;"></div>
                 <div class="row" style="padding-left: 20px;">
                     <a href="/"> Главная </a> <b>></b>
@@ -13,7 +13,7 @@
 
                     <a href="{{route('showCategory', ['category' => $category->id])}}">{{ $category->name }}</a>
                 </div>
-            </div>
+            </div>--}}
             <div class="row categoryList text-right"> <h3>{{$category->name}}</h3></div>
 
             <div id="paramLeft" class="col-sm-3">
@@ -97,7 +97,7 @@
                                 <div class="row"><div class="col-sm-10 col-sm-offset-1"><h4><strong><a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">{{$article->name}}</a></strong></h4></div></div>
 
                                 <div class="col-sm-3">
-                                    <a href="{{route('showArticle', ['article' => $article->id])}}">
+                                    <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                     <img class="img-responsive"
                                          src="{{$article->getIntroImg('S')}}"
                                          alt="">

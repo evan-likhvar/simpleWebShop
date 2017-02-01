@@ -118,9 +118,20 @@
                     </div>
                 </div>
                 <div class="row" style="min-height: 20px;"></div>
-                <div class="row">
-                    {{--<h2>{{$article->name}}</h2>--}}
-                    <ul class="nav nav-tabs">
+
+                    <div id="infotab" class="row">
+                    <nav class="left">
+                        <a href="#">Home</a>
+                        <a href="#" class="selected">Projects</a>
+                        <a href="#">About</a>
+                    </nav>
+                    <main>
+                        Content area
+                    </main>
+                    </div>
+
+                <div id="infotab" class="row">
+                    <ul class="nav nav-tabs left">
                         @if($article->fullDescription)
                             <li class="active"><a data-toggle="tab" href="#text1">Описание</a></li>
                         @endif

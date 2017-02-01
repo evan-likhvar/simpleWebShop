@@ -41,7 +41,7 @@
                         </div>
                     </div>                </div>
                 <div class="col-sm-4">
-                    <a href="{{route('showCategory', ['categoryId' => $category->id])}}">
+                    <a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()]) }}">
                     <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
                          alt="">
                         </a>
@@ -51,7 +51,7 @@
             @else
                 <div class="row text-left categoryList"><h3><a href="{{route('showCategory', ['categoryId' => $category->id])}}">{{$category->name}}</a></h3></div>
                 <div class="col-sm-4">
-                    <a href="{{route('showCategory', ['categoryId' => $category->id])}}">
+                    <a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()]) }}">
                     <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
                          alt="">
                         </a>

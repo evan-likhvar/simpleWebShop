@@ -52,9 +52,9 @@
 
                 <nav class="navbar">
                     <div class="container-fluid">
-                        <div class="navbar-header" style="padding-right: 180px;">
+                        <div class="navbar-header">
                             <a class="navbar-brand" href="/">
-                                <div style="padding-right: 50px">
+                                <div>
                                     LOGO
                                 </div>
                             </a>
@@ -64,7 +64,7 @@
 
                             <div class="menu-wrap {{$topActive == $item->id ? ' active' : ' menu-decoration'}}">
                                     <li style="padding-top: 12px;" {{$topActive == $item->id ? 'class=active' : '' }}>
-                                        <a href="{{route('showCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
+                                        <a href="{{route('showCategory', ['categoryId' => $item->getCategoryLink()])}}">{{$item->name}}</a>
                                     </li>
                             </div>
                                 {{--@endif--}}

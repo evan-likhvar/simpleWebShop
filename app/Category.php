@@ -27,4 +27,12 @@ class Category extends Model
        // return dd($img);
         return $img;
     }
+
+    public function getCategoryLink(): string
+    {
+
+        $name = str_replace([' ','/','.'],['-'],trim($this->name));
+
+        return $this->id.'-'.$name;
+    }
 }

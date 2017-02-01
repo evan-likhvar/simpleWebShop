@@ -1,30 +1,42 @@
 <div id="submenu" class="container">
 
-        @foreach($mainMenu as $item)
-            @if($topActive == $item->id && count($item->children))
-            <div class="row category{{$item->id}} animated fadeInDown">
+    @foreach($mainMenu as $item)
+        @if($topActive == $item->id && count($item->children))
+            <div class="row category{{$item->id}}">
 
-            @foreach($item->children as $child)
-                    <a href="{{route('showCategory', ['categoryId' => $child->id])}}">
-                    <div id="shadowBox" class="col-xs-3 {{$activeSubId == $child->id ? 'sub_active' : '' }}" >
-                        <div class="row itemSubMenu" style="min-height: 65px">
-                            <div class="col-sm-3">
-                                <img class="img-responsive" src="{{$child->getIntroImg('S')}}"
-                                     alt="">
-                            </div>
-                            <div class="col-sm-9">
-                                {{--<a href="{{route('showCategory', ['categoryId' => $child->id])}}">{{$child->name}}</a>--}}
-                                {{$child->name}}
+                @foreach($item->children as $child)
+                    @if($activeSubId == $child->id)
+
+                            <div id="shadowBox" class="col-xs-3 sub_active animated zoomIn">
+                                <div class="row itemSubMenu">
+                                    <div class="col-sm-12 text-center">
+                                        {{$child->name}}
+                                    </div>
+                                </div>
                             </div>
 
+                    @else
+
+                        <a href="{{route('showCategory', ['categoryId' => $child->getCategoryLink()])}}">
+                        <div id="shadowBox" class="col-xs-3 shadow animated zoomIn">
+                            <div class="row itemSubMenu">
+                                <div class="col-sm-3">
+                                    <img class="img-responsive" src="{{$child->getIntroImg('S')}}"
+                                         alt="">
+                                </div>
+                                <div class="col-sm-9">
+                                    {{$child->name}}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            @endforeach
-            </div>
-            @endif
+                        </a>
+                    @endif
 
-        @endforeach
+                @endforeach
+            </div>
+        @endif
+
+    @endforeach
 
 </div>
 

@@ -144,6 +144,10 @@ class AdminController extends Controller
     protected function copyOriginalImageWithResizing($objectPath,$oldId,$id,$imageType){
 
         $oldImage = $this->getOriginalImage($objectPath,$oldId,$imageType);
+       // return dd($oldImage);
+        if (strlen(trim($oldImage['imageFileName']))==0) {
+return;
+        }
         $newImage = $this->getOriginalImage($objectPath,$id,$imageType);
 
         Storage::deleteDirectory($newImage['relativePath']);

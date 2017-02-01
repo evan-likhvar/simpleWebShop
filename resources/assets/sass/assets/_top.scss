@@ -1,0 +1,122 @@
+.topborder {
+  border-bottom: solid 1px;
+  .main-color {
+    color: $brand-success;
+  }
+}
+
+.top-menu {
+  .navbar-header {
+    padding-right: 180px;
+    div {
+      padding-right: 50px;
+    }
+  }
+  .menu-wrap {
+    padding-bottom: 3px;
+    display: inline-block;
+    height: 100%;
+    position: relative;
+
+    li {
+      padding: 12px 15px 0;
+
+      a {
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      :hover, :focus {
+        color: $text-color;
+      }
+
+    }
+    .active a {
+      font-weight: bold;
+    }
+
+    .active {
+
+      border-bottom: 3px solid transparent;
+      border-image: radial-gradient($brand-warning 60%, #fff 100%);
+      border-image-slice: 1;
+
+    }
+  }
+
+
+
+  .menu-decoration::before {
+    @include top-menu-decorator;
+    right: 50%;
+  }
+  .menu-decoration:hover::before {
+    width: 45%;
+  }
+
+  .menu-decoration::after {
+    @include top-menu-decorator;
+    left: 50%;
+  }
+  .menu-decoration:hover::after {
+    width: 45%;
+  }
+} // end top menu
+
+#submenu {
+  #shadowBox {
+    border: 1px solid $brand-warning;
+    width: 24%;
+    margin: 0 3px 6px 3px;
+    display: inline-block;
+    border-radius: 10px;
+    transition: .2s linear;
+  }
+  .shadow:hover {
+    box-shadow: 0 0 0 2px white inset, 0 0 0 4px $brand-warning inset;
+  }
+  .sub_active {
+    background: lighten($brand-warning, 45%) none repeat scroll 0 0;
+    font-weight: bold;
+  }
+  .itemSubMenu {
+    min-height: 65px;
+    display:flex;
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+  }
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}

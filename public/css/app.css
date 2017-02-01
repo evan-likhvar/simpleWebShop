@@ -5864,6 +5864,30 @@ button.close {
 .available {
   color: #f09713; }
 
+#infotab .nav-tabs > li.active > a, #infotab .nav-tabs > li.active > a:hover, #infotab .nav-tabs > li.active > a:focus {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: transparent;
+  border: none;
+  /*    border-color: #ddd #ddd transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;*/
+  color: #555555;
+  cursor: default; }
+
+#infotab .nav-tabs > li > a:hover, #infotab .nav > li > a:hover, #infotab .nav > li > a:focus {
+  background-color: transparent;
+  border: none; }
+
+#infotab .nav-tabs > li > a {
+  border: none; }
+
+#infotab .nav-tabs {
+  border-bottom: none; }
+
 #infotab ul.nav {
   position: relative;
   z-index: 1;
@@ -5894,7 +5918,7 @@ button.close {
   border-radius: 10px 10px 0 0;
   background: #eee;
   box-shadow: 0 2px rgba(255, 255, 255, 0.5) inset;
-  transform: perspective(5px) rotateX(2deg);
+  transform: perspective(8px) rotateX(1deg);
   transform-origin: bottom; }
 
 #infotab ul.nav.left li a {
@@ -5903,80 +5927,22 @@ button.close {
 #infotab ul.nav.left li a::before {
   transform-origin: bottom left; }
 
-#infotab nav a.selected {
+#infotab ul.nav li.active a {
   z-index: 2; }
 
-#infotab nav a.selected::before {
+#infotab ul.nav li.active a::before {
   margin-bottom: -1px;
   border-top-width: 1px; }
 
-#infotab nav a.selected::before,
-#infotab main {
+#infotab ul.nav li.active a::before,
+#infotab #articleDesc {
   background: #fff; }
 
-#infotab main {
+#infotab #articleDesc {
   display: block;
-  margin: -8px 0 30px -7px;
-  padding: 1em; }
-
-/**
- * Slanted tabs with CSS 3D transforms
- * See http://lea.verou.me/2013/10/slanted-tabs-with-css-3d-transforms/
- */
-nav {
-  position: relative;
-  z-index: 1;
-  white-space: nowrap; }
-
-nav a {
-  position: relative;
-  display: inline-block;
-  padding: 1.5em 1.5em 1em;
-  color: inherit;
-  text-decoration: none;
-  margin: 0 -7px; }
-
-nav a::before,
-main {
+  margin: -6px 0 30px -7px;
+  padding: 1em;
   border: 0.1em solid #ccc; }
-
-nav a::before {
-  content: '';
-  /* To generate the box */
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: .5em;
-  left: 0;
-  z-index: -1;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  background: #eee;
-  box-shadow: 0 2px rgba(255, 255, 255, 0.5) inset;
-  transform: perspective(5px) rotateX(2deg);
-  transform-origin: bottom; }
-
-nav.left a {
-  padding: 1.5em 2em 1em 1em; }
-
-nav.left a::before {
-  transform-origin: bottom left; }
-
-nav a.selected {
-  z-index: 2; }
-
-nav a.selected::before {
-  margin-bottom: -1px;
-  border-top-width: 1px; }
-
-nav a.selected::before,
-main {
-  background: #fff; }
-
-main {
-  display: block;
-  margin: -8px 0 30px -7px;
-  padding: 1em; }
 
 .topborder {
   border-bottom: solid 1px; }

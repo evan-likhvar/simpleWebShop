@@ -119,16 +119,6 @@
                 </div>
                 <div class="row" style="min-height: 20px;"></div>
 
-                    <div id="infotab" class="row">
-                    <nav class="left">
-                        <a href="#">Home</a>
-                        <a href="#" class="selected">Projects</a>
-                        <a href="#">About</a>
-                    </nav>
-                    <main>
-                        Content area
-                    </main>
-                    </div>
 
                 <div id="infotab" class="row">
                     <ul class="nav nav-tabs left">

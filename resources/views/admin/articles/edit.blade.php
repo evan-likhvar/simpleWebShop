@@ -143,7 +143,7 @@
                                 <img class="img-responsive img-thumbnail" src="{!! url($files['intro4']) !!}">
                             @endif
                         </div>
-                        <div class="col-sm-4 ">
+                        <div class="col-sm-3 ">
                             @if(!empty($files['intro1']))
                                 <img class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
                             @endif
@@ -239,7 +239,7 @@
                                         </div>
                                         <div class="panel-body">
                                             @foreach($group->Parameters as $parameter)
-                                                <?php if (array_search($parameter->id, $checkedParameters) === false) $check = false; else $check = true; //$check = false?>
+                                                <?php if (array_search($parameter->id, $checkedParameters) === false) $check = false; else $check = true;  ?>
                                                 {!! Form::checkbox('parameter['.$parameter->id.']', null,$check) !!} --
                                                 {{$parameter->name}}<br>
                                                 @endforeach
@@ -330,20 +330,18 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Для встаки ссылки на файл, наведите курсор на нужный файл, нажмите левую кнопку мыши,
-                                        и переместите обект в нужное место поля редактирования.</div>
+                                        и переместите обект в нужное место поля редактирования.
+                                    </div>
                                     @foreach($files['files'] as $file)
 
-                                    <div class="panel-body">
+                                    <span><a href="{{url($file['url'])}}">{{$file["imageFileName"]}}</a></span>
 
-                                        <a href="{{url($file['url'])}}">
-                                            {{$file["imageFileName"]}}
-
-                                        </a>
-                                    </div>
-
+                                        <div></div>
 
                                     @endforeach
                                 </div>
+
+
                                 @endif
                                 </div>
                             </div>

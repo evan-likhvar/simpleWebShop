@@ -99,8 +99,12 @@ $lightgarkbacground  : #eee;
   table {
     border: 1px solid #ddd ;
     tr {
-      border: 1px solid #ddd ;
+
       background-color: #eeeeee;
+      td {
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+      }
     }
   }
 

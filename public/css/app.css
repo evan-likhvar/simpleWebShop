@@ -5944,6 +5944,15 @@ button.close {
   padding: 1em;
   border: 0.1em solid #ccc; }
 
+#articleDesc table {
+  border: 1px solid #ddd; }
+  #articleDesc table tr {
+    border: 1px solid #ddd;
+    background-color: #eeeeee; }
+
+#articleDesc .odd {
+  background-color: #fff; }
+
 .topborder {
   border-bottom: solid 1px; }
   .topborder .main-color {
@@ -6045,6 +6054,28 @@ button.close {
 .zoomIn {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn; }
+
+div#paging ul.pagination {
+  font-weight: bolder;
+  font-size: 140%;
+  /*  li a {
+    padding: 6px 22px;
+  }*/ }
+  div#paging ul.pagination li.disabled span, div#paging ul.pagination li.active span, div#paging ul.pagination li a {
+    padding: 6px 22px;
+    border-radius: 10px;
+    line-height: 1.1;
+    border: 1px solid #FFFFFF;
+    transition: .2s linear; }
+  div#paging ul.pagination li.disabled span:hover, div#paging ul.pagination li a:hover {
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 2px white inset, 0 0 0 4px #f09713 inset; }
+  div#paging ul.pagination li.active span {
+    color: #636b6f;
+    line-height: 1.1;
+    background-color: #fcecd3;
+    border: 1px solid #f09713; }
 
 /*
 

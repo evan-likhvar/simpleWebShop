@@ -69,7 +69,9 @@
 
                         <div id="filterAndSortet" class="row">
                             <div class="col-sm-7 text-right">
+                                <div id="paging">
                                 {{ $articles->appends(Request::input())->links() }}
+                                </div>
                             </div>
                             <div class="col-sm-5">
                                 <div class="row">
@@ -120,7 +122,9 @@
                     </div>
                 <div class="row">
                     <div class="col-sm-7 text-right">
+                        <div id="paging">
                         {{ $articles->appends(Request::input())->links() }}
+                            </div>
                     </div>
                 </div>
                 @endif

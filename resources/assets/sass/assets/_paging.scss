@@ -1,0 +1,33 @@
+div#paging ul.pagination {
+  font-weight: bolder;
+  font-size: 140%;
+
+  li.disabled span, li.active span, li a {
+    padding: 6px 22px;
+    border-radius: 10px;
+    line-height: 1.1;
+    border: 1px solid #FFFFFF;
+    transition: .2s linear;
+
+  }
+
+  li.disabled span, li a {
+    &:hover {
+      border: 1px solid #FFFFFF;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 2px white inset, 0 0 0 4px $brand-warning inset;
+    }
+  }
+
+  li.active span {
+    color: $text-color;
+    line-height: 1.1;
+    background-color: lighten( $brand-warning , 40% );
+    border: 1px solid $brand-warning;
+  }
+/*  li a {
+    padding: 6px 22px;
+  }*/
+}
+
+//div#paging ul.pagination li.active span

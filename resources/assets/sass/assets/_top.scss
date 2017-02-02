@@ -72,6 +72,7 @@
     transition: .2s linear;
   }
   .shadow:hover {
+    //color: #fff;
     box-shadow: 0 0 0 2px white inset, 0 0 0 4px $brand-warning inset;
   }
   .sub_active {

@@ -167,10 +167,10 @@
                             <div class="form-group">
                                 {!! Form::label('category_id','Категория:',['class'=>'control-label col-sm-3']) !!}
                                 <div class="col-sm-8">
-                                    {!! Form::select('category_id',$categories,null,['class'=>'form-control','disabled' => 'disabled']) !!}
-
+                                    {!! Form::select('category_id',$categories,null,['class'=>'form-control']) !!}
+                                    {{--{!! Form::select('category_id',$categories,null,['class'=>'form-control','disabled' => 'disabled']) !!}--}}
                                 </div>
-                                {!! Form::hidden('category_id', $article->category_id) !!}
+                                {{--{!! Form::hidden('category_id', $article->category_id) !!}--}}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('vendor_id','Производитель:',['class'=>'control-label col-sm-3']) !!}

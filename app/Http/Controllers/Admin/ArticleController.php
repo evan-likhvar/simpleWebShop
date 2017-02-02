@@ -160,32 +160,42 @@ class ArticleController extends AdminController
             Session::flash('infomessage', 'Укажите хотя-бы одну цену!!!');
             return redirect('admin/article/'.$id.'/edit');
         }
-        //находим все возможные группы параметров для текущей категории
-        $categoryGroupParameters = DB::table('category_parameter_group')
-            ->select('parameter_group_id')
-            ->where('category_id', $input['category_id'])
-            ->distinct()->get()->pluck('parameter_group_id')->toarray();
-        //находим группы параметров, которые использованы
-        if (isset($request->parameter))
-            $keys = array_keys($input['parameter']);
-        $selectedGroupParameters = array();
-        if(!empty($keys))
-            $selectedGroupParameters = DB::table('parameters')
+
+        $article = Article::find($id);
+
+
+        if (($article->category_id - $input['category_id']) == 0) {
+
+            //находим все возможные группы параметров для текущей категории
+            $categoryGroupParameters = DB::table('category_parameter_group')
                 ->select('parameter_group_id')
-                ->whereIn('id', $keys)
+                ->where('category_id', $input['category_id'])
                 ->distinct()->get()->pluck('parameter_group_id')->toarray();
+            //находим группы параметров, которые использованы
+            if (isset($request->parameter))
+                $keys = array_keys($input['parameter']);
+            $selectedGroupParameters = array();
+            if (!empty($keys))
+                $selectedGroupParameters = DB::table('parameters')
+                    ->select('parameter_group_id')
+                    ->whereIn('id', $keys)
+                    ->distinct()->get()->pluck('parameter_group_id')->toarray();
 
 
-        if (count($categoryGroupParameters)!=count($selectedGroupParameters)){
-            Session::flash('infomessage', 'Указаны не все параметры товара!!!');
-            return redirect('admin/article/'.$id.'/edit');
-        }
-
-        if (isset($request->parameter)){
-            DB::table('article_parameter')->where('article_id', '=', $id)->delete();
-            foreach ($request->parameter as $key=>$parameter){
-                DB::table('article_parameter')->insert(['article_id' => $id, 'parameter_id' => $key]);
+            if (count($categoryGroupParameters) != count($selectedGroupParameters)) {
+                Session::flash('infomessage', 'Указаны не все параметры товара!!!');
+                return redirect('admin/article/' . $id . '/edit');
             }
+
+            if (isset($request->parameter)) {
+                DB::table('article_parameter')->where('article_id', '=', $id)->delete();
+                foreach ($request->parameter as $key => $parameter) {
+                    DB::table('article_parameter')->insert(['article_id' => $id, 'parameter_id' => $key]);
+                }
+            }
+        }
+        else {
+            DB::table('article_parameter')->where('article_id', '=', $id)->delete();
         }
 
         if (isset($request->published)) if ($request->published == 'on') $published = 1;
@@ -194,7 +204,11 @@ class ArticleController extends AdminController
         $input['avaliable'] = $avaliable;
 
 
-        if(Article::find($id)->update($input))
+        $article = Article::find($id);
+
+        //return dd($article,$input);
+
+        if($article->update($input))
             Session::flash('infomessage','Изменения сохранены');
 
 

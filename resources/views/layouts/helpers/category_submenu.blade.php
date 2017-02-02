@@ -7,7 +7,7 @@
                 @foreach($item->children as $child)
                     @if($activeSubId == $child->id)
 
-                            <div id="shadowBox" class="col-xs-3 sub_active animated zoomIn">
+                            <div id="shadowBox" class="col-xs-3 sub_active  {{$topActive==$lastActive ? ' animated ' : ' animated zoomIn'}}">
                                 <div class="row itemSubMenu">
                                     <div class="col-sm-12 text-center">
                                         {{$child->name}}
@@ -18,7 +18,7 @@
                     @else
 
                         <a href="{{route('showCategory', ['categoryId' => $child->getCategoryLink()])}}">
-                        <div id="shadowBox" class="col-xs-3 shadow animated zoomIn">
+                        <div id="shadowBox" class="col-xs-3 shadow {{$topActive==$lastActive ? ' animated ' : ' animated zoomIn'}}">
                             <div class="row itemSubMenu">
                                 <div class="col-sm-3">
                                     <img class="img-responsive" src="{{$child->getIntroImg('S')}}"

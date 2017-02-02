@@ -6,6 +6,7 @@ use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class FrontController extends Controller
 {
@@ -89,5 +90,36 @@ class FrontController extends Controller
         }
         return $activeSubId;
     }
+    protected function getLastActiveMenu()
+    {
 
+        $activeTopId = 0;
+
+        $url = rawurldecode(URL::previous()).'//////';
+
+
+
+        list($proto,$epmty,$site,$type,$id) = explode('/',$url);
+
+        if (strlen(trim($type))>0) {
+            if (mb_strpos($id,'-'))
+                $id = mb_substr($id,0,mb_strpos($id,'-'));
+
+            if ($type == 'артикул') {
+                $article = Article::findorfail($id);
+                $id = $article->category_id;
+            }
+
+            $category = Category::find($id);
+
+            if ($category) {
+                if ($category->parent_id > 0)
+                    $activeTopId = $category->parent_id;
+                else
+                    $activeTopId = $category->id;
+            }
+            //return dd($url,$type,$id,$category,$activeTopId);
+        }
+        return $activeTopId;
+    }
 }

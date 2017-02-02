@@ -14,7 +14,7 @@ class ArticleController extends FrontController
 
         $topActive = $this->getTopActiveMenu();
         $activeSubId = $this->getSubActiveMenu();
-
+        $lastActive = $this->getLastActiveMenu();
         $countCartItems = $this->getCountCartItems();
         $cartItemsDescription = $this->getCartItems();
 
@@ -46,7 +46,7 @@ class ArticleController extends FrontController
         }
 
        // return dd($articleImages);
-        return view('layouts.article')->with(compact('activeSubId','topActive','articleImages','article','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
+        return view('layouts.article')->with(compact('lastActive','activeSubId','topActive','articleImages','article','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
     }
 
     public function addArticleToCart($article){

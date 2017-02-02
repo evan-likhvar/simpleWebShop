@@ -25,6 +25,12 @@
 </head>
 <body>
 <div class="container">
+{{--    <div class="row">
+        {{$topActive}}<br>
+        {{$lastActive}}<br>
+        {{URL::previous()}}
+
+    </div>--}}
     <div class="row">
         <div class="col-sm-10">
             <div class="text-center topborder">
@@ -80,7 +86,7 @@
 
     </div>
     @if(isset($mainMenu))
-    @include('layouts.helpers.category_submenu', ['mainMenu' => $mainMenu])
+    @include('layouts.helpers.category_submenu', ['mainMenu' => $mainMenu,'topActive'=>$topActive,'lastActive'=>$lastActive])
     @endif
     @yield('content')
 </div>

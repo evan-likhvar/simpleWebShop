@@ -41,8 +41,8 @@ class CategoryController extends FrontController
         if($order == 'asc' || $order == 'desc')
             $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('priceGRN',$order)->paginate(8);
         elseif ($order == 'popular')
-            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order',$order)->paginate(8);
-        else $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->paginate(8);
+            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate(8);
+        else $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate(8);
 
 
         if (count($category->Children)){

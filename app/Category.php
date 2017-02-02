@@ -35,4 +35,11 @@ class Category extends Model
 
         return $this->id.'-'.$name;
     }
+
+    public function getTopArticles($limit) {
+
+        $articles = Article::where('category_id','=', $this->id)->limit($limit)->orderby('order','desc')->get();
+
+        return $articles;
+    }
 }

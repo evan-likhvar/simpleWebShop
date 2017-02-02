@@ -124,6 +124,7 @@
                 </div>
 
                 <div id="text1" class="tab-pane fade in active">
+                    <div class="row" style="height: 10px;"></div>
                     <div class="row">
 
                         <div class="col-sm-1 ">
@@ -150,7 +151,7 @@
                         </div>
 
                         {!! Form::model($article, ['method'=>'PATCH','action'=>['Admin\ArticleController@update',$article->id],'class'=>'form-horizontal']) !!}
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
 
                             <div class="form-group">
                                 {!! Form::label('name','Название:',['class'=>'control-label col-sm-3']) !!}
@@ -180,13 +181,13 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('priceYE','Цена у.е.:',['class'=>'control-label col-sm-3']) !!}
-                                <div class="col-sm-8">
+                                <div class="col-sm-2">
                                     {!! Form::text('priceYE',isset($article->priceYE) ? $article->priceYE : 0 ,['class'=>'form-control']) !!}
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('priceGRN','Цена грн:',['class'=>'control-label col-sm-3']) !!}
-                                <div class="col-sm-8">
+                         {{--   </div>
+                            <div class="form-group">--}}
+                                {!! Form::label('priceGRN','Цена грн:',['class'=>'control-label col-sm-2']) !!}
+                                <div class="col-sm-2">
                                     {!! Form::text('priceGRN',isset($article->priceGRN) ? $article->priceGRN : 0,['class'=>'form-control']) !!}
                                 </div>
                             </div>
@@ -195,13 +196,13 @@
                                 <div class="col-sm-1">
                                     {!! Form::checkbox('published', null) !!}
                                 </div>
-                                {!! Form::label('avaliable','В наличии:', ['class'=>'control-label col-sm-3']) !!}
+                                {!! Form::label('avaliable','В наличии:', ['class'=>'control-label col-sm-2']) !!}
                                 <div class="col-sm-1">
                                     {!! Form::checkbox('avaliable', null) !!}
                                 </div>
 
-                                {!! Form::label('order','Приоритет:', ['class'=>'control-label col-sm-3']) !!}
-                                <div class="col-sm-1">
+                                {!! Form::label('order','Приоритет:', ['class'=>'control-label col-sm-2']) !!}
+                                <div class="col-sm-2">
                                     {!! Form::text('order',isset($article->order) ? $article->order : 0,['class'=>'form-control']) !!}
                                 </div>
                             </div>
@@ -301,7 +302,7 @@
                     </div>
                 </div>
                 <div id="text5" class="tab-pane fade">
-
+<div class="row" style="height: 10px;"></div>
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="row">

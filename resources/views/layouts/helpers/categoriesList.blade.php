@@ -1,6 +1,7 @@
 @if(count($categories))
     {{--<div class="container">--}}
     @foreach($categories as $index=>$category)
+
         <div class="row well">
             @if ( $index & 1 )
                 <div class="row text-right categoryList"><h3><a href="{{route('showCategory', ['categoryId' => $category->id])}}">{{$category->name}}</a></h3></div>
@@ -10,8 +11,9 @@
                     </div>
                     <div class="text-right promo"><h4>Популярное в категории</h4></div>
                     <div class="row">
-                        @foreach($category->Articles as $aindex=>$article)
-                            @if($aindex>2) @break @endif
+
+                        @foreach($category->getTopArticles(3) as $aindex=>$article)
+
                         <div class="col-sm-4 artBox">
                             <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                 <div class="col-sm-12">
@@ -28,8 +30,8 @@
                         @endforeach
                     </div>
                     <div class="row paddingTop">
-                        @foreach($category->Articles as $aindex=>$article)
-                            @if($aindex>2) @break @endif
+                        @foreach($category->getTopArticles(3)  as $aindex=>$article)
+
                             <div class="col-sm-4">
                                 <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                             </div>
@@ -62,8 +64,8 @@
                     </div>
                     <div class="text-right promo"><h4>Популярное в категории</h4></div>
                     <div class="row">
-                        @foreach($category->Articles as $aindex=>$article)
-                            @if($aindex>2) @break @endif
+                        @foreach($category->getTopArticles(3)  as $aindex=>$article)
+
 
                             <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
                                 <div class="col-sm-4">
@@ -76,8 +78,8 @@
                         @endforeach
                     </div>
                     <div class="row paddingTop">
-                        @foreach($category->Articles as $aindex=>$article)
-                            @if($aindex>2) @break @endif
+                        @foreach($category->getTopArticles(3)  as $aindex=>$article)
+
                             <div class="col-sm-4">
                                 <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                             </div>

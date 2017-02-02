@@ -19,7 +19,7 @@ class HomePageController extends FrontController
 
         $announceCategory = Category::where('onHomePage','=','1')->get();
 
-        $homeArticles = Article::limit(8)->get();
+        $homeArticles = Article::orderby('order','desc')->limit(8)->get();
 
         $cartItemsDescription = $this->getCartItems();
 

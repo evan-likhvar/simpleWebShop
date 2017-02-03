@@ -64,15 +64,17 @@
                             {!! Form::text('e_mail',null ,['class'=>'form-control']) !!}
                         </div>
                     </div>
-
                     <div class="form-group">
-                        {!! Form::label('status','Статус:',['class'=>'control-label col-sm-1']) !!}
-                        <div class="col-sm-1">
-                            {!! Form::text('status',null,['class'=>'form-control']) !!}
+                        {!! Form::label('status','Статус заказа:',['class'=>'control-label col-sm-2']) !!}
+                        <div class="col-sm-2">
+                            {!! Form::select('status',$orderStatus,null,['class'=>'form-control']) !!}
                         </div>
+                    </div>
+                    <div class="form-group">
                         {!! Form::label('description','Примечания:',['class'=>'control-label col-sm-2']) !!}
-                        <div class="col-sm-7">
-                            {!! Form::text('description',null,['class'=>'form-control']) !!}
+                        <div class="col-sm-10">
+                            {!! Form::textarea('description',null,['class'=>'form-control','size' => '2x2']) !!}
+                            {{--{!! Form::text('description',null,['class'=>'form-control']) !!}--}}
                         </div>
                     </div>
 
@@ -86,7 +88,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>№ анртикула</th>
+                            <th>№ артикула</th>
                             <th>Название</th>
                             <th>Кол-во</th>
                             <th>Цена шт.</th>

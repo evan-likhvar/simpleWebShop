@@ -45,7 +45,7 @@ class FrontController extends Controller
 
         $activeTopId = 0;
 
-        $url = rawurldecode(Request::capture()->path());
+        $url = rawurldecode(Request::capture()->path()).'//////';
         list($type,$id) = explode('/',$url);
         if (strlen(trim($type))>0) {
             if (mb_strpos($id,'-'))
@@ -55,14 +55,14 @@ class FrontController extends Controller
                 $article = Article::findorfail($id);
                 $id = $article->category_id;
             }
+            if ($type == 'категория') {
+                $category = Category::findorfail($id);
 
-            $category = Category::findorfail($id);
-
-            if ($category->parent_id > 0)
-                $activeTopId = $category->parent_id;
-            else
-                $activeTopId = $category->id;
-
+                if ($category->parent_id > 0)
+                    $activeTopId = $category->parent_id;
+                else
+                    $activeTopId = $category->id;
+            }
             //return dd($url,$type,$id,$category,$activeTopId);
         }
         return $activeTopId;
@@ -73,8 +73,13 @@ class FrontController extends Controller
 
         $activeSubId = 0;
 
-        $url = rawurldecode(Request::capture()->path());
+        $url = rawurldecode(Request::capture()->path()).'//////';
+
+        //return dd($url);
+
         list($type,$id) = explode('/',$url);
+
+
         if (strlen(trim($type))>0) {
             if (mb_strpos($id,'-'))
                 $id = mb_substr($id,0,mb_strpos($id,'-'));

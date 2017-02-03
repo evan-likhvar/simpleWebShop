@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <div class="row">
+                                <div class="row" style="padding-top: 30px;padding-bottom: 25px;">
                                     <div class="col-sm-6 text-right" style="padding-top: 5px;">
                                         сортировать
                                     </div>

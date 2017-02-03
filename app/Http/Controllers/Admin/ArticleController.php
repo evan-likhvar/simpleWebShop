@@ -18,19 +18,34 @@ class ArticleController extends AdminController
     //
     public function index(Request $request) {
 
+        //return dd($request->all());
+
         $parGrp = $this->parameterGroups;
 
         $ordered = 'id';
-        $filter = '';
+        $filter = 0;
         $order = 'desc';
 
         if (isset($request->sort)) {$ordered = $request->sort;}
-        if ( isset($request->filter) && strlen($request->filter)>0) {$filter = $request->filter; }
+
         if ( isset($request->order) && strlen($request->order)>0) $order = $request->order;
 
-        $articles = Article::where('name','LIKE', $filter. '%')->orderBy($ordered,$order)->paginate(20);
 
-        return view('admin.articles.index')->with(compact('articles','parGrp'));
+        if ( isset($request->filter) && $request->filter!=0  ) {
+            $filter = $request->filter;
+            $articles = Article::where('category_id','=', $request->filter)->orderBy($ordered,$order)->paginate(20);
+        } else {
+            $filter = 0;
+            $articles = Article::orderBy($ordered,$order)->paginate(20);
+        }
+
+        //$articles = Article::where('name','LIKE', $filter. '%')->orderBy($ordered,$order)->paginate(20);
+        //$articles = Article::orderBy($ordered,$order)->paginate(20);
+
+
+        $categories = Category::select('name','id')->get()->pluck('name','id')->toArray();
+
+        return view('admin.articles.index')->with(compact('articles','parGrp','categories'));
     }
 
     public function edit($id)

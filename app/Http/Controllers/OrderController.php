@@ -18,10 +18,15 @@ class OrderController extends FrontController
     //
     public function show(){
 
+        $lastActive = $this->getLastActiveMenu();
+        $activeSubId = $this->getSubActiveMenu();
+
+        $topActive = $this->getTopActiveMenu();
+
         $mainMenu = Category::whereNull('parent_id')->get();
         $cartItemsDescription = $this->getCartItems();
         $count = $this->getCountCartItems();
-        return view('layouts.order')->with(compact('cartItemsDescription','mainMenu','count'));
+        return view('layouts.order')->with(compact('lastActive','activeSubId','topActive','cartItemsDescription','mainMenu','count'));
     }
 
 
@@ -69,10 +74,15 @@ class OrderController extends FrontController
 
     public function showSuccess($id){
 
+        $lastActive = $this->getLastActiveMenu();
+        $activeSubId = $this->getSubActiveMenu();
+
+        $topActive = $this->getTopActiveMenu();
+
         $mainMenu = Category::whereNull('parent_id')->get();
         $order = orderHeader::findOrFail($id);
 
-        return view('layouts.orderSuccess')->with(compact('order','mainMenu'));
+        return view('layouts.orderSuccess')->with(compact('lastActive','activeSubId','topActive','order','mainMenu'));
     }
 
 }

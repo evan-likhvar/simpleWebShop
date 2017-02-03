@@ -68,6 +68,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::get('/order', 'OrderController@index')->name('admin.order');
     Route::get('/order/{order}/edit', 'OrderController@edit')->name('admin.editOrder');
     Route::patch('/order/{order}/update', 'OrderController@update');
+    Route::delete('/order/{parameter}', 'OrderController@destroy');
+
 });
 
 Route::get('/', 'HomePageController@index');

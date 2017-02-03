@@ -5815,6 +5815,14 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.well {
+  border: medium none;
+  box-shadow: none; }
+
+.categoryList {
+  margin-bottom: 25px;
+  border-bottom: 3px solid; }
+
 .text-right {
   border-image: linear-gradient(to right, #fff 0%, #f09713 100%);
   border-image-slice: 1; }
@@ -5826,14 +5834,6 @@ button.close {
 .text-center {
   border-image: radial-gradient(#f09713 50%, #fff 100%);
   border-image-slice: 1; }
-
-.well {
-  border: medium none;
-  box-shadow: none; }
-
-.categoryList {
-  margin-bottom: 25px;
-  border-bottom: 3px solid; }
 
 .promo {
   border-bottom: 1px solid;
@@ -5863,6 +5863,23 @@ button.close {
 
 .available {
   color: #f09713; }
+
+.dropdown .btn-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b; }
+
+.dropdown :hover {
+  background-color: #f2e187;
+  border-color: #f1c76f; }
+
+.orderBox, .info {
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px 0 rgba(200, 200, 200, 0.5), 0 0 0 0 #c1c1c1 inset; }
+
+#Remove span {
+  color: red; }
 
 #infotab .nav-tabs > li.active > a, #infotab .nav-tabs > li.active > a:hover, #infotab .nav-tabs > li.active > a:focus {
   -moz-border-bottom-colors: none;

@@ -1,3 +1,11 @@
+.well {
+  border: medium none;
+  box-shadow: none;
+}
+.categoryList {
+  margin-bottom: 25px;
+  border-bottom: 3px solid;
+}
 .text-right {
   border-image: linear-gradient(to right, #fff 0%, $brand-warning 100%);
   border-image-slice: 1;
@@ -14,14 +22,7 @@
 
 
 
-.well {
-  border: medium none;
-  box-shadow: none;
-}
-.categoryList {
-  margin-bottom: 25px;
-  border-bottom: 3px solid;
-}
+
 
 .promo {
   border-bottom: 1px solid;
@@ -53,4 +54,24 @@
 }
 .available {
   color: $brand-warning
+}
+
+.dropdown {
+  .btn-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+  }
+  :hover {
+    background-color: darken(#fcf8e3, 20%);
+    border-color: darken(#faebcc, 20%);
+  }
+}
+.orderBox, .info {
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px 0 rgba(200, 200, 200, 0.5), 0 0 0 0 #c1c1c1 inset;
+}
+#Remove span {
+  color: red;
 }

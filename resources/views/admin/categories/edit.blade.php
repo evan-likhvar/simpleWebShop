@@ -24,18 +24,27 @@
                 <div class="col-sm-4">
                     {!! Form::text('name',null,['class'=>'form-control']) !!}
                 </div>
-
+                {!! Form::label('onHomePage','На главной:',['class'=>'control-label col-sm-1']) !!}
+                <div class="col-sm-1">
+                    {!! Form::text('onHomePage',null,['class'=>'form-control']) !!}
+                </div>
                 @if($category->parent)
-                    {!! Form::label('parent','Родительская категория:',['class'=>'control-label col-sm-3']) !!}
-                    <div class="col-sm-4">
+                    {!! Form::label('parent','Родительская категория:',['class'=>'control-label col-sm-2']) !!}
+                    <div class="col-sm-3">
                         {!! Form::text('parent',$category->parent->name,['class' => 'form-control', 'readonly' => 'true']) !!}
                     </div>
                 @endif
             </div>
             <div class="form-group">
-                {!! Form::label('onHomePage','На главной:',['class'=>'control-label col-sm-1']) !!}
-                <div class="col-sm-4">
-                    {!! Form::text('onHomePage',null,['class'=>'form-control']) !!}
+                {!! Form::label('metakey','Мета-кей:',['class'=>'control-label col-sm-2']) !!}
+                <div class="col-sm-10">
+                    {!! Form::text('metakey',null,['class'=>'form-control']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+                {!! Form::label('metadescription','Мета-дескрипшин:',['class'=>'control-label col-sm-2']) !!}
+                <div class="col-sm-10">
+                    {!! Form::text('metadescription',null,['class'=>'form-control']) !!}
                 </div>
             </div>
 

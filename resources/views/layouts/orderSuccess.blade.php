@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="well text-center" style="border-top: 1px solid yellow;border-bottom: 1px solid yellow; padding-top: 40px;">
+            <div class="well text-center" style="border-top: 1px solid;border-bottom: 1px solid; padding-top: 40px;">
                 <h4 style="margin: 5px;">Заказанные товары</h4>
             </div>
             <div class="well text-center">

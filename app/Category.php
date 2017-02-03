@@ -9,7 +9,7 @@ class Category extends Model
 {
 
     protected $fillable = [
-        'name','published','order','description','parent_id','onHomePage'
+        'name','published','order','description','parent_id','onHomePage','metakey','metadescription'
     ];
 
 

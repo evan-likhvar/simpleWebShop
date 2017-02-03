@@ -43,7 +43,7 @@
                     {{ csrf_field() }}
                 </form>
                 <h4>
-                    <a href="#">
+                    <a href="/">
                         <button type="button" class="btn btn-warning btn-sm">На главную</button>
                     </a>
                 </h4>

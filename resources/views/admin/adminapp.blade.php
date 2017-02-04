@@ -81,7 +81,7 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseDirectory">Справочники</a>
                         </h4>
                     </div>
-                    <div id="collapseDirectory" class="panel-collapse collapse in">
+                    <div id="collapseDirectory" class="panel-collapse collapse">
                         <div class="list-group">
                             <a href="{{route('admin.category')}}" class="list-group-item">Категории</a>
 
@@ -97,20 +97,31 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Параметры</a>
                         </h4>
                     </div>
-                    <div id="collapse2" class="panel-collapse collapse in">
+                    <div id="collapse2" class="panel-collapse collapse">
                         <div class="list-group">
                             @foreach($parGrp as $item)
                                 <a href="{{route('admin.parameter', ['group' => $item->id])}}" class="list-group-item">{{$item->name}}</a>
                             @endforeach
-{{--                            <a href="{{route('admin.category')}}" class="list-group-item">Категории</a>
-                            <a href="{{route('admin.article')}}" class="list-group-item">Товары</a>
-                            <a href="{{route('admin.vendor')}}" class="list-group-item">Производители</a>
-                            <a href="{{route('admin.parameter-category')}}" class="list-group-item">Классы параметров</a>
-                            <a href="{{route('admin.parameter')}}" class="list-group-item">Параметры</a>--}}
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsePaper">Статьи</a>
+                        </h4>
+                    </div>
+                    <div id="collapsePaper" class="panel-collapse collapse in">
+                        <div class="list-group">
+                            <a href="{{route('admin.paperCategoryIndex')}}" class="list-group-item">Категории Стататей</a>
 
+                            <a href="{{route('admin.paper')}}" class="list-group-item">Статьи</a>
+
+                            <a href="{{route('admin.createPaper')}}" class="list-group-item">Новая статья</a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-10">

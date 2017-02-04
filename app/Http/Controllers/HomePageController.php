@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\papercategory;
 use Illuminate\Http\Request;
 
 class HomePageController extends FrontController
@@ -28,6 +29,8 @@ class HomePageController extends FrontController
 
         $cartItemsDescription = $this->getCartItems();
 
-        return view('layouts.homepage')->with(compact('lastActive','activeSubId','topActive','mainMenu','announceCategory','homeArticles','countCartItems','cartItemsDescription'));
+        $paperMenu = papercategory::whereNull('parent_id')->get();
+
+        return view('layouts.homepage')->with(compact('paperMenu','lastActive','activeSubId','topActive','mainMenu','announceCategory','homeArticles','countCartItems','cartItemsDescription'));
     }
 }

@@ -75,7 +75,15 @@
                             </div>
                                 {{--@endif--}}
                             @endforeach
+                                @foreach($paperMenu as $item)
 
+                                    <div class="menu-wrap {{$topActive == $item->id ? ' active' : ' menu-decoration'}}">
+                                        <li style="padding-top: 12px;" {{$topActive == $item->id ? 'class=active' : '' }}>
+                                            <a href="{{route('showCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
+                                        </li>
+                                    </div>
+                                    {{--@endif--}}
+                                @endforeach
 
                         </ul>
                     </div>

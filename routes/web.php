@@ -70,6 +70,20 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::patch('/order/{order}/update', 'OrderController@update');
     Route::delete('/order/{parameter}', 'OrderController@destroy');
 
+    //papers
+    Route::get('/paperCategory', 'PaperController@PaperCategoryIndex')->name('admin.paperCategoryIndex');
+    Route::post('/paperCategory/create', 'PaperController@PaperCategoryStore');
+    Route::get('/paperCategory/{paper}/edit', 'PaperController@editPaperCategory')->name('admin.editPaperCategory');
+    Route::delete('/paperCategory/{paper}', 'PaperController@PaperCategoryDestroy');
+    Route::patch('/paperCategory/{paper}', 'PaperController@PaperCategoryUpdate');
+
+
+    Route::get('/paper', 'PaperController@PaperIndex')->name('admin.paper');
+    Route::get('/paper/create', 'PaperController@createNewPaper')->name('admin.createPaper');
+    Route::post('/paper/create', 'PaperController@PaperStore');
+    Route::delete('/paper/{paper}', 'PaperController@PaperDestroy');
+    Route::get('/paper/{paper}/edit', 'PaperController@editPaper')->name('admin.editPaper');
+    Route::patch('/paper/{paper}', 'PaperController@PaperUpdate');
 });
 
 Route::get('/', 'HomePageController@index');

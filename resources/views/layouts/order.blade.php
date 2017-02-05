@@ -78,7 +78,7 @@
 
 
                         <?php $totalAmount = 0; ?>
-                        @foreach($cartItemsDescription as $article)
+                        @foreach($cartInfo['cartItemsDescription'] as $article)
 
                             {{--{{dd($article[1])}}--}}
 
@@ -111,7 +111,7 @@
                                     Итого
                                 </div>
                                 <div class="col-sm-2 col-sm-offset-1">
-                                    {{$count}}&nbsp&nbsp&nbspшт.
+                                    {{$cartInfo['countCartItems']}}&nbsp&nbsp&nbspшт.
                                 </div>
                                 <div class="col-sm-2 text-right">
                                     {{$totalAmount}}&nbsp&nbsp&nbspгрн.

@@ -46,14 +46,14 @@
             </div>
         </div>
         <div class="col-sm-2 cart">
-            @if(isset($countCartItems))
+            @if(isset($cartInfo['countCartItems']))
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cart">В корзине <span
-                            class="badge">{{$countCartItems}}</span></button>
+                            class="badge">{{$cartInfo['countCartItems']}}</span></button>
             @endif
         </div>
     </div>
     <div class="row">
-        @if(isset($mainMenu))
+        @if(isset($siteMenu['mainMenu']))
             <div class="col-sm-12 top-menu">
 
                 <nav class="navbar">
@@ -66,20 +66,20 @@
                             </a>
                         </div>
                         <ul class="nav navbar-nav">
-                            @foreach($mainMenu as $item)
+                            @foreach($siteMenu['mainMenu'] as $item)
 
-                            <div class="menu-wrap {{$topActive == $item->id ? ' active' : ' menu-decoration'}}">
-                                    <li style="padding-top: 12px;" {{$topActive == $item->id ? 'class=active' : '' }}>
+                            <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">
+                                    <li style="padding-top: 12px;" {{$siteMenu['topActive'] == $item->id ? 'class=active' : '' }}>
                                         <a href="{{route('showCategory', ['categoryId' => $item->getCategoryLink()])}}">{{$item->name}}</a>
                                     </li>
                             </div>
                                 {{--@endif--}}
                             @endforeach
-                                @foreach($paperMenu as $item)
+                                @foreach($siteMenu['paperMenu'] as $item)
 
-                                    <div class="menu-wrap {{$topActive == $item->id ? ' active' : ' menu-decoration'}}">
-                                        <li style="padding-top: 12px;" {{$topActive == $item->id ? 'class=active' : '' }}>
-                                            <a href="{{route('showCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
+                                    <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">
+                                        <li style="padding-top: 12px;" {{$siteMenu['topActive'] == $item->id ? 'class=active' : '' }}>
+                                            <a href="{{route('showPaperCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
                                         </li>
                                     </div>
                                     {{--@endif--}}
@@ -93,14 +93,14 @@
         @endif
 
     </div>
-    @if(isset($mainMenu))
-    @include('layouts.helpers.category_submenu', ['mainMenu' => $mainMenu,'topActive'=>$topActive,'lastActive'=>$lastActive])
+    @if(isset($siteMenu['mainMenu']))
+    @include('layouts.helpers.category_submenu', ['mainMenu' => $siteMenu['mainMenu'],'topActive'=>$siteMenu['topActive'],'lastActive'=>$siteMenu['lastActive'],'activeSubId'=>$siteMenu['activeSubId']])
     @endif
     @yield('content')
 </div>
 
 
-@if(isset($countCartItems))
+@if(isset($cartInfo['countCartItems']))
     <!-- Modal -->
     <div id="cart" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -113,7 +113,7 @@
                 </div>
                 <div class="modal-body">
 
-                    @foreach($cartItemsDescription as $article)
+                    @foreach($cartInfo['cartItemsDescription'] as $article)
 
                         {{--{{dd($article[1])}}--}}
 

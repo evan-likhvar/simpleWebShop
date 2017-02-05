@@ -107,3 +107,6 @@ Route::post('/категория/setParameters', 'CategoryController@setParamete
 Route::get('/показать-заказ/', 'OrderController@show')->name('showOrder');
 Route::post('/показать-заказ/create', 'OrderController@store');
 Route::get('/успешный-заказ/{id}', 'OrderController@showSuccess')->name('showSuccessOrder');
+
+Route::get('/статьи-категории/{category}', 'PaperController@indexPaperCategory')->name('showPaperCategory');
+Route::get('/статья/{paper}', 'PaperController@showPaper')->name('showPaper');

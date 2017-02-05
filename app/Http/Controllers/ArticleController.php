@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\papercategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -12,15 +13,12 @@ class ArticleController extends FrontController
     //
     public function show($article){
 
-        $topActive = $this->getTopActiveMenu();
-        $activeSubId = $this->getSubActiveMenu();
-        $lastActive = $this->getLastActiveMenu();
-        $countCartItems = $this->getCountCartItems();
-        $cartItemsDescription = $this->getCartItems();
+        $siteMenu = $this->getSiteMenu();
+        $cartInfo = $this->getCartInfo();
 
-        $mainMenu = Category::whereNull('parent_id')->get();
-        $article = Article::findOrFail($article);
         $homeArticles = Article::limit(4)->get();
+
+        $article = Article::findOrFail($article);
 
         $articleImages = array();
 
@@ -46,7 +44,7 @@ class ArticleController extends FrontController
         }
 
        // return dd($articleImages);
-        return view('layouts.article')->with(compact('lastActive','activeSubId','topActive','articleImages','article','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
+        return view('layouts.article')->with(compact('article','articleImages','homeArticles','siteMenu','cartInfo'));
     }
 
     public function addArticleToCart($article){

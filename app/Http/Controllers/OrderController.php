@@ -9,6 +9,7 @@ use App\Events\OrderCreated;
 use App\Http\Requests\OrderControllerRequest;
 use App\orderHeader;
 use App\orderRow;
+use App\papercategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
@@ -18,15 +19,10 @@ class OrderController extends FrontController
     //
     public function show(){
 
-        $lastActive = $this->getLastActiveMenu();
-        $activeSubId = $this->getSubActiveMenu();
+        $siteMenu = $this->getSiteMenu();
+        $cartInfo = $this->getCartInfo();
 
-        $topActive = $this->getTopActiveMenu();
-
-        $mainMenu = Category::whereNull('parent_id')->get();
-        $cartItemsDescription = $this->getCartItems();
-        $count = $this->getCountCartItems();
-        return view('layouts.order')->with(compact('lastActive','activeSubId','topActive','cartItemsDescription','mainMenu','count'));
+        return view('layouts.order')->with(compact('siteMenu','cartInfo'));
     }
 
 
@@ -74,15 +70,12 @@ class OrderController extends FrontController
 
     public function showSuccess($id){
 
-        $lastActive = $this->getLastActiveMenu();
-        $activeSubId = $this->getSubActiveMenu();
+        $siteMenu = $this->getSiteMenu();
+        $cartInfo = $this->getCartInfo();
 
-        $topActive = $this->getTopActiveMenu();
-
-        $mainMenu = Category::whereNull('parent_id')->get();
         $order = orderHeader::findOrFail($id);
 
-        return view('layouts.orderSuccess')->with(compact('lastActive','activeSubId','topActive','order','mainMenu'));
+        return view('layouts.orderSuccess')->with(compact('order','siteMenu','cartInfo'));
     }
 
 }

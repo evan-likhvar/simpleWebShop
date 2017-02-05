@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\papercategory;
 use App\Parameter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,14 +13,13 @@ use Illuminate\Support\Facades\Session;
 class CategoryController extends FrontController
 {
     public function show($categoryId){
-        $lastActive = $this->getLastActiveMenu();
-        $topActive = $this->getTopActiveMenu();
-        $activeSubId = $this->getSubActiveMenu();
-        $countCartItems = $this->getCountCartItems();
-        $cartItemsDescription = $this->getCartItems();
-        $mainMenu = Category::whereNull('parent_id')->get();
-        $category = Category::findOrFail($categoryId);
+
+        $siteMenu = $this->getSiteMenu();
+        $cartInfo = $this->getCartInfo();
+
         $homeArticles = Article::limit(8)->get();
+
+        $category = Category::findOrFail($categoryId);
 
         $checkedParameters = array();
         $checkedParameters = Session::get($categoryId.':parameters');
@@ -46,9 +46,9 @@ class CategoryController extends FrontController
 
 
         if (count($category->Children)){
-            return view('layouts.categories')->with(compact('lastActive','activeSubId','topActive','category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
+            return view('layouts.categories')->with(compact('category','homeArticles','siteMenu','cartInfo'));
         } else {
-            return view('layouts.categoryArticles')->with(compact('lastActive','activeSubId','topActive','unCheckAll','articles','orderBy','checkedParameters','category','mainMenu','countCartItems','homeArticles','cartItemsDescription'));
+            return view('layouts.categoryArticles')->with(compact('unCheckAll','articles','orderBy','checkedParameters','category','homeArticles','siteMenu','cartInfo'));
         }
     }
 

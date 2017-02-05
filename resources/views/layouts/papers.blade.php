@@ -6,8 +6,16 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3><a href="{{route('showPaper', ['categoryId' => $paper->id])}}">{{$paper->name}}</a></h3>
-                            {!! $paper->fullDescription !!}
+                            <div class="row text-center" style="border-bottom: 2px solid">
+                                <h3>{{$paper->name}}</h3>
+                            </div>
+                            <div class="row" style="height: 35px;"></div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {!! $paper->fullDescription !!}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
               

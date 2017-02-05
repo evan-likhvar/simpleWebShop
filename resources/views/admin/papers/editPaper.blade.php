@@ -28,15 +28,64 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#text1">Основные параметры</a></li>
                 <li><a data-toggle="tab" href="#text7">Галерея и файлы товара</a></li>
-
+                <li><a data-toggle="tab" href="#text2">Краткое писание</a></li>
                 <li><a data-toggle="tab" href="#text6">Описание</a></li>
 
             </ul>
 
             <div class="tab-content">
                 <div id="text7" class="tab-pane fade">
+                    <div class="row" style="padding: 15px 0;">
+                        <div class="col-sm-2 text-center">
+                            <b> рисунок 1 </b>
+                        </div>
+                        <div class="col-sm-2 text-center">
+                            <b> файлы товара </b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            @if(!empty($files['intro1']))
+                                <img class="img-responsive img-thumbnail" src="{!! url($files['intro1']) !!}">
+                            @endif
+                        </div>
 
+                        <div class="col-sm-3">
+                            @if(!empty($files['files']))
+                                <div class="panel panel-default">
+                                    @foreach($files['files'] as $file)
+
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    {!! Form::open(['method'=>'DELETE','action'=>['Admin\ArticleController@deleteArticleFile', str_replace(['/','.'],['~','!'],$file['qualifiedImageName']) ]]) !!}
+                                                    {!! Form::submit('Del',['class'=>'btn btn-danger btn-xs']) !!}
+                                                    {!! Form::close() !!}
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    {{$file["imageFileName"]}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            {!! Form::open(['method'=>'POST', 'action'=>['Admin\PaperController@storeMedia',$paper->id,'intro1'],'class'=>'dropzone']) !!}
+                            {!! Form::close() !!}
+                        </div>
+                        <div class="col-sm-2">
+                            {!! Form::open(['method'=>'POST', 'action'=>['Admin\PaperController@storeMedia',$paper->id,'files'],'class'=>'dropzone']) !!}
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                 </div>
+
 
                 <div id="text1" class="tab-pane fade in active">
                     <div class="row" style="height: 10px;"></div>
@@ -101,16 +150,64 @@
                     </div>
 
                 </div>
-
-                <div id="text6" class="tab-pane fade">
+                <div id="text2" class="tab-pane fade">
                     <div class="form-group">
-                        {!! Form::label('fullDescription','Описание:',['class'=>'control-label col-sm-1']) !!}
+                        {!! Form::label('description','Краткое описание:',['class'=>'control-label col-sm-1']) !!}
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            {!!
-                            Form::textarea('fullDescription',null,['class'=>'form-control','class'=>'maincontent','size'
+                            {!! Form::textarea('description',null,['class'=>'form-control','class'=>'maincontent','size'
                             => '5x5']) !!}
+                        </div>
+                    </div>
+                </div>
+                <div id="text6" class="tab-pane fade">
+                    <div class="row" style="height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="form-group">
+                                    {!! Form::label('fullDescription','Принадлежности:',['class'=>'control-label col-sm-2'])
+                                    !!}
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-sm-12">
+                                        {!!
+                                        Form::textarea('fullDescription',null,['class'=>'form-control','class'=>'maincontent','size'
+                                        => '2x2']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="form-group" style="padding-bottom: 10px;">
+                                    {!! Form::label('extraInfo','Файлы артикула:',['class'=>'control-label col-sm-12'])
+                                    !!}
+                                </div>
+                                <div class="col-sm-12">
+                                    @if(!empty($files['files']))
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Для встаки ссылки на файл, наведите курсор на
+                                                нужный файл, нажмите левую кнопку мыши,
+                                                и переместите обект в нужное место поля редактирования.
+                                            </div>
+                                            @foreach($files['files'] as $file)
+
+                                                <span><a href="{{url($file['url'])}}">{{$file["imageFileName"]}}</a></span>
+                                                <img class="img-responsive text-center"
+                                                     src="{{url($file['url'])}}" alt="">
+                                                <div></div>
+
+                                            @endforeach
+                                        </div>
+
+
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

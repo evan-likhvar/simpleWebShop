@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::delete('/paper/{paper}', 'PaperController@PaperDestroy');
     Route::get('/paper/{paper}/edit', 'PaperController@editPaper')->name('admin.editPaper');
     Route::patch('/paper/{paper}', 'PaperController@PaperUpdate');
+    Route::post('/paper/storeMedia/{item}/{type?}', 'PaperController@storeMedia');
 });
 
 Route::get('/', 'HomePageController@index');

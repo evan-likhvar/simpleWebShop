@@ -184,8 +184,8 @@
                                 <div class="col-sm-2">
                                     {!! Form::text('priceYE',isset($article->priceYE) ? $article->priceYE : 0 ,['class'=>'form-control']) !!}
                                 </div>
-                         {{--   </div>
-                            <div class="form-group">--}}
+                                {{--   </div>
+                                   <div class="form-group">--}}
                                 {!! Form::label('priceGRN','Цена грн:',['class'=>'control-label col-sm-2']) !!}
                                 <div class="col-sm-2">
                                     {!! Form::text('priceGRN',isset($article->priceGRN) ? $article->priceGRN : 0,['class'=>'form-control']) !!}
@@ -243,12 +243,12 @@
                                                 <?php if (array_search($parameter->id, $checkedParameters) === false) $check = false; else $check = true;  ?>
                                                 {!! Form::checkbox('parameter['.$parameter->id.']', null,$check) !!} --
                                                 {{$parameter->name}}<br>
-                                                @endforeach
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                                <div class="row" style="min-height: 25px;"></div>
+                            @endforeach
+                            <div class="row" style="min-height: 25px;"></div>
                         </div>
                     </div>
                 </div>
@@ -302,7 +302,7 @@
                     </div>
                 </div>
                 <div id="text5" class="tab-pane fade">
-<div class="row" style="height: 10px;"></div>
+                    <div class="row" style="height: 10px;"></div>
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="row">
@@ -327,23 +327,26 @@
                                     !!}
                                 </div>
                                 <div class="col-sm-12">
-                                @if(!empty($files['files']))
+                                    @if(!empty($files['files']))
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Для встаки ссылки на файл, наведите курсор на нужный файл, нажмите левую кнопку мыши,
-                                        и переместите обект в нужное место поля редактирования.
-                                    </div>
-                                    @foreach($files['files'] as $file)
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Для встаки ссылки на файл, наведите курсор на
+                                                нужный файл, нажмите левую кнопку мыши,
+                                                и переместите обект в нужное место поля редактирования.
+                                            </div>
+                                            @foreach($files['files'] as $file)
 
-                                    <span><a href="{{url($file['url'])}}">{{$file["imageFileName"]}}</a></span>
-
-                                        <div></div>
-
-                                    @endforeach
-                                </div>
+                                                <span><a href="{{url($file['url'])}}">{{$file["imageFileName"]}}</a></span>
 
 
-                                @endif
+
+                                                <div></div>
+
+                                            @endforeach
+                                        </div>
+
+
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -393,4 +396,4 @@
         });
         tinymce.init(editor_config);
     </script>
-    @endsection
+@endsection

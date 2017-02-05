@@ -97,6 +97,10 @@ class PaperController extends AdminController
 
     public function editPaper($id){
 
+        $image = $this->getOriginalImage('papers',$id,'intro1');
+        $files['intro1'] = $image['url'];
+        $image = $this->getFiles('papers',$id,'files');
+        $files['files'] = $image;
 
         $categories = papercategory::select('name','id')->get()->pluck('name','id')->toArray();
 
@@ -104,12 +108,9 @@ class PaperController extends AdminController
 
         $parGrp = $this->parameterGroups;
 
+        //return dd($files);
 
-//        return dd($id,$paper,$paper->papercategory,$paperCategory->papers);
-
-
-
-        return view('admin.papers.editPaper')->with(compact('paper','parGrp','categories'));
+        return view('admin.papers.editPaper')->with(compact('paper','parGrp','categories','files'));
 
     }
 
@@ -127,5 +128,14 @@ class PaperController extends AdminController
             Session::flash('infomessage','Изменения сохранены');
 
         return redirect('admin/paper');
+    }
+
+
+    public function storeMedia(Request $request,$id,$type)
+    {
+
+        $this->saveOriginalImage($request->file('file')->getClientOriginalName(),$request->file('file'),'papers',$id,$type);
+
+        return;
     }
 }

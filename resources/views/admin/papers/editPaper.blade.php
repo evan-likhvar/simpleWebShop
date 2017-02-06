@@ -194,14 +194,19 @@
                                                 нужный файл, нажмите левую кнопку мыши,
                                                 и переместите обект в нужное место поля редактирования.
                                             </div>
-                                            @foreach($files['files'] as $file)
+                                            <div class="panel-body">
+                                            <div class="row">
+                                                @foreach($files['files'] as $file)
+                                                    <div class="col-sm-4" style="border: 1px solid #eee">
+                                                        <span><a href="{{url($file['url'])}}">{{$file["imageFileName"]}}</a></span>
+                                                        <img class="img-responsive text-center"
+                                                             src="{{url($file['url'])}}" alt="">
+                                                    </div>
+                                                    <div></div>
 
-                                                <span><a href="{{url($file['url'])}}">{{$file["imageFileName"]}}</a></span>
-                                                <img class="img-responsive text-center"
-                                                     src="{{url($file['url'])}}" alt="">
-                                                <div></div>
-
-                                            @endforeach
+                                                @endforeach
+                                            </div>
+                                            </div>
                                         </div>
 
 

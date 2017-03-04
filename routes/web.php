@@ -93,9 +93,9 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index');
 
-Route::get('/артикул/{article}', 'ArticleController@show')->name('showArticle');
-Route::get('/артикул/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
-Route::post('/артикул/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
+Route::get('/купить/{article}', 'ArticleController@show')->name('showArticle');
+Route::get('/купить/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
+Route::post('/купить/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
 
 Route::get('/setArticleCount', 'ArticleController@SetArticleCountToCart');
 

@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="/css/sfancy.css" type="text/css"/>
     <link rel="stylesheet" href="/css/sfancybutt.css" type="text/css"/>
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png"/>
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="/css/bootstrap/3.3.7/bootstrap.min.css" type="text/css" />--}}
@@ -25,12 +25,12 @@
 </head>
 <body>
 <div class="container">
-{{--    <div class="row">
-        {{$topActive}}<br>
-        {{$lastActive}}<br>
-        {{URL::previous()}}
+    {{--    <div class="row">
+            {{$topActive}}<br>
+            {{$lastActive}}<br>
+            {{URL::previous()}}
 
-    </div>--}}
+        </div>--}}
     <div class="row">
         <div class="col-sm-10">
             <div class="text-center topborder">
@@ -59,31 +59,30 @@
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
+                            {{--<img src="{{url('/css/res/home.png')}}">--}}
                             <a class="navbar-brand" href="/">
-                                <div>
-                                    LOGO
-                                </div>
+                                <img style="width: 30px;" src="../../../css/res/home.png">
                             </a>
                         </div>
                         <ul class="nav navbar-nav">
                             @foreach($siteMenu['mainMenu'] as $item)
 
-                            <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">
+                                <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">
                                     <li style="padding-top: 12px;" {{$siteMenu['topActive'] == $item->id ? 'class=active' : '' }}>
                                         <a href="{{route('showCategory', ['categoryId' => $item->getCategoryLink()])}}">{{$item->name}}</a>
                                     </li>
-                            </div>
+                                </div>
                                 {{--@endif--}}
                             @endforeach
-                                @foreach($siteMenu['paperMenu'] as $item)
+                            @foreach($siteMenu['paperMenu'] as $item)
 
-                                    <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">
-                                        <li style="padding-top: 12px;" {{$siteMenu['topActive'] == $item->id ? 'class=active' : '' }}>
-                                            <a href="{{route('showPaperCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
-                                        </li>
-                                    </div>
-                                    {{--@endif--}}
-                                @endforeach
+                                <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">
+                                    <li style="padding-top: 12px;" {{$siteMenu['topActive'] == $item->id ? 'class=active' : '' }}>
+                                        <a href="{{route('showPaperCategory', ['categoryId' => $item->id])}}">{{$item->name}}</a>
+                                    </li>
+                                </div>
+                                {{--@endif--}}
+                            @endforeach
 
                         </ul>
                     </div>
@@ -94,7 +93,7 @@
 
     </div>
     @if(isset($siteMenu['mainMenu']))
-    @include('layouts.helpers.category_submenu', ['mainMenu' => $siteMenu['mainMenu'],'topActive'=>$siteMenu['topActive'],'lastActive'=>$siteMenu['lastActive'],'activeSubId'=>$siteMenu['activeSubId']])
+        @include('layouts.helpers.category_submenu', ['mainMenu' => $siteMenu['mainMenu'],'topActive'=>$siteMenu['topActive'],'lastActive'=>$siteMenu['lastActive'],'activeSubId'=>$siteMenu['activeSubId']])
     @endif
     @yield('content')
 </div>

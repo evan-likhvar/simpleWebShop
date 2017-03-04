@@ -73,7 +73,7 @@ class FrontController extends Controller
             if (mb_strpos($id,'-'))
                 $id = mb_substr($id,0,mb_strpos($id,'-'));
 
-            if ($type == 'артикул') {
+            if ($type == 'купить') {
                 $article = Article::findorfail($id);
                 $id = $article->category_id;
             }
@@ -106,7 +106,7 @@ class FrontController extends Controller
             if (mb_strpos($id,'-'))
                 $id = mb_substr($id,0,mb_strpos($id,'-'));
 
-            if ($type == 'артикул') {
+            if ($type == 'купить') {
                 $article = Article::findorfail($id);
                 $activeSubId = $article->category_id;
             }
@@ -132,7 +132,7 @@ class FrontController extends Controller
             if (mb_strpos($id,'-'))
                 $id = mb_substr($id,0,mb_strpos($id,'-'));
 
-            if ($type == 'артикул') {
+            if ($type == 'купить') {
                 $article = Article::findorfail($id);
                 $id = $article->category_id;
             }

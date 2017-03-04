@@ -108,12 +108,38 @@ class AdminController extends Controller
         return $articleFiles;
     }
 
+    private function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") $this->rrmdir($dir."/".$object); else unlink($dir."/".$object);
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
+    }
+
     protected function deleteFile ($file){
 
-        unlink ( $file );
+        if (file_exists ($file)) {
+            unlink ( $file );
+            return;
+        }
 
+        list($p1,$p2,$p3,$p4,$p5) = explode('/',$file);
+        $dir = public_path().'/'.$p2.'/'.$p3.'/'.$p4.'/'.$p5;
+//return dd($file,$dir);
+
+        if (file_exists ($dir)) {
+            $this->rrmdir( $dir );
+            return;
+        }
         return;
     }
+
+
 
     protected function saveOriginalImage($imageName,$file,$objectPath,$objectId,$imageType){
 

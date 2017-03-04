@@ -44,7 +44,6 @@ class CategoryController extends FrontController
             $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate(8);
         else $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate(8);
 
-
         if (count($category->Children)){
             return view('layouts.categories')->with(compact('category','homeArticles','siteMenu','cartInfo'));
         } else {

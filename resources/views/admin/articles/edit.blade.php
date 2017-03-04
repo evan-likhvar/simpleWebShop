@@ -40,15 +40,35 @@
                     <div class="row" style="padding: 15px 0;">
                         <div class="col-sm-2 text-center">
                             <b> рисунок 1 </b>
+                            @if(!empty($files['intro1']))
+                            {!! Form::open(['method'=>'DELETE','action'=>['Admin\ArticleController@deleteArticleFile', str_replace(['/','.'],['~','!'],$files['intro1']) ]]) !!}
+                            {!! Form::submit('удалить',['class'=>'btn btn-danger btn-xs']) !!}
+                            {!! Form::close() !!}
+                            @endif
                         </div>
                         <div class="col-sm-2 text-center">
                             <b> рисунок 2 </b>
+                            @if(!empty($files['intro2']))
+                                {!! Form::open(['method'=>'DELETE','action'=>['Admin\ArticleController@deleteArticleFile', str_replace(['/','.'],['~','!'],$files['intro2']) ]]) !!}
+                                {!! Form::submit('удалить',['class'=>'btn btn-danger btn-xs']) !!}
+                                {!! Form::close() !!}
+                            @endif
                         </div>
                         <div class="col-sm-2 text-center">
                             <b> рисунок 3 </b>
+                            @if(!empty($files['intro3']))
+                                {!! Form::open(['method'=>'DELETE','action'=>['Admin\ArticleController@deleteArticleFile', str_replace(['/','.'],['~','!'],$files['intro3']) ]]) !!}
+                                {!! Form::submit('удалить',['class'=>'btn btn-danger btn-xs']) !!}
+                                {!! Form::close() !!}
+                            @endif
                         </div>
                         <div class="col-sm-2 text-center">
                             <b> рисунок 4 </b>
+                            @if(!empty($files['intro4']))
+                                {!! Form::open(['method'=>'DELETE','action'=>['Admin\ArticleController@deleteArticleFile', str_replace(['/','.'],['~','!'],$files['intro4']) ]]) !!}
+                                {!! Form::submit('удалить',['class'=>'btn btn-danger btn-xs']) !!}
+                                {!! Form::close() !!}
+                            @endif
                         </div>
                         <div class="col-sm-2 text-center">
                             <b> файлы товара </b>

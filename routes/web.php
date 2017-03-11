@@ -41,6 +41,11 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::post('/item/storeMedia/{item}/{type?}', 'ArticleController@storeMedia');
     Route::delete('/article/deletefile/{file}', 'ArticleController@deleteArticleFile');
 
+    //price
+    Route::get('/price', 'PriceController@index')->name('admin.priceArticleList');
+    Route::post('/price/hotLine', 'PriceController@hotLinePriceXML');
+    Route::post('/price/priceUA', 'PriceController@priceUAPriceXML');
+    Route::post('/siteMap', 'PriceController@createSiteMap');
     //vendor
     Route::get('/vendor', 'VendorController@index')->name('admin.vendor');
     Route::post('/vendor/create', 'VendorController@store');

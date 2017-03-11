@@ -72,6 +72,7 @@
                         <div class="list-group">
                             <a href="{{route('admin.article')}}" class="list-group-item">Список товаров</a>
                             <a href="{{route('admin.createArticle')}}" class="list-group-item">Новый товар</a>
+                            <a href="{{route('admin.priceArticleList')}}" class="list-group-item">Прайс листы</a>
                         </div>
                     </div>
                 </div>

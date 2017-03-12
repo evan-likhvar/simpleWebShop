@@ -20,9 +20,9 @@ class CategoryController extends AdminController
 
         $output = array();
 
-        //return dd(Route::current()->geturi());
+        //return dd(url()->current());
 
-        $action= Route::current()->geturi();
+        $action= url()->current();
 
         $uri_segments = explode('/', $action);
         $count=count($uri_segments);

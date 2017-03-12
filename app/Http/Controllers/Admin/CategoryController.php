@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Parameter_group;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+
 
 class CategoryController extends AdminController
 {

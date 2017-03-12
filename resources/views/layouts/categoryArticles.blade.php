@@ -1,19 +1,31 @@
 @extends('layouts.app')
+@section('json-ld')<script type="application/ld+json">
+[    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Купер&Хантер Украина",
+      "alternateName": "Cooper&Hunter Украина",
+      "description": "Магазин климатической техники производства Cooper&Hunter",
+      "url": "http://www.куперхантер.укр"
+    },
+    {
+    "@context": "http://schema.org",
+    "@type":"WebPage",
+    "headline": "{{$category->name}}",
+    "description": "{{strlen($category->description)>4 ? strip_tags($category->description) : $category->name }}"
+    }
+]
+</script>
+@endsection
+@section('title')<title>Продукция Cooper&amp;Hunter в категории {{$category->name}}</title>
+@endsection
+@section('meta')<meta name="description" content="Продукция КуперХантер в категории {{$category->name}}" />
+<meta name="keywords" content="{{$category->name}} Cooper&amp;Hunter КуперХантер" />
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
-{{--            <div class="well-sm text-left">
-                <div class="row" style="min-height: 20px;"></div>
-                <div class="row" style="padding-left: 20px;">
-                    <a href="/"> Главная </a> <b>></b>
-                    @if(count($category->parent))
-                        <a href="{{route('showCategory', ['category' => $category->parent->id])}}">{{ $category->parent->name }}</a>
-                        <b>></b>
-                    @endif
 
-                    <a href="{{route('showCategory', ['category' => $category->id])}}">{{ $category->name }}</a>
-                </div>
-            </div>--}}
             <div class="row categoryList text-right"> <h3>{{$category->name}}</h3></div>
 
             <div id="paramLeft" class="col-sm-3">

@@ -11,13 +11,18 @@
     {
     "@context": "http://schema.org",
     "@type":"WebPage",
-    "headline": "Headline/title",
-    "description": "Description of page"
+    "headline": "{{$category->name}}",
+    "description": "{{strlen($category->description)>4 ? strip_tags($category->description) : $category->name }}"
     }
 ]
-
 </script>
 @endsection
+@section('title')<title>Продукция Cooper&amp;Hunter в категории {{$category->name}}</title>
+@endsection
+@section('meta')<meta name="description" content="Продукция КуперХантер в категории {{$category->name}}" />
+<meta name="keywords" content="{{$category->name}} Cooper&amp;Hunter КуперХантер" />
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

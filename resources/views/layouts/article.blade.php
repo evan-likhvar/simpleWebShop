@@ -1,4 +1,24 @@
+{{--{{dd($articleImages)}}--}}
 @extends('layouts.app')
+@section('json-ld')<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{$article->name}}",
+  "image": "{{url($articleImages['intro1']['L'])}}",
+  "description": "{{strip_tags($article->description)}}",
+  "brand": {
+    "@type": "Thing",
+    "name": "Cooper&Hunter"
+  }
+}
+</script>
+@endsection
+@section('title')<title>{{$article->name}}</title>
+@endsection
+@section('meta')<meta name="description" content="{{strip_tags($article->description)}}" />
+<meta name="keywords" content="{{$article->Category->name}} {{$article->name}}" />
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

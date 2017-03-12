@@ -14,12 +14,13 @@ class CategoryController extends FrontController
 {
     public function show($categoryId){
 
+        $category = Category::findOrFail($categoryId);
+
+
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
 
         $homeArticles = Article::limit(8)->get();
-
-        $category = Category::findOrFail($categoryId);
 
         $checkedParameters = array();
         $checkedParameters = Session::get($categoryId.':parameters');

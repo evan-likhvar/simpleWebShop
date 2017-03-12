@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="/css/sfancy.css" type="text/css"/>
     <link rel="stylesheet" href="/css/sfancybutt.css" type="text/css"/>
     <link rel="icon" type="image/png" href="/favicon.png"/>
+    @yield('title')
+    @yield('meta')
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="/css/bootstrap/3.3.7/bootstrap.min.css" type="text/css" />--}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/sfancy.js"></script>
-    <script src="/js/sfancybutt.js"></script>
+    <script async src="/js/sfancy.js"></script>
+    <script async src="/js/sfancybutt.js"></script>
     {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
       <script src="/js/jquery/1.12.4/jquery.min.js"></script>
       <script src="/js/bootstrap/3.3.7/bootstrap.min.js"></script>
@@ -35,13 +37,14 @@
         <div class="col-sm-10">
             <div class="text-center topborder">
                 <h4>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> 044 292-19-49<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> (044) 360-64-50<span
                             style="padding-right: 20px;"></span>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> 044 292-19-49<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> (050) 600-10-70<span
                             style="padding-right: 20px;"></span>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> 044 292-19-49<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> (067) 703-73-00<span
                             style="padding-right: 20px;"></span>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> 044 292-19-49
+                    <span class="glyphicon glyphicon-earphone main-color"></span> (063) 667-99-22<span
+                            style="padding-right: 20px;"></span>
                 </h4>
             </div>
         </div>
@@ -98,6 +101,38 @@
     @yield('content')
 </div>
 
+<div id="footer" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2 text-center">
+            (044) 360-64-50<br>(050) 600-10-70
+        </div>
+        <div class="col-sm-2 text-center">
+            (067) 703-73-00<br>(063) 667-99-22
+        </div>
+        <div class="col-sm-2 text-center">
+            Адрес:
+            бульвар Дружбы Народов, 25
+        </div>
+        <div class="col-sm-4">
+            <!-- Add Google Maps -->
+            <div id="googleMap"></div>
+            <script>
+                function myMap() {
+                    var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+                    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                    var marker = new google.maps.Marker({position:myCenter});
+                    marker.setMap(map);
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx3_x2hU5Ab-hZxV4-BPPBm8-ezxTLero&callback=myMap"></script>
+            <!--
+            To use this code on your website, get a free API key from Google.
+            Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+            -->
+        </div>
+    </div>
+</div>
 
 @if(isset($cartInfo['countCartItems']))
     <!-- Modal -->

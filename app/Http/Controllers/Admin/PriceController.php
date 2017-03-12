@@ -88,7 +88,9 @@ XML;
         foreach ($articles as $article) {
         $item = $hotLinePriceXML->items->addChild('item');
         $item->addChild('id', $article->id);
-        $item->addChild('code', $article->nomer);
+            if (isset($article->nomer)&&!empty($article->nomer)) {
+                $item->addChild('code', $article->nomer);
+            }
         $item->addChild('vendor', str_replace('&','&amp;',$article->Vendor->name));
         $item->addChild('name', str_replace('&','&amp;',$article->name));
         $item->addChild('description', str_replace('&','&amp;',$article->name));
@@ -144,7 +146,9 @@ XML;
         foreach ($articles as $article) {
             $item = $hotLinePriceXML->items->addChild('item');
             $item->addChild('id', $article->id);
-            $item->addChild('code', $article->nomer);
+            if (isset($article->nomer)&&!empty($article->nomer)) {
+                $item->addChild('code', $article->nomer);
+            }
             $item->addChild('vendor', str_replace('&','&amp;',$article->Vendor->name));
             $item->addChild('name', str_replace('&','&amp;',$article->name));
             $item->addChild('description', str_replace('&','&amp;',$article->name));

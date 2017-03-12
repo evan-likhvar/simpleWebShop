@@ -16,8 +16,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script async src="/js/sfancy.js"></script>
-    <script async src="/js/sfancybutt.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script  src="/js/sfancy.js"></script>
+    <script  src="/js/sfancybutt.js"></script>
     {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
       <script src="/js/jquery/1.12.4/jquery.min.js"></script>
       <script src="/js/bootstrap/3.3.7/bootstrap.min.js"></script>
@@ -115,17 +116,21 @@
         </div>
         <div class="col-sm-4">
             <!-- Add Google Maps -->
-            <div id="googleMap"></div>
-            <script>
+            <div id="googleMap" style="height:200px;width:100%;padding-top: 4px; margin-top: 7px; margin-bottom: 10px;"></div>
+            <script type="application/javascript">
                 function myMap() {
-                    var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-                    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+                    var myCenter = new google.maps.LatLng(50.4179174,30.5438195);
+                    var mapProp = {center:myCenter, zoom:12, scrollwheel:true, draggable:true, mapTypeId:google.maps.MapTypeId.ROADMAP};
                     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
                     var marker = new google.maps.Marker({position:myCenter});
                     marker.setMap(map);
                 }
             </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx3_x2hU5Ab-hZxV4-BPPBm8-ezxTLero&callback=myMap"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZg1cPhl9InRcoPf-8Xgewu8myx2XqXk&callback=myMap"></script>
+
+
+
+
             <!--
             To use this code on your website, get a free API key from Google.
             Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp

@@ -1,4 +1,23 @@
 @extends('layouts.app')
+@section('json-ld')<script type="application/ld+json">
+[    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Купер&Хантер Украина",
+      "alternateName": "Cooper&Hunter Украина",
+      "description": "Магазин климатической техники производства Cooper&Hunter",
+      "url": "http://www.куперхантер.укр"
+    },
+    {
+    "@context": "http://schema.org",
+    "@type":"WebPage",
+    "headline": "Headline/title",
+    "description": "Description of page"
+    }
+]
+
+</script>
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

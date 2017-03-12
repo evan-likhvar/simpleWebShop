@@ -21,7 +21,7 @@
       <script src="/js/bootstrap/3.3.7/bootstrap.min.js"></script>
       --}}
 
-
+    @yield('json-ld')
 </head>
 <body>
 <div class="container">

@@ -19,7 +19,11 @@ class CategoryController extends AdminController
     public function CreateMenu( $parid, $menu, $level ) {
 
         $output = array();
-        $action= Route::current()->getUri();
+
+        //return dd(Route::current()->geturi());
+
+        $action= Route::current()->geturi();
+
         $uri_segments = explode('/', $action);
         $count=count($uri_segments);
         foreach( $menu as $item => $data ) {

@@ -81,7 +81,7 @@ class ArticleController extends FrontController
 
         Session::flash('ItemAdded',$message);
 
-        return redirect()->to('артикул/'.$article);
+        return redirect()->to('купить/'.$article);
     }
 
     public function SetArticleCountToCart(){

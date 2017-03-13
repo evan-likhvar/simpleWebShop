@@ -27,11 +27,11 @@
                 <div class="row" style="padding-left: 20px;">
                     <a href="/"> Главная </a> <b>></b>
                     @if(count($article->Category->parent))
-                    <a href="{{route('showCategory', ['category' => $article->Category->parent->id])}}">{{ $article->Category->parent->name }}</a>
+                    <a href="{{route('showCategory', ['category' => $article->Category->parent->getCategoryLink()])}}">{{ $article->Category->parent->name }}</a>
                         <b>></b>
                     @endif
 
-                    <a href="{{route('showCategory', ['category' => $article->Category->id])}}">{{ $article->Category->name }}</a>
+                    <a href="{{route('showCategory', ['category' => $article->Category->getCategoryLink()])}}">{{ $article->Category->name }}</a>
                 </div>
             </div>
             <div class="col-sm-10">
@@ -200,4 +200,7 @@
     </div>
     <script src="/js/site.js">
     </script>
+@endsection
+@section('footer')
+    @include('layouts.helpers.footer')
 @endsection

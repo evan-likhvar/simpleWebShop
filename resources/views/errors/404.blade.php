@@ -7,7 +7,7 @@
                 </div>
             @endif
             <div class="content">
-                <div class="h1" style="padding-top: 200px;">Странице не найдена!!! Проверьте правильность линка.</div>
+                <div class="h1" style="padding: 200px 0;">Странице не найдена!!! Проверьте правильность линка.</div>
             </div>
         </div>
 @endsection

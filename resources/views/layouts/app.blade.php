@@ -113,7 +113,7 @@
         </div>
 
         <div class="col-sm-4">
-            <div><span class="podzag">Адрес:</span> бульвар Дружбы Народов, 25
+            <div><span style="font-size: 120%; line-height: 2em;">Адрес:</span> бульвар Дружбы Народов, 25
             </div>
             <div id="googleMap" style="height:200px;width:100%;padding-top: 4px; margin-top: 7px; margin-bottom: 10px;"></div>
             <script type="application/javascript">

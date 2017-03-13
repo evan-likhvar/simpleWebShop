@@ -81,7 +81,7 @@
 
                         <div class="row">
                             <div class="col-sm-4">Модель</div>
-                            <div class="col-sm-8">{{str_replace(['Кондиционер ','Модель: '],'',$article->name)}}</div>
+                            <div class="col-sm-8">{{str_replace(['Кондиционер ','Модель: ','Мобильные осушители '],'',$article->name)}}</div>
                         </div>
                         <div class="row" style="min-height: 20px;"></div>
                         @if(!empty($article->nomer))

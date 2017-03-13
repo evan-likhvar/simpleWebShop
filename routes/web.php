@@ -104,10 +104,10 @@ Route::post('/купить/{article}/в-корзину', 'ArticleController@addA
 
 Route::get('/setArticleCount', 'ArticleController@SetArticleCountToCart');
 
-Route::get('/категория/{category}', 'CategoryController@show')->name('showCategory');
+Route::get('/каталог/{category}', 'CategoryController@show')->name('showCategory');
 
-Route::get('/категория/order/{order?}', 'CategoryController@setArticlesOrder')->name('setArticlesOrder');
-Route::post('/категория/setParameters', 'CategoryController@setParameters');
+Route::get('/каталог/order/{order?}', 'CategoryController@setArticlesOrder')->name('setArticlesOrder');
+Route::post('/каталог/setParameters', 'CategoryController@setParameters');
 
 
 Route::get('/показать-заказ/', 'OrderController@show')->name('showOrder');

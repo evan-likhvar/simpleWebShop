@@ -43,7 +43,7 @@ class Article extends Model
     public function getArticleLink(): string
     {
 
-        $name = str_replace([' ','/','.'],['-'],trim($this->name));
+        $name = str_replace(['---','--'],'-',str_replace([' ','/','.',':','&'],['-'],trim($this->name)));
 
         return $this->id.'-'.$name;
     }

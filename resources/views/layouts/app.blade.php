@@ -103,19 +103,18 @@
 </div>
 
 <div id="footer" class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2 col-sm-offset-2 text-center">
-            (044) 360-64-50<br>(050) 600-10-70
-        </div>
-        <div class="col-sm-2 text-center">
+    <div class="row text-center">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+            <div><span class="podzag">Мы работаем</span><br>понедельник - пятница <br> с 10-00 до 19-00</div><br>
+            <div><span class="podzag">Контактные телефоны</span></div>
+            (044) 360-64-50<br>(050) 600-10-70<br>
             (067) 703-73-00<br>(063) 667-99-22
         </div>
-        <div class="col-sm-2 text-center">
-            Адрес:
-            бульвар Дружбы Народов, 25
-        </div>
+
         <div class="col-sm-4">
-            <!-- Add Google Maps -->
+            <div><span class="podzag">Адрес:</span> бульвар Дружбы Народов, 25
+            </div>
             <div id="googleMap" style="height:200px;width:100%;padding-top: 4px; margin-top: 7px; margin-bottom: 10px;"></div>
             <script type="application/javascript">
                 function myMap() {

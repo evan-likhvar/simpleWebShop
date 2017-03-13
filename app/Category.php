@@ -31,8 +31,7 @@ class Category extends Model
     public function getCategoryLink(): string
     {
 
-        $name = str_replace([' ','/','.'],['-'],trim($this->name));
-
+        $name = str_replace(['---','--'],'-',str_replace([' ','/','.',':','&'],['-'],trim($this->name)));
         return $this->id.'-'.$name;
     }
 

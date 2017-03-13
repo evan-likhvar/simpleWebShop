@@ -77,7 +77,7 @@ class FrontController extends Controller
                 $article = Article::findorfail($id);
                 $id = $article->category_id;
             }
-            if ($type == 'категория') {
+            if ($type == 'каталог') {
                 $category = Category::findorfail($id);
 
                 if ($category->parent_id > 0)
@@ -110,7 +110,7 @@ class FrontController extends Controller
                 $article = Article::findorfail($id);
                 $activeSubId = $article->category_id;
             }
-            if ($type == 'категория') {
+            if ($type == 'каталог') {
                 $activeSubId = $id;
             }
 

@@ -142,14 +142,14 @@
                         <td style="padding:10px 0 14px">
                             <table cellpadding="0" cellspacing="0" style="border:0;border-collapse:collapse;width:100%">
                                 <tr>
-                                    <td style="vertical-align:middle;border-right:1px solid #cccccc;width:290px;padding-left:20px;">
+                                    <td style="vertical-align:middle;text-align:center;border-right:1px solid #cccccc;width:290px;padding-left:20px;">
 										<span style="color:#666666;font-size:12px">Интернет-магазин КУПЕРХАНТЕР.УКР<br>
 										</span>
                                     </td>
-                                    <td style="vertical-align:middle;text-align:center">
+{{--                                    <td style="vertical-align:middle;text-align:center">
 										<span style="font-size:12px;line-height:16px;color:#666666;">
-											{{--<strong>044 292-19-49</strong><br>044 292-19-49<br>044 292-19-49</span>--}}
-                                    </td>
+											--}}{{--<strong>044 292-19-49</strong><br>044 292-19-49<br>044 292-19-49</span>--}}{{--
+                                    </td>--}}
                                 </tr>
                             </table>
                         </td>

@@ -34,7 +34,7 @@ class OrderShipped extends Mailable implements ShouldQueue
     {
 
 //        return dd(Config::get('mail'));
-        return $this->from('elikhvarshops@gmail.com')
+        return $this //->from('elikhvarshops@gmail.com')
             ->subject('заказ на сайте КУПЕРХАНТЕР.УКР')
             ->view('layouts.email.orderNotificator')
             ->with([

@@ -131,7 +131,7 @@
                                     </td>
                                     <td style="vertical-align:middle">
                                         <p style="margin:0;font-size:15px;line-height:24px">Будем рады ответить на Ваши вопросы:</p>
-                                        <p style="margin:0;padding:0;font-size:15px;line-height:24px">(044) 292-19-49, (044) 292-19-49</p>
+                                        <p style="margin:0;padding:0;font-size:15px;line-height:24px">(044) 360-64-50,  (050) 600-10-70, (067) 703-73-00, (063) 667-99-22</p>
                                     </td>
                                 </tr>
                             </table>
@@ -148,7 +148,7 @@
                                     </td>
                                     <td style="vertical-align:middle;text-align:center">
 										<span style="font-size:12px;line-height:16px;color:#666666;">
-											<strong>044 292-19-49</strong><br>044 292-19-49<br>044 292-19-49</span>
+											{{--<strong>044 292-19-49</strong><br>044 292-19-49<br>044 292-19-49</span>--}}
                                     </td>
                                 </tr>
                             </table>

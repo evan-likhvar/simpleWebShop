@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'elikhvarshops@gmail.com',
-        'name' => 'evan likhvar',
+        'name' => 'магазин Купер&Хантер',
     ],
 
     /*

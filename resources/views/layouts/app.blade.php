@@ -16,7 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    {{--<script src="http://maps.googleapis.com/maps/api/js"></script>--}}
     <script  src="/js/sfancy.js"></script>
     <script  src="/js/sfancybutt.js"></script>
     {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
@@ -179,6 +179,8 @@
             $('div#ArticleCount input').change(ChangeCount);
             $('span.glyphicon-remove').css('cursor', 'pointer');
             $('span.glyphicon-remove').click(RemoveArticle);
+            $('button#test').click(setParam);
+            $('input:checkbox').click(setParam);
             function ChangeCount(e) {
                 var Selected = e.target;
                 var NewCount = e.target.value;
@@ -249,7 +251,35 @@
                 });
                 // console.log(t);
             }
+
+            function setParam() {
+
+                var CheckedParameters = $('input:checked').map(function () {
+                    return $(this).val();
+                });
+
+                var CategoryID = $('input[name="category"]').val();
+
+                var data = {
+                    CategoryID: CategoryID,
+                    CheckedParameters: CheckedParameters
+                };
+
+                console.log(CheckedParameters.get());
+                console.log(CategoryID);
+                console.log(data);
+
+                $.get( "../setParametersJSON", { CategoryID: CategoryID, CheckedParameters: CheckedParameters.get() } );
+
+/*                $.post("../setParametersJSON", {CategoryID: "thrth", CheckedParameters: "thgth"},
+                        function (data, status) {
+                            alert("Data: " + data + "\nStatus: " + status)
+                        }
+                )*/
+                location.reload(true);
+            }
         });
+
 
     </script>
 

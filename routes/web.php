@@ -103,6 +103,7 @@ Route::get('/купить/{article}/в-корзину', 'ArticleController@addAr
 Route::post('/купить/{article}/в-корзину', 'ArticleController@addArticleToCart')->name('addArticleToCart');
 
 Route::get('/setArticleCount', 'ArticleController@SetArticleCountToCart');
+Route::get('/setParametersJSON', 'CategoryController@setParametersJSON');
 
 Route::get('/каталог/{category}', 'CategoryController@show')->name('showCategory');
 

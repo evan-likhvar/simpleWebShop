@@ -23,15 +23,20 @@ class CategoryController extends FrontController
         $homeArticles = Article::limit(8)->get();
 
         $checkedParameters = array();
-        $checkedParameters = Session::get($categoryId.':parameters');
+        $checkedParameters = Session::get(substr($categoryId,0,mb_strpos($categoryId,'-')).':parameters');
 
         if (empty($checkedParameters)) $unCheckAll = false; else $unCheckAll = true;
 
-
+        //return dd(substr($categoryId,0,mb_strpos($categoryId,'-')));
 
         $filter = $this->getParametersFilter($checkedParameters,$categoryId);
 
 
+        $testParameter = 'none';
+        //$testParameter = Session::get('testparameters1');
+        //$testParameter = Session::all();
+        //$testParameter = 'none';
+//return dd($testParameter);
 
         $orderBy = 'по популярности';
         $order = Session::get('order');
@@ -71,7 +76,33 @@ class CategoryController extends FrontController
 
         Session::put($categoryId.':parameters', $input);
 
+        //$data = $request->session()->all();
+
+        //return dd($data);
+
         return redirect()->back();
+    }
+
+    protected function  setParametersJSON (Request $request) {
+
+        $input = $request->all();
+
+        if (isset($input)) {
+            if (isset($input['CheckedParameters'])) {
+                foreach ($input['CheckedParameters'] as $value) {
+                    $parameters[$value] =  $value;
+                }
+            }
+        }
+
+        if (isset($parameters)) {
+            Session::put($input['CategoryID'].':parameters', $parameters);
+        }
+        else Session::forget($input['CategoryID'].':parameters');
+
+        //Session::put('testparameters1', ['11'=>$input['CategoryID']]);
+
+        redirect()->back();
     }
 
     protected function getParametersFilter($checkedParameters,$categoryId){
@@ -80,7 +111,7 @@ class CategoryController extends FrontController
         $keys = array();
         if(!empty($checkedParameters))
         $keys = array_keys($checkedParameters);
-
+//return dd($checkedParameters);
         //находим все возможные группы параметров для текущей категории
         $categoryGroupParameters = DB::table('category_parameter_group')
             ->select('parameter_group_id')

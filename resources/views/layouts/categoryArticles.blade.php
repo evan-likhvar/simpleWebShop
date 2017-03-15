@@ -47,10 +47,14 @@
                 {{--<button id="test" type="button" class="btn btn-default">test</button>--}}
 
                 {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
-                {!! Form::submit('Применить',['class'=>'btn btn-warning']) !!}
+                {{--{!! Form::submit('Применить',['class'=>'btn btn-warning']) !!}--}}
 
 
-                <h4>Параметры</h4>
+    <h4>Параметры</h4>
+    {!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}
+
+                <div style="min-height: 5px;"> </div>
+
                 @foreach($category->Parameter_groups as $parameter_group)
                     <div class="panel panel-warning">
                         <div class="panel-heading text-center">{{$parameter_group->name}}</div>

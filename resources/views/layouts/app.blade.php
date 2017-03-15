@@ -179,8 +179,8 @@
             $('div#ArticleCount input').change(ChangeCount);
             $('span.glyphicon-remove').css('cursor', 'pointer');
             $('span.glyphicon-remove').click(RemoveArticle);
-            $('button#test').click(setParam);
-            $('input:checkbox').click(setParam);
+
+//            $('input:checkbox').click(setParam);
             function ChangeCount(e) {
                 var Selected = e.target;
                 var NewCount = e.target.value;

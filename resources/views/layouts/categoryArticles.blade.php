@@ -27,6 +27,7 @@
 @endsection
 @section('content')
     <div class="container">
+{{--
 
         <div>
 
@@ -35,9 +36,8 @@
                     {{$key}} - {{$value}}<br>
                 @endforeach
             @endif
-
         </div>
-
+--}}
         <div class="row">
 
             <div class="row categoryList text-right"><h3>{{$category->name}}</h3></div>
@@ -47,7 +47,7 @@
                 {{--<button id="test" type="button" class="btn btn-default">test</button>--}}
 
                 {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
-                {{--{!! Form::submit('Применить',['class'=>'btn btn-warning']) !!}--}}
+                {!! Form::submit('Применить',['class'=>'btn btn-warning']) !!}
 
 
                 <h4>Параметры</h4>

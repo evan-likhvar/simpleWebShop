@@ -17,6 +17,7 @@
     }
 ]
 
+
     </script>
 @endsection
 @section('title')<title>Продукция Cooper&amp;Hunter в категории {{$category->name}}</title>
@@ -27,17 +28,17 @@
 @endsection
 @section('content')
     <div class="container">
-{{--
+        {{--
 
-        <div>
+                <div>
 
-            @if($checkedParameters)
-                @foreach($checkedParameters as $key=>$value)
-                    {{$key}} - {{$value}}<br>
-                @endforeach
-            @endif
-        </div>
---}}
+                    @if($checkedParameters)
+                        @foreach($checkedParameters as $key=>$value)
+                            {{$key}} - {{$value}}<br>
+                        @endforeach
+                    @endif
+                </div>
+        --}}
         <div class="row">
 
             <div class="row categoryList text-right"><h3>{{$category->name}}</h3></div>
@@ -50,10 +51,10 @@
                 {{--{!! Form::submit('Применить',['class'=>'btn btn-warning']) !!}--}}
 
 
-    <h4>Параметры</h4>
-    {!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}
+                <h4>Параметры</h4>
+                {!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}
 
-                <div style="min-height: 5px;"> </div>
+                <div style="min-height: 5px;"></div>
 
                 @foreach($category->Parameter_groups as $parameter_group)
                     <div class="panel panel-warning">
@@ -130,7 +131,12 @@
                             </div>
                         </div>
 
-                        @foreach($articles as $article)
+                        @if(count($articles)<9)
+                            @include('layouts.helpers.articleList', ['articles' => $articles])
+                        @else
+                            @include('layouts.helpers.articlePlates', ['articles' => $articles])
+                        @endif
+{{--                        @foreach($articles as $article)
                             <div class="row">
                                 <div class="row">
                                     <div class="col-sm-10 col-sm-offset-1"><h4><strong><a
@@ -158,7 +164,7 @@
 
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach--}}
 
 
                     </div>

@@ -44,11 +44,20 @@ class CategoryController extends FrontController
         if ($order == 'desc') $orderBy = 'по убыванию цены';
         if ($order == 'popular') $orderBy = 'по популярности';
 
+        $artToPaginate=Article::where('category_id','=', $category->id)->whereIn('id', $filter)->get();
+
+        $paginate = 8;
+        if (count($artToPaginate)>23)
+        $paginate = 16;
+
+        //return dd($paginate);
+
         if($order == 'asc' || $order == 'desc')
-            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('priceGRN',$order)->paginate(8);
+            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('priceGRN',$order)->paginate($paginate);
         elseif ($order == 'popular')
-            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate(8);
-        else $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate(8);
+            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate($paginate);
+        else
+            $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate($paginate);
 
         if (count($category->Children)){
             return view('layouts.categories')->with(compact('category','homeArticles','siteMenu','cartInfo'));

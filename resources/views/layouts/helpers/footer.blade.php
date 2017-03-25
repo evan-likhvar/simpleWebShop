@@ -2,14 +2,14 @@
     <div class="row text-center">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-            <div><span class="podzag">Мы работаем</span><br>понедельник - пятница <br> с 10-00 до 19-00</div><br>
+            <div><span class="podzag">Мы работаем</span><br>{!! $siteParameters['workFlow'] !!}</div><br>
             <div><span class="podzag">Контактные телефоны</span></div>
-            (044) 360-64-50<br>(050) 600-10-70<br>
-            (067) 703-73-00<br>(063) 667-99-22
+            {{$siteParameters['phone1']}}<br>{{$siteParameters['phone2']}}<br>
+            {{$siteParameters['phone3']}}<br>{{$siteParameters['phone4']}}
         </div>
 
         <div class="col-sm-4">
-            <div><span style="font-size: 120%; line-height: 2em;">Адрес:</span> бульвар Дружбы Народов, 25
+            <div><span style="font-size: 120%; line-height: 2em;">Адрес:</span> {{$siteParameters['address']}}
             </div>
             <div id="googleMap" style="height:200px;width:100%;padding-top: 4px; margin-top: 7px; margin-bottom: 10px;"></div>
             <script type="application/javascript">
@@ -22,14 +22,6 @@
                 }
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZg1cPhl9InRcoPf-8Xgewu8myx2XqXk&callback=myMap"></script>
-
-
-
-
-            <!--
-            To use this code on your website, get a free API key from Google.
-            Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
-            -->
         </div>
     </div>
 </div>

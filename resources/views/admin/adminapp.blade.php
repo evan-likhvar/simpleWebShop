@@ -109,17 +109,40 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsePaper">Параметры сайта</a>
+                        </h4>
+                    </div>
+                    <div id="collapsePaper" class="panel-collapse collapse in">
+                        <div class="list-group">
+                            <a href="{{route('admin.siteParameterEdit')}}" class="list-group-item">Параметры сайта</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapsePaper">Статьи</a>
                         </h4>
                     </div>
                     <div id="collapsePaper" class="panel-collapse collapse in">
                         <div class="list-group">
                             <a href="{{route('admin.paperCategoryIndex')}}" class="list-group-item">Категории Стататей</a>
-
                             <a href="{{route('admin.paper')}}" class="list-group-item">Статьи</a>
-
                             <a href="{{route('admin.createPaper')}}" class="list-group-item">Новая статья</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsePaper">Акции</a>
+                        </h4>
+                    </div>
+                    <div id="collapsePaper" class="panel-collapse collapse in">
+                        <div class="list-group">
+                            <a href="{{route('admin.promotion')}}" class="list-group-item">Акции</a>
 
+                            <a href="{{route('admin.createPromotion')}}" class="list-group-item">Новая акция</a>
                         </div>
                     </div>
                 </div>

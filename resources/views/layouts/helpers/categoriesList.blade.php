@@ -23,7 +23,7 @@
 
 
                                     {{$article->name}}<br><br>
-                                    Цена - <b>{{$article->priceGRN}}</b>
+                                    Цена - <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
                                 </div>
                             </a>
                          </div>
@@ -72,7 +72,7 @@
                                     <img class="img-responsive"
                                          src="{{$article->getIntroImg('S','intro1')}}" alt="">
                                     {{$article->name}}<br><br>
-                                    Цена - <b>{{$article->priceGRN}}</b>
+                                    Цена - <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
                                 </div>
                             </a>
                         @endforeach

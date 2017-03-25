@@ -15,7 +15,7 @@ class ArticleController extends FrontController
 
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
-
+        $siteParameters = $this->getSiteParameters();
         $homeArticles = Article::limit(4)->get();
 
         $article = Article::findOrFail($article);
@@ -43,8 +43,10 @@ class ArticleController extends FrontController
             $articleImages['intro4']['L'] = $article->getIntroImg('L', 'intro4');
         }
 
-       // return dd($articleImages);
-        return view('layouts.article')->with(compact('article','articleImages','homeArticles','siteMenu','cartInfo'));
+        $article->techDescription = preg_replace('/height: .*px;/','',$article->techDescription);
+
+       //return dd($article->techDescription);
+        return view('layouts.article')->with(compact('article','articleImages','homeArticles','siteMenu','cartInfo','siteParameters'));
     }
 
     public function addArticleToCart($article){

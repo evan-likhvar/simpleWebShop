@@ -14,11 +14,11 @@ class HomePageController extends FrontController
 
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
-
+        $siteParameters = $this->getSiteParameters();
         $homeArticles = Article::orderby('order','desc')->limit(8)->get();
 
         $announceCategory = Category::where('onHomePage','=','1')->get();
 
-        return view('layouts.homepage')->with(compact('announceCategory','homeArticles','siteMenu','cartInfo'));
+        return view('layouts.homepage')->with(compact('announceCategory','homeArticles','siteMenu','cartInfo','siteParameters'));
     }
 }

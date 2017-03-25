@@ -16,8 +16,8 @@
 @endsection
 @section('title')<title>{{$article->name}}</title>
 @endsection
-@section('meta')<meta name="description" content="{{strip_tags($article->description)}}" />
-<meta name="keywords" content="{{$article->Category->name}} {{$article->name}}" />
+@section('meta')<meta name="description" content="{{strlen($article->metadescription)>10 ? $article->metadescription : strip_tags($article->description)}}" />
+<meta name="keywords" content="{{ strlen($article->metakey)>10 ? $article->metakey : $article->Category->name}} {{$article->name}}" />
 @endsection
 @section('content')
     <div class="container">
@@ -108,7 +108,7 @@
 
                         <div class="row">
                             <div class="col-sm-4" style="font-size: 150%">Цена</div>
-                            <div class="col-sm-8" style="font-size: 150%"><b>{{$article->priceGRN}}</b></div>
+                            <div class="col-sm-8" style="font-size: 150%"><b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн</div>
                         </div>
                         <hr>
                         <div class="row" style="min-height: 20px;"></div>

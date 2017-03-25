@@ -90,6 +90,19 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::get('/paper/{paper}/edit', 'PaperController@editPaper')->name('admin.editPaper');
     Route::patch('/paper/{paper}', 'PaperController@PaperUpdate');
     Route::post('/paper/storeMedia/{item}/{type?}', 'PaperController@storeMedia');
+
+    //site parameter
+    Route::get('/siteParameterEdit', 'SiteParameterController@edit')->name('admin.siteParameterEdit');
+    Route::patch('/siteParameterStore', 'SiteParameterController@store');
+
+    //promotion
+    Route::get('/promotion', 'PromotionController@PromotionIndex')->name('admin.promotion');
+    Route::get('/promotion/create', 'PromotionController@createNewPromotion')->name('admin.createPromotion');
+    Route::post('/promotion/create', 'PromotionController@PromotionStore');
+    Route::delete('/promotion/{promotion}', 'PromotionController@PromotionDestroy');
+    Route::get('/promotion/{promotion}/edit', 'PromotionController@editPromotion')->name('admin.editPromotion');
+    Route::patch('/promotion/{promotion}', 'PromotionController@PromotionUpdate');
+    Route::post('/promotion/storeMedia/{promotion}/{type?}', 'PromotionController@storeMedia');
 });
 
 Route::get('/', 'HomePageController@index');

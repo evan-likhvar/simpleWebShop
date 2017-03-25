@@ -19,7 +19,7 @@ class CategoryController extends FrontController
 
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
-
+        $siteParameters = $this->getSiteParameters();
         $homeArticles = Article::limit(8)->get();
 
         $checkedParameters = array();
@@ -30,13 +30,6 @@ class CategoryController extends FrontController
         //return dd(substr($categoryId,0,mb_strpos($categoryId,'-')));
 
         $filter = $this->getParametersFilter($checkedParameters,$categoryId);
-
-
-        $testParameter = 'none';
-        //$testParameter = Session::get('testparameters1');
-        //$testParameter = Session::all();
-        //$testParameter = 'none';
-//return dd($testParameter);
 
         $orderBy = 'по популярности';
         $order = Session::get('order');
@@ -60,9 +53,9 @@ class CategoryController extends FrontController
             $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate($paginate);
 
         if (count($category->Children)){
-            return view('layouts.categories')->with(compact('category','homeArticles','siteMenu','cartInfo'));
+            return view('layouts.categories')->with(compact('category','homeArticles','siteMenu','cartInfo','siteParameters'));
         } else {
-            return view('layouts.categoryArticles')->with(compact('unCheckAll','articles','orderBy','checkedParameters','category','homeArticles','siteMenu','cartInfo'));
+            return view('layouts.categoryArticles')->with(compact('unCheckAll','articles','orderBy','checkedParameters','category','homeArticles','siteMenu','cartInfo','siteParameters'));
         }
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\papercategory;
+use App\SiteParameter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
@@ -124,8 +125,6 @@ class FrontController extends Controller
 
         $url = rawurldecode(URL::previous()).'//////';
 
-
-
         list($proto,$epmty,$site,$type,$id) = explode('/',$url);
 
         if (strlen(trim($type))>0) {
@@ -148,5 +147,9 @@ class FrontController extends Controller
             //return dd($url,$type,$id,$category,$activeTopId);
         }
         return $activeTopId;
+    }
+
+    protected function getSiteParameters() {
+        return json_decode(SiteParameter::first()->parameters,true);
     }
 }

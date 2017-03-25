@@ -33,14 +33,14 @@
                     {{$order->e_mail}}
                 </div>
             </div>
-            <div class="row" style="padding-bottom: 15px;">
+{{--            <div class="row" style="padding-bottom: 15px;">
                 <div class="col-sm-6 text-right">
                     Плательщик
                 </div>
                 <div class="col-sm-6 text-left">
                     {{$order->payer}}
                 </div>
-            </div>
+            </div>--}}
             <div class="row" style="padding-bottom: 15px;">
                 <div class="col-sm-6 text-right">
                     Комментарий

@@ -14,7 +14,7 @@
                                 href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">{{str_replace(['Кондиционер ','Модель: ','Мобильные осушители '],'',$article->name)}}</a></strong>
                 </h4>
                 <div>
-                    <b>{{$article->priceGRN}}</b> - грн<br>
+                    <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн<br>
                     <div class="available"><span class="glyphicon glyphicon-ok"></span> в наличии</div>
                     <div style="min-height: 25px">
                     <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"

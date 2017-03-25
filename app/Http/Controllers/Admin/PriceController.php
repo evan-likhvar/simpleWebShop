@@ -84,7 +84,7 @@ XML;
 
         $hotLinePriceXML->date = date("Y-m-d H:i");
 
-    $articles = Article::whereIn('category_id',[2,3,4,5,6,7,8])->get();
+    $articles = Article::where('hotline','=','1')->whereIn('category_id',[2,3,4,5,6,7,8])->get();
         foreach ($articles as $article) {
         $item = $hotLinePriceXML->items->addChild('item');
         $item->addChild('id', $article->id);
@@ -142,7 +142,7 @@ XML;
 
         $hotLinePriceXML->date = date("Y-m-d H:i");
 
-        $articles = Article::whereIn('category_id',[2,3,4,5,6,7,8])->get();
+        $articles = Article::where('priceua','=','1')->whereIn('category_id',[2,3,4,5,6,7,8])->get();
         foreach ($articles as $article) {
             $item = $hotLinePriceXML->items->addChild('item');
             $item->addChild('id', $article->id);

@@ -227,7 +227,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-
+                                {!! Form::label('qwerty','Выгрузка в прайсы:', ['class'=>'control-label col-sm-3']) !!}
+                                {!! Form::label('hotline','hotline:', ['class'=>'control-label col-sm-1']) !!}
+                                <div class="col-sm-1">
+                                    {!! Form::checkbox('hotline', null) !!}
+                                </div>
+                                {!! Form::label('priceua','priceua:', ['class'=>'control-label col-sm-1']) !!}
+                                <div class="col-sm-1">
+                                    {!! Form::checkbox('priceua', null) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('created_at','Дата создания:', ['class'=>'control-label col-sm-3']) !!}
                                 <div class="col-sm-5">
                                     {!! Form::text('created_at',null,['class'=>'form-control','disabled' => 'disabled']) !!}
@@ -399,12 +409,15 @@
                 'advlist lists link image charmap print preview hr anchor anchorremove pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen',
                 'insertdatetime media nonbreaking save table contextmenu directionality',
-                'emoticons template paste textcolor colorpicker textpattern imagetools rlinks replaceclass'
+                'emoticons template paste textcolor colorpicker textpattern imagetools rlinks replaceclass responsivefilemanager'
             ],
-            toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | code | rlinks replaceclass',
+            toolbar1: 'insertfile undo redo | responsivefilemanager | styleselect | bold italic | alignleft aligncenter alignright alignjustify | code | rlinks replaceclass',
             //toolbar2: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | anchor | rlinks replaceclass',
-            //  toolbar2: 'print preview media | forecolor backcolor emoticons',
+            //toolbar3: '| responsivefilemanager | print preview media | forecolor backcolor emoticons',
             image_advtab: true,
+            external_filemanager_path:"/src/js/filemanager/",
+            filemanager_title:"Responsive Filemanager" ,
+            external_plugins: { "filemanager" : "/src/js/filemanager/plugin.min.js"},
             templates: [
                 {title: 'Test template 1', content: 'Test 1'},
                 {title: 'Test template 2', content: 'Test 2'}

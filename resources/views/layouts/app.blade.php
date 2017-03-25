@@ -38,13 +38,13 @@
         <div class="col-sm-10">
             <div class="text-center topborder">
                 <h4>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> (044) 360-64-50<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> {{$siteParameters['phone1']}}<span
                             style="padding-right: 20px;"></span>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> (050) 600-10-70<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> {{$siteParameters['phone2']}}<span
                             style="padding-right: 20px;"></span>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> (067) 703-73-00<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> {{$siteParameters['phone3']}}<span
                             style="padding-right: 20px;"></span>
-                    <span class="glyphicon glyphicon-earphone main-color"></span> (063) 667-99-22<span
+                    <span class="glyphicon glyphicon-earphone main-color"></span> {{$siteParameters['phone4']}}<span
                             style="padding-right: 20px;"></span>
                 </h4>
             </div>
@@ -211,7 +211,7 @@
                 $('div#ArticleAmount').each(function () {
                     sum += Number($(this).text());
                 });
-                return sum;
+                return sum +=' грн';
             }
 
             function OrderCount() {

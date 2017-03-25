@@ -21,8 +21,8 @@ class OrderController extends FrontController
 
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
-
-        return view('layouts.order')->with(compact('siteMenu','cartInfo'));
+        $siteParameters = $this->getSiteParameters();
+        return view('layouts.order')->with(compact('siteMenu','cartInfo','siteParameters'));
     }
 
 
@@ -72,10 +72,10 @@ class OrderController extends FrontController
 
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
-
+        $siteParameters = $this->getSiteParameters();
         $order = orderHeader::findOrFail($id);
 
-        return view('layouts.orderSuccess')->with(compact('order','siteMenu','cartInfo'));
+        return view('layouts.orderSuccess')->with(compact('order','siteMenu','cartInfo','siteParameters'));
     }
 
 }

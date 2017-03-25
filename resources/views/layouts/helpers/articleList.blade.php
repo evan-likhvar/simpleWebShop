@@ -17,7 +17,7 @@
             {!! $article->description !!}
         </div>
         <div class="col-sm-2 text-center">
-            <b>{{$article->priceGRN}}</b> - грн<br><br>
+            <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн<br><br>
             <div class="available"><span class="glyphicon glyphicon-ok"></span> в наличии</div>
             <br><br>
 

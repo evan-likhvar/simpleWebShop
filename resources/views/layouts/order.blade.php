@@ -49,12 +49,12 @@
                                 {{--{!! Form::text('e_mail',null,['class'=>'form-control']) !!}--}}
                             </div>
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('payer','Плательщика:', ['class'=>'control-label col-sm-4']) !!}
+{{--                        <div class="form-group">
+                            {!! Form::label('payer','Плательщик:', ['class'=>'control-label col-sm-4']) !!}
                             <div class="col-sm-8">
                                 {!! Form::text('payer',null,['class'=>'form-control']) !!}
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="form-group">
                             {!! Form::label('description','Комментарий:', ['class'=>'control-label col-sm-4']) !!}
                             <div class="col-sm-8">

@@ -145,6 +145,8 @@ class ArticleController extends AdminController
         $input = $request->all();
         $published = 0;
         $avaliable = 0;
+        $priceua = 0;
+        $hotline = 0;
 
     //    return dd($input);
 
@@ -217,9 +219,14 @@ class ArticleController extends AdminController
         $input['published'] = $published;
         if (isset($request->avaliable)) if ($request->avaliable == 'on') $avaliable = 1;
         $input['avaliable'] = $avaliable;
-
+        if (isset($request->hotline)) if ($request->hotline == 'on') $hotline = 1;
+        $input['hotline'] = $hotline;
+        if (isset($request->priceua)) if ($request->priceua == 'on') $priceua = 1;
+        $input['priceua'] = $priceua;
 
         $article = Article::find($id);
+
+        $input['techDescription'] = preg_replace('/height: .*px;/','',$input['techDescription']);
 
         //return dd($article,$input);
 

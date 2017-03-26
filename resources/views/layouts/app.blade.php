@@ -27,7 +27,7 @@
     @yield('json-ld')
 </head>
 <body>
-<div class="container">
+<div class="container" style="min-height: 76vh">
     {{--    <div class="row">
             {{$topActive}}<br>
             {{$lastActive}}<br>

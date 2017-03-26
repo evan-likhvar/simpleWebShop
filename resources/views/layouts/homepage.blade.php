@@ -17,9 +17,9 @@
 @endsection
 @section('content')
 
-    <div class="container">
+    <div class="container" >
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @if(count($announceCategory))
                     @include('layouts.helpers.categoriesList', ['categories' => $announceCategory])
                 @endif
@@ -45,9 +45,12 @@
                 @endif
                 {{--</div>--}}
             </div>
+
+            @if(isset($siteParameters['promotionEnable']))
             <div class="col-sm-2 well">
                 @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
             </div>
+                @endif
         </div>
     </div>
 @endsection

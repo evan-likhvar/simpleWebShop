@@ -2,12 +2,12 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @foreach($categoryPapers as $paper)
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-sm-12 text-left" style="border-bottom: 2px solid">
+                                <div class="col-sm-12 text-left" style="border-bottom: 2px solid; padding-top: 20px;">
                                     <h3><a href="{{route('showPaper', ['categoryId' => $paper->id])}}">{{$paper->name}}</a></h3>
                                 </div>
                             </div>
@@ -51,10 +51,11 @@
                     @endforeach
             </div>
 
-
+            @if(isset($siteParameters['promotionEnable']))
             <div class="col-sm-2 well">
                 @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
             </div>
+                @endif
         </div>
     </div>
 @endsection

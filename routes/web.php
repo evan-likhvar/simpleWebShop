@@ -1,18 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
-
-
-
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'], function()
 {
@@ -130,3 +117,5 @@ Route::get('/успешный-заказ/{id}', 'OrderController@showSuccess')->
 
 Route::get('/статьи-категории/{category}', 'PaperController@indexPaperCategory')->name('showPaperCategory');
 Route::get('/статья/{paper}', 'PaperController@showPaper')->name('showPaper');
+
+Route::get('/акция/{id}', 'PromotionController@show')->name('showPromotion');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 use App\papercategory;
+use App\Promotion;
 use App\SiteParameter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -151,5 +152,11 @@ class FrontController extends Controller
 
     protected function getSiteParameters() {
         return json_decode(SiteParameter::first()->parameters,true);
+    }
+
+    protected function getPromotions() {
+
+        return Promotion::where('is_published','1')->orderby('order','desc')->get();
+
     }
 }

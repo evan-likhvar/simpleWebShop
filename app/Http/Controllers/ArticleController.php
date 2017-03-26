@@ -16,7 +16,7 @@ class ArticleController extends FrontController
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
         $siteParameters = $this->getSiteParameters();
-        $homeArticles = Article::limit(4)->get();
+        $homeArticles = $this->getPromotions();
 
         $article = Article::findOrFail($article);
 

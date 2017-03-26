@@ -20,7 +20,7 @@ class CategoryController extends FrontController
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
         $siteParameters = $this->getSiteParameters();
-        $homeArticles = Article::limit(8)->get();
+        $homeArticles = $this->getPromotions();
 
         $checkedParameters = array();
         $checkedParameters = Session::get(substr($categoryId,0,mb_strpos($categoryId,'-')).':parameters');

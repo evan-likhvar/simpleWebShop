@@ -1,7 +1,8 @@
-@foreach(array_chunk($articles->all(),4) as $articlesRow)
+@if(!isset($perRow)) <?php $perRow = 4; ?> @endif
+@foreach(array_chunk($articles->all(),$perRow) as $articlesRow)
     <div class="row article-row">
         @foreach($articlesRow as $article)
-            <div class="col-sm-3 text-center article-plate">
+            <div class="col-sm-{{$perRow == 4 ? 3 : 4}} text-center article-plate">
 
                 <div>
                     <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">

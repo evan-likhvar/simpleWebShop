@@ -27,7 +27,11 @@
                 {!! Form::label('address','Адрес:', ['class'=>'control-label col-sm-2']) !!}
                 {!! Form::text('address', null, ['class'=>'col-sm-6']) !!}
             </div>
-
+                <div class="form-group">
+                    {!! Form::label('cord','Координаты на карте:', ['class'=>'control-label col-sm-2']) !!}
+                    {!! Form::text('cordX', null, ['class'=>'col-sm-1']) !!}
+                    {!! Form::text('cordY', null, ['class'=>'col-sm-1']) !!}
+                </div>
             <div class="form-group">
                 {!! Form::label('workFlow','Режим работы:', ['class'=>'control-label col-sm-2']) !!}
                 {!! Form::text('workFlow', null, ['class'=>'col-sm-6']) !!}
@@ -51,6 +55,10 @@
                 {!! Form::label('emailAdministrator','Адресс администратора:', ['class'=>'control-label col-sm-2']) !!}
                 {!! Form::text('emailAdministrator', null, ['class'=>'col-sm-6']) !!}
             </div>
+                <div class="form-group">
+                    {!! Form::label('promotionEnable','Включить акции:', ['class'=>'control-label col-sm-2']) !!}
+                    {!! Form::checkbox('promotionEnable', null) !!}
+                </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     {!! Form::submit('Сохранить',['class'=>'btn btn-info']) !!}

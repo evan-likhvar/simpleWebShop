@@ -15,7 +15,7 @@ class PaperController extends FrontController
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
         $siteParameters = $this->getSiteParameters();
-        $homeArticles = Article::limit(8)->get();
+        $homeArticles = $this->getPromotions();
 
         $categoryPapers = paper::where('papercategory_id',$paperCategory)->get();
 
@@ -27,7 +27,7 @@ class PaperController extends FrontController
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
         $siteParameters = $this->getSiteParameters();
-        $homeArticles = Article::limit(8)->get();
+        $homeArticles = $this->getPromotions();
 
         $paper = paper::findorfail($paperId);
 

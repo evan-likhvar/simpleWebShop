@@ -15,7 +15,7 @@ class HomePageController extends FrontController
         $siteMenu = $this->getSiteMenu();
         $cartInfo = $this->getCartInfo();
         $siteParameters = $this->getSiteParameters();
-        $homeArticles = Article::orderby('order','desc')->limit(8)->get();
+        $homeArticles = $this->getPromotions();
 
         $announceCategory = Category::where('onHomePage','=','1')->get();
 

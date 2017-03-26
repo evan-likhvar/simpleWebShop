@@ -4,66 +4,79 @@
 
         <div class="row well">
             @if ( $index & 1 )
-                <div class="row text-right categoryList"><h3><a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">{{$category->name}}</a></h3></div>
+                <div class="row text-right categoryList"><h3><a
+                                href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">{{$category->name}}</a>
+                    </h3></div>
                 <div class="col-sm-8">
                     <div class="row text-justify">
                         {!!$category->description!!}
                     </div>
                     <div class="text-right promo"><h4>Популярное в категории</h4></div>
-                    <div class="row">
+
+
+{{--                    <div class="row">
 
                         @foreach($category->getTopArticles(3) as $aindex=>$article)
 
-                        <div class="col-sm-4 artBox">
-                            <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
-                                <div class="col-sm-12">
+                            <div class="col-sm-4 artBox">
+                                <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
+                                    <div class="col-sm-12">
 
-                                    <img class="img-responsive"
-                                         src="{{$article->getIntroImg('S','intro1')}}" alt="">
+                                        <img class="img-responsive"
+                                             src="{{$article->getIntroImg('S','intro1')}}" alt="">
 
 
-                                    {{$article->name}}<br><br>
-                                    Цена - <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
-                                </div>
-                            </a>
-                         </div>
+                                        {{$article->name}}<br><br>
+                                        Цена - <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
+                                    </div>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                     <div class="row paddingTop">
                         @foreach($category->getTopArticles(3)  as $aindex=>$article)
 
                             <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
+                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"
+                                   href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                             </div>
                         @endforeach
-                    </div>
+                    </div>--}}
+
+                    @include('layouts.helpers.articlePlates', ['articles' => $category->getTopArticles(3), 'perRow' => 3])
+
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-2 paddingTop">
-                            <h5><a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">Перейти в категорию <strong>{{$category->name}}</strong></a></h5>
+                            <h5><a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">Перейти
+                                    в категорию <strong>{{$category->name}}</strong></a></h5>
                         </div>
-                    </div>                </div>
+                    </div>
+                </div>
                 <div class="col-sm-4">
                     <a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()]) }}">
-                    <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
-                         alt="">
-                        </a>
+                        <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
+                             alt="">
+                    </a>
                 </div>
 
 
             @else
-                <div class="row text-left categoryList"><h3><a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">{{$category->name}}</a></h3></div>
+                <div class="row text-left categoryList"><h3><a
+                                href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">{{$category->name}}</a>
+                    </h3></div>
                 <div class="col-sm-4">
                     <a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()]) }}">
-                    <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
-                         alt="">
-                        </a>
+                        <img class="img-responsive" src="{{$category->getIntroImg('M')}}"
+                             alt="">
+                    </a>
                 </div>
                 <div class="col-sm-8">
                     <div class="row text-justify">
                         {!!$category->description!!}
                     </div>
                     <div class="text-right promo"><h4>Популярное в категории</h4></div>
-                    <div class="row">
+                    @include('layouts.helpers.articlePlates', ['articles' => $category->getTopArticles(3), 'perRow' => 3])
+{{--                    <div class="row">
                         @foreach($category->getTopArticles(3)  as $aindex=>$article)
 
 
@@ -81,13 +94,16 @@
                         @foreach($category->getTopArticles(3)  as $aindex=>$article)
 
                             <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button" href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
+                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"
+                                   href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                             </div>
                         @endforeach
-                    </div>
+                    </div>--}}
+
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-2 paddingTop">
-                            <h5><a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">Перейти в категорию <strong>{{$category->name}}</strong></a></h5>
+                            <h5><a href="{{route('showCategory', ['categoryId' => $category->getCategoryLink()])}}">Перейти
+                                    в категорию <strong>{{$category->name}}</strong></a></h5>
                         </div>
                     </div>
 

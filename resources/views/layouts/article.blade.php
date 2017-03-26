@@ -34,7 +34,7 @@
                     <a href="{{route('showCategory', ['category' => $article->Category->getCategoryLink()])}}">{{ $article->Category->name }}</a>
                 </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @if (Session::has('ItemAdded'))
                     <div class="alert alert-success alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -190,12 +190,11 @@
                 </div>
             </div>
 
-
+            @if(isset($siteParameters['promotionEnable']))
             <div class="col-sm-2  well">
-
                 @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
-
             </div>
+            @endif
         </div>
     </div>
     <script src="/js/site.js">

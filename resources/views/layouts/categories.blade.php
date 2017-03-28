@@ -19,10 +19,12 @@
 @endsection
 @section('title')<title>Продукция Cooper&amp;Hunter в категории {{$category->name}}</title>
 @endsection
-@section('meta')<meta name="description" content="Продукция КуперХантер в категории {{$category->name}}" />
+{{--@section('meta')<meta name="description" content="Продукция КуперХантер в категории {{$category->name}}" />
 <meta name="keywords" content="{{$category->name}} Cooper&amp;Hunter КуперХантер" />
+@endsection--}}
+@section('meta')<meta name="description" content="{{strlen($category->metadescription)>10 ? $category->metadescription : strip_tags($category->description)}}" />
+<meta name="keywords" content="{{ strlen($category->metakey)>10 ? $category->metakey : $category->Category->name}} {{$category->name}}" />
 @endsection
-
 @section('content')
     <div class="container">
         <div class="row">

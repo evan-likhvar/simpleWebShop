@@ -22,10 +22,17 @@
 @endsection
 @section('title')<title>Продукция Cooper&amp;Hunter в категории {{$category->name}}</title>
 @endsection
+{{--
 @section('meta')
     <meta name="description" content="Продукция КуперХантер в категории {{$category->name}}"/>
     <meta name="keywords" content="{{$category->name}} Cooper&amp;Hunter КуперХантер"/>
 @endsection
+--}}
+
+@section('meta')<meta name="description" content="{{strlen($category->metadescription)>10 ? $category->metadescription : strip_tags($category->description)}}" />
+<meta name="keywords" content="{{ strlen($category->metakey)>10 ? $category->metakey : $category->name}} {{$category->name}}" />
+@endsection
+
 @section('content')
     <div class="container">
         {{--
@@ -47,15 +54,17 @@
 
                 <h4>Параметры</h4>
                 <div class="row text-center">
-                    <div class="col-sm-6">
+                    <div class="col-md-6 col-sm-12">
                 {!! Form::open(['method'=>'POST','action'=>['CategoryController@eraseParameters']]) !!}
-                {!! Form::submit('Очистить  фильтры',['class'=>'btn btn-xs btn-warning']) !!}
+                {{--{!! Form::submit('Очистить  фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
+                        <input class="btn btn-xs btn-warning" value="Очистить фильтры" type="submit" style=" white-space: normal; width: 100px;">
                 {!! Form::hidden('category',$category->id) !!}
                 {!! Form::close() !!}
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-md-6 col-sm-12">
                 {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
-                {!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}
+                {{--{!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
+                        <input class="btn btn-xs btn-warning" value="Применить фильтры" type="submit" style=" white-space: normal; width: 100px;">
                         </div>
                 </div>
 

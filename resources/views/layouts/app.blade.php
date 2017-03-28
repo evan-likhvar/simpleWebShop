@@ -65,10 +65,10 @@
                         <div class="navbar-header">
                             {{--<img src="{{url('/css/res/home.png')}}">--}}
                             <a class="navbar-brand" href="/">
-                                <img style="width: 30px;" src="../../../css/res/home.png">
+                                <img style="width: 110px;" src="../../../css/res/cooperhunter_logo.gif">
                             </a>
                         </div>
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" style="padding-top: 15px;">
                             @foreach($siteMenu['mainMenu'] as $item)
 
                                 <div class="menu-wrap {{$siteMenu['topActive'] == $item->id ? ' active' : ' menu-decoration'}}">

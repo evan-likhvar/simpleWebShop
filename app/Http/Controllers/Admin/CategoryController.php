@@ -158,7 +158,7 @@ class CategoryController extends AdminController
         if(Category::find($id)->update($input))
             Session::flash('infomessage','Изменения сохранены');
 
-        return redirect('admin/category');
+        return redirect()->back();
     }
 
     public function storeMedia(Request $request,$id,$type='')

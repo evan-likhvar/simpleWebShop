@@ -95,7 +95,7 @@ XML;
         $item->addChild('name', str_replace('&','&amp;',$article->name));
         $item->addChild('description', str_replace('&','&amp;',$article->name));
         $item->addChild('url', 'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
-        $item->addChild('image', $_SERVER['APP_URL'].$article->getIntroImg('M'));
+        $item->addChild('image', "http://www.куперхантер.укр".$article->getIntroImg('M'));
         $item->addChild('priceRUAH', $article->priceGRN);
         $item->addChild('stock', 'В наличии');
         }
@@ -153,7 +153,7 @@ XML;
             $item->addChild('name', str_replace('&','&amp;',$article->name));
             $item->addChild('description', str_replace('&','&amp;',$article->name));
             $item->addChild('url', 'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
-            $item->addChild('image', $_SERVER['APP_URL'].$article->getIntroImg('M'));
+            $item->addChild('image', "http://www.куперхантер.укр".$article->getIntroImg('M'));
             $item->addChild('priceRUAH', $article->priceGRN);
             $item->addChild('stock', 'В наличии');
         }
@@ -173,7 +173,7 @@ XML;
     {
         $sitemap = public_path().'/sitemap.txt';
 
-        $sitename = $_SERVER["APP_URL"];
+        $sitename = "http://www.куперхантер.укр";
         $temp = $sitename."\r\n";
         //fwrite($temp, $sitename);
 

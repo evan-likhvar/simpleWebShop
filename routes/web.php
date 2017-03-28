@@ -111,7 +111,7 @@ Route::get('/каталог/{category}', 'CategoryController@show')->name('showC
 
 Route::get('/каталог/order/{order?}', 'CategoryController@setArticlesOrder')->name('setArticlesOrder');
 Route::post('/каталог/setParameters', 'CategoryController@setParameters');
-
+Route::post('/каталог/eraseParameters', 'CategoryController@eraseParameters');
 
 Route::get('/показать-заказ/', 'OrderController@show')->name('showOrder');
 Route::post('/показать-заказ/create', 'OrderController@store');

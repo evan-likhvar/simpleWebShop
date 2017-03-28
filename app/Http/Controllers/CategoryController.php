@@ -84,7 +84,12 @@ class CategoryController extends FrontController
 
         return redirect()->back();
     }
+    protected function  eraseParameters (Request $request) {
 
+        Session::forget($request['category'].':parameters');
+
+        return redirect()->back();
+    }
     protected function  setParametersJSON (Request $request) {
 
         $input = $request->all();

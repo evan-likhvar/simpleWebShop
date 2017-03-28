@@ -45,14 +45,20 @@
 
             <div id="paramLeft" class="col-sm-3">
 
-                {{--<button id="test" type="button" class="btn btn-default">test</button>--}}
-
-                {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
-                {{--{!! Form::submit('Применить',['class'=>'btn btn-warning']) !!}--}}
-
-
                 <h4>Параметры</h4>
+                <div class="row text-center">
+                    <div class="col-sm-6">
+                {!! Form::open(['method'=>'POST','action'=>['CategoryController@eraseParameters']]) !!}
+                {!! Form::submit('Очистить  фильтры',['class'=>'btn btn-xs btn-warning']) !!}
+                {!! Form::hidden('category',$category->id) !!}
+                {!! Form::close() !!}
+                    </div>
+                    <div class="col-sm-6">
+                {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
                 {!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}
+                        </div>
+                </div>
+
 
                 <div style="min-height: 5px;"></div>
 

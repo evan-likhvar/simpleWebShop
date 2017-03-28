@@ -27,6 +27,12 @@
 @endsection
 @section('content')
     <div class="container">
+        <div class="row" style="height: 30px;"></div>
+        <div class="row text-justify">
+            <div class="col-sm-12">
+                {!! $category->description !!}
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @if(count($category->Children))

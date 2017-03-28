@@ -9,9 +9,21 @@ use App\Parameter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class CategoryController extends FrontController
 {
+    public function articleViewPlate(){
+        //return dd(URL::previous());
+        Session::put('articlesView', 'plate');
+        return redirect()->back();
+    }
+
+    public function articleViewList(){
+        Session::put('articlesView', 'list');
+        return redirect()->back();
+    }
+
     public function show($categoryId){
 
         $category = Category::findOrFail($categoryId);
@@ -40,12 +52,24 @@ class CategoryController extends FrontController
         $artToPaginate=Article::where('category_id','=', $category->id)->whereIn('id', $filter)->get();
 
         $paginate = 8;
-        if (count($artToPaginate)>23)
-            $paginate = 16;
-        $layout = "list";
-        if ($paginate == 16 || $category->id == 15)
-            $layout = "plate";
 
+        if (Session::has('articlesView')){
+            if (session('articlesView') == 'plate') {
+                $paginate = 16; $layout = "plate";
+            } else {
+                $paginate = 8; $layout = "list";
+            }
+
+        } else {
+            if (count($artToPaginate) > 23)
+                $paginate = 16;
+
+            $layout = "list";
+            if ($paginate == 16 || $category->id == 15)
+                $layout = "plate";
+        }
+
+        if ($category->id == 2) {$paginate = 16; $layout = "plate";}
         //return dd($paginate);
 
         if($order == 'asc' || $order == 'desc')

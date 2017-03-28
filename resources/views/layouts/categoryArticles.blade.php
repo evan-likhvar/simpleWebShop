@@ -18,6 +18,7 @@
 ]
 
 
+
     </script>
 @endsection
 @section('title')<title>Продукция Cooper&amp;Hunter в категории {{$category->name}}</title>
@@ -29,8 +30,11 @@
 @endsection
 --}}
 
-@section('meta')<meta name="description" content="{{strlen($category->metadescription)>10 ? $category->metadescription : strip_tags($category->description)}}" />
-<meta name="keywords" content="{{ strlen($category->metakey)>10 ? $category->metakey : $category->name}} {{$category->name}}" />
+@section('meta')
+    <meta name="description"
+          content="{{strlen($category->metadescription)>10 ? $category->metadescription : strip_tags($category->description)}}"/>
+    <meta name="keywords"
+          content="{{ strlen($category->metakey)>10 ? $category->metakey : $category->name}} {{$category->name}}"/>
 @endsection
 
 @section('content')
@@ -55,17 +59,19 @@
                 <h4>Параметры</h4>
                 <div class="row text-center">
                     <div class="col-md-6 col-sm-12">
-                {!! Form::open(['method'=>'POST','action'=>['CategoryController@eraseParameters']]) !!}
-                {{--{!! Form::submit('Очистить  фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
-                        <input class="btn btn-xs btn-warning" value="Очистить фильтры" type="submit" style=" white-space: normal; width: 100px;">
-                {!! Form::hidden('category',$category->id) !!}
-                {!! Form::close() !!}
+                        {!! Form::open(['method'=>'POST','action'=>['CategoryController@eraseParameters']]) !!}
+                        {{--{!! Form::submit('Очистить  фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
+                        <input class="btn btn-xs btn-warning" value="Очистить фильтры" type="submit"
+                               style=" white-space: normal; width: 100px;">
+                        {!! Form::hidden('category',$category->id) !!}
+                        {!! Form::close() !!}
                     </div>
                     <div class="col-md-6 col-sm-12">
-                {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
-                {{--{!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
-                        <input class="btn btn-xs btn-warning" value="Применить фильтры" type="submit" style=" white-space: normal; width: 100px;">
-                        </div>
+                        {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
+                        {{--{!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
+                        <input class="btn btn-xs btn-warning" value="Применить фильтры" type="submit"
+                               style=" white-space: normal; width: 100px;">
+                    </div>
                 </div>
 
 
@@ -116,17 +122,18 @@
 
 
                         <div id="filterAndSortet" class="row">
-                            <div class="col-sm-7 text-right">
+                            <div class="col-sm-5 text-right">
                                 <div id="paging">
                                     {{ $articles->appends(Request::input())->links() }}
                                 </div>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-7">
                                 <div class="row" style="padding-top: 30px;padding-bottom: 25px;">
-                                    <div class="col-sm-6 text-right" style="padding-top: 5px;">
+
+                                    <div class="col-sm-4 text-right" style="padding-top: 5px;">
                                         сортировать
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-5">
                                         <div class="dropdown">
                                             <button class="btn btn-warning btn-sm dropdown-toggle" type="button"
                                                     data-toggle="dropdown">{{$orderBy}}
@@ -140,6 +147,21 @@
                                                         популярности</a></li>
                                             </ul>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-1 text-right">
+                                        вид
+                                    </div>
+                                    <div class="col-sm-1">
+{{--                                        <button class="btn btn-warning btn-sm dropdown-toggle" type="button"><a href="http://tstshop.dev"> <span
+                                                    class="glyphicon glyphicon-th"></span></a></button>--}}
+                                        <a href="/articleViewPlate" class="btn btn-warning btn-sm {{$layout == 'plate' ? 'active' : ''}}" role="button"><span
+                                                    class="glyphicon glyphicon-th"></span></a>
+                                    </div>
+                                    <div class="col-sm-1">
+{{--                                        <button class="btn btn-warning btn-sm dropdown-toggle" type="button"><a href="#"><span
+                                                    class="glyphicon glyphicon-th-list"></span></a></button>--}}
+                                        <a href="/articleViewList" class="btn btn-warning btn-sm {{$layout == 'list' ? 'active' : ''}}" role="button"><span
+                                                    class="glyphicon glyphicon-th-list"></span></a>
                                     </div>
                                 </div>
 

@@ -1,6 +1,8 @@
 @extends('admin.adminapp')
 @section('content')
 
+
+
     <div class="panel-group">
         <div class="panel panel-info">
             <div class="panel-heading"><h3>Редактирование артикула <b>{{ $article->id }}</b> --
@@ -26,17 +28,17 @@
                 </div>
             @endif
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#text1">Основные параметры</a></li>
-                <li><a data-toggle="tab" href="#text7">Галерея и файлы товара</a></li>
-                <li><a data-toggle="tab" href="#text2">Краткое писание</a></li>
-                <li><a data-toggle="tab" href="#text6">Описание</a></li>
-                <li><a data-toggle="tab" href="#text3">Технические данные</a></li>
-                <li><a data-toggle="tab" href="#text4">Дополнительная информация</a></li>
-                <li><a data-toggle="tab" href="#text5">Принадлежности</a></li>
+                <li {{session()->get('currentTab') == "#text1" ? "class='active'" : ""}}><a data-toggle="tab" href="#text1">Основные параметры</a></li>
+                <li {{session()->get('currentTab') == "#text7" ? "class='active'" : ""}}><a data-toggle="tab" href="#text7">Галерея и файлы товара</a></li>
+                <li {{session()->get('currentTab') == "#text2" ? "class='active'" : ""}}><a data-toggle="tab" href="#text2">Краткое писание</a></li>
+                <li {{session()->get('currentTab') == "#text6" ? "class='active'" : ""}}><a data-toggle="tab" href="#text6">Описание</a></li>
+                <li {{session()->get('currentTab') == "#text3" ? "class='active'" : ""}}><a data-toggle="tab" href="#text3">Технические данные</a></li>
+                <li {{session()->get('currentTab') == "#text4" ? "class='active'" : ""}}><a data-toggle="tab" href="#text4">Дополнительная информация</a></li>
+                <li {{session()->get('currentTab') == "#text5" ? "class='active'" : ""}}><a data-toggle="tab" href="#text5">Принадлежности</a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="text7" class="tab-pane fade">
+                <div id="text7" class="tab-pane fade {{session()->get('currentTab') == "#text7" ? "in active" : ""}}">
                     <div class="row" style="padding: 15px 0;">
                         <div class="col-sm-2 text-center">
                             <b> рисунок 1 </b>
@@ -143,7 +145,7 @@
                     </div>
                 </div>
 
-                <div id="text1" class="tab-pane fade in active">
+                <div id="text1" class="tab-pane fade {{session()->get('currentTab') == "#text1" ? "in active" : ""}}">
                     <div class="row" style="height: 10px;"></div>
                     <div class="row">
 
@@ -283,7 +285,7 @@
                     </div>
                 </div>
 
-                <div id="text2" class="tab-pane fade">
+                <div id="text2" class="tab-pane fade {{session()->get('currentTab') == "#text2" ? "in active" : ""}}">
                     <div class="form-group">
                         {!! Form::label('description','Краткое описание:',['class'=>'control-label col-sm-1']) !!}
                     </div>
@@ -294,7 +296,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="text6" class="tab-pane fade">
+                <div id="text6" class="tab-pane fade {{session()->get('currentTab') == "#text6" ? "in active" : ""}}">
                     <div class="form-group">
                         {!! Form::label('fullDescription','Описание:',['class'=>'control-label col-sm-1']) !!}
                     </div>
@@ -306,7 +308,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="text3" class="tab-pane fade">
+                <div id="text3" class="tab-pane fade {{session()->get('currentTab') == "#text3" ? "in active" : ""}}">
                     <div class="form-group">
                         {!! Form::label('techDescription','Технические данные:',['class'=>'control-label col-sm-1']) !!}
                     </div>
@@ -318,7 +320,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="text4" class="tab-pane fade">
+                <div id="text4" class="tab-pane fade {{session()->get('currentTab') == "#text4" ? "in active" : ""}}">
                     <div class="form-group">
                         {!! Form::label('additionInfo','Дополнительная информация:',['class'=>'control-label col-sm-1'])
                         !!}
@@ -331,7 +333,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="text5" class="tab-pane fade">
+                <div id="text5" class="tab-pane fade {{session()->get('currentTab') == "#text5" ? "in active" : ""}}">
                     <div class="row" style="height: 10px;"></div>
                     <div class="row">
                         <div class="col-sm-8">
@@ -396,7 +398,22 @@
         </div>
 
     </div>
-
+<script>
+    $(document).ready(function () {
+        $("li").on("click", selectedPage);
+    });
+    function selectedPage() {
+        var tab = $(this).find('a').attr('href');
+        //alert(tab);
+        var request = $.ajax({
+            url: "/admin/articleEditTabJSON",
+            method: "GET",
+            data: {'tab': tab},
+            dataType: "json"
+        });
+        request.fail(function () {alert('ошибка!')});
+    }
+</script>
     <script src="{{URL::to('src/js/vendor/tinymce/tinymce.min.js')}}"></script>
     <script>
         tinymce.init({

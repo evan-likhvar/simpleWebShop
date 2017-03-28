@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Response;
 
@@ -80,6 +81,9 @@ class ArticleController extends AdminController
         $checkedParameters = DB::table('article_parameter')->select('parameter_id')->where('article_id','=', $id)->get()->pluck('parameter_id')->toArray();
 
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
+
+        if (!Session::has('currentTab'))
+            Session::put('currentTab','#text1');
 
         return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));
     }
@@ -234,12 +238,7 @@ class ArticleController extends AdminController
         if($article->update($input))
             Session::flash('infomessage','Изменения сохранены');
 
-
-
-        return redirect()->to(url("admin/article/$id/edit"));
-
-
-        //return redirect('admin/article');
+        return redirect()->back();
     }
     public function destroy ($id)
     {
@@ -350,6 +349,14 @@ class ArticleController extends AdminController
         if ($input['type'] == "hotline") $article->hotline = $input['value'];
         if ($input['type'] == "priceua") $article->priceua = $input['value'];
         $article->save();
+
+        return Response::json(['message' => 'value was changing'],200);
+    }
+    public function articleEditTabJSON(Request $request){
+
+        $input = $request->all();
+
+        Session::put('currentTab',$input['tab']);
 
         return Response::json(['message' => 'value was changing'],200);
     }

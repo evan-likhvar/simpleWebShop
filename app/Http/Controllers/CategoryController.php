@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
-use App\papercategory;
+
 use App\Parameter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
+
 
 class CategoryController extends FrontController
 {
     public function articleViewPlate(){
-        //return dd(URL::previous());
+
         Session::put('articlesView', 'plate');
         return redirect()->back();
     }

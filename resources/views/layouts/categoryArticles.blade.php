@@ -148,6 +148,7 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    @if($category->id != 2)
                                     <div class="col-sm-1 text-right">
                                         вид
                                     </div>
@@ -163,6 +164,7 @@
                                         <a href="/articleViewList" class="btn btn-warning btn-sm {{$layout == 'list' ? 'active' : ''}}" role="button"><span
                                                     class="glyphicon glyphicon-th-list"></span></a>
                                     </div>
+                                    @endif
                                 </div>
 
                             </div>

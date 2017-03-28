@@ -146,7 +146,7 @@
                             </div>
                         </div>
 
-                        @if(count($articles)<9)
+                        @if($layout == 'list')
                             @include('layouts.helpers.articleList', ['articles' => $articles])
                         @else
                             @include('layouts.helpers.articlePlates', ['articles' => $articles])

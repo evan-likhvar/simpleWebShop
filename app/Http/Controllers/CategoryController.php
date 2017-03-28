@@ -41,7 +41,10 @@ class CategoryController extends FrontController
 
         $paginate = 8;
         if (count($artToPaginate)>23)
-        $paginate = 16;
+            $paginate = 16;
+        $layout = "list";
+        if ($paginate == 16 || $category->id == 15)
+            $layout = "plate";
 
         //return dd($paginate);
 
@@ -53,9 +56,9 @@ class CategoryController extends FrontController
             $articles = Article::where('category_id','=', $category->id)->whereIn('id', $filter)->orderby('order','desc')->paginate($paginate);
 
         if (count($category->Children)){
-            return view('layouts.categories')->with(compact('category','homeArticles','siteMenu','cartInfo','siteParameters'));
+            return view('layouts.categories')->with(compact('layout','category','homeArticles','siteMenu','cartInfo','siteParameters'));
         } else {
-            return view('layouts.categoryArticles')->with(compact('unCheckAll','articles','orderBy','checkedParameters','category','homeArticles','siteMenu','cartInfo','siteParameters'));
+            return view('layouts.categoryArticles')->with(compact('layout','unCheckAll','articles','orderBy','checkedParameters','category','homeArticles','siteMenu','cartInfo','siteParameters'));
         }
     }
 

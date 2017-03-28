@@ -23,7 +23,7 @@
 <meta name="keywords" content="{{$category->name}} Cooper&amp;Hunter КуперХантер" />
 @endsection--}}
 @section('meta')<meta name="description" content="{{strlen($category->metadescription)>10 ? $category->metadescription : strip_tags($category->description)}}" />
-<meta name="keywords" content="{{ strlen($category->metakey)>10 ? $category->metakey : $category->Category->name}} {{$category->name}}" />
+<meta name="keywords" content="{{ strlen($category->metakey)>10 ? $category->metakey : $category->name}} {{$category->name}}" />
 @endsection
 @section('content')
     <div class="container">

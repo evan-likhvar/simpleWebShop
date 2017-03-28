@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::get('/article/{article}/copy', 'ArticleController@copy')->name('admin.copyArticle');
     Route::post('/article/recalculatePrices', 'ArticleController@recalculatePrices');
     Route::delete('/article/{article}', 'ArticleController@destroy');
+    Route::get('/articlePriceJSON', 'ArticleController@articlePriceJSON');
+    Route::get('/articleToggleJSON', 'ArticleController@articleToggleJSON');
 
     Route::post('/item/storeMedia/{item}/{type?}', 'ArticleController@storeMedia');
     Route::delete('/article/deletefile/{file}', 'ArticleController@deleteArticleFile');

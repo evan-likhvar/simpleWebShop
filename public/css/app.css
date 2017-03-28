@@ -6210,6 +6210,10 @@ div#paging ul.pagination {
       visibility: visible;
       opacity: 1; }
 
+.toggleable {
+  border: 1px solid #dddddd;
+  border-radius: 5px; }
+
 /*
 
 .main-color {

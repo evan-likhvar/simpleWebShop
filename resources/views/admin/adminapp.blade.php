@@ -6,6 +6,7 @@
     {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="/css/bootstrap/3.3.7/bootstrap.min.css" type="text/css" />--}}
     <link rel="stylesheet" href="/css/dropzone/4.3.0/dropzone.min.css" type="text/css" />
+    <link rel="icon" type="image/png" href="/favicon.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
@@ -23,6 +24,20 @@
             }
         }
     </script>
+    <style>
+        .toggleable {
+            border: 2px solid;
+            border-radius: 15px;
+            padding: 5px 10px;
+            cursor:pointer;
+        }
+        .classYes {
+            border-color: greenyellow;
+        }
+        .classNo {
+            border-color: darkred;
+        }
+    </style>
 
 </head>
 <body>

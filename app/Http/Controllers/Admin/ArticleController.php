@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Response;
 
 class ArticleController extends AdminController
 {
@@ -324,5 +325,32 @@ class ArticleController extends AdminController
 
     }
 
+    public function articlePriceJSON(Request $request){
 
+        $this->validate($request, [
+            'id' => 'required|integer',
+            'price' => 'required|integer',
+        ]);
+
+        $input = $request->all();
+
+        $article = Article::find($input['id']);
+        if (!$article) return Response::json(['message' => 'товар не найден'],404);
+        $article->priceGRN = $input['price'];
+        $article->save();
+
+        return Response::json(['message' => 'price was changing'],200);
+    }
+    public function articleToggleJSON(Request $request){
+
+        $input = $request->all();
+        $article = Article::find($input['id']);
+        if (!$article) return Response::json(['message' => 'товар не найден'],404);
+        if ($input['type'] == "avaliable") $article->avaliable = $input['value'];
+        if ($input['type'] == "hotline") $article->hotline = $input['value'];
+        if ($input['type'] == "priceua") $article->priceua = $input['value'];
+        $article->save();
+
+        return Response::json(['message' => 'value was changing'],200);
+    }
 }

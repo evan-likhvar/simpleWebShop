@@ -8,17 +8,8 @@
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="panel">
-                    {!! Form::open(['method'=>'POST','action'=>'Admin\ArticleController@recalculatePrices','class'=>'form-horizontal']) !!}
-                    <div class="form-group">
-                        {!! Form::label('course','Пересчитать розничные цены по курсу:',['class'=>'control-label col-sm-6']) !!}
-                        <div class="col-sm-2">
-                            {!! Form::text('course',null,['class'=>'form-control']) !!}
-                        </div>
-                        {!! Form::submit('Пересчитать',['class'=>'btn btn-info']) !!}
-                    </div>
-                    {!! Form::close() !!}
-                    {!! Form::open(['method'=>'GET','action'=>'Admin\ArticleController@index','class'=>'form-horizontal']) !!}
+                <div class="row" style="background-color: #fff">
+                    {!! Form::open(['method'=>'GET','action'=>'Admin\PriceController@index','class'=>'form-horizontal']) !!}
                     <div class="form-group">
                         {!! Form::label('filter','Фильтр по категории:',['class'=>'control-label col-sm-4']) !!}
                         <div class="col-sm-4">
@@ -26,39 +17,36 @@
                         </div>
                         {!! Form::submit('Применить',['class'=>'btn btn-info']) !!}
                     </div>
-
                     {!! Form::close() !!}
-
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-2">
+                            {!! Form::open(['method'=>'POST','action'=>'Admin\PriceController@hotLinePriceXML','class'=>'form-horizontal']) !!}
+                            <div class="form-group">
+                                {!! Form::submit('hotline.ua',['class'=>'btn btn-info col-sm-10']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                        <div class="col-sm-2">
+                            {!! Form::open(['method'=>'POST','action'=>'Admin\PriceController@priceUAPriceXML','class'=>'form-horizontal']) !!}
+                            <div class="form-group">
+                                {!! Form::submit('price.ua',['class'=>'btn btn-info col-sm-10']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                        <div class="col-sm-2">
+                            {!! Form::open(['method'=>'POST','action'=>'Admin\PriceController@createSiteMap','class'=>'form-horizontal']) !!}
+                            <div class="form-group">
+                                {!! Form::submit('карта сайта',['class'=>'btn btn-info col-sm-10']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="well" style="background-color: #fff">
-        <div class="row">
-            <div class="col-sm-2">
-                {!! Form::open(['method'=>'POST','action'=>'Admin\PriceController@hotLinePriceXML','class'=>'form-horizontal']) !!}
-                <div class="form-group">
-                    {!! Form::submit('hotline.ua',['class'=>'btn btn-info col-sm-10']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-            <div class="col-sm-2">
-                {!! Form::open(['method'=>'POST','action'=>'Admin\PriceController@priceUAPriceXML','class'=>'form-horizontal']) !!}
-                <div class="form-group">
-                    {!! Form::submit('price.ua',['class'=>'btn btn-info col-sm-10']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-            <div class="col-sm-2">
-                {!! Form::open(['method'=>'POST','action'=>'Admin\PriceController@createSiteMap','class'=>'form-horizontal']) !!}
-                <div class="form-group">
-                    {!! Form::submit('карта сайта',['class'=>'btn btn-info col-sm-10']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
+
 
     <div class="well" style="background-color: #fff">
         <table class="table table-hover table-bordered table-condensed">
@@ -66,34 +54,22 @@
             <tr>
 
                 <th>
-                    <a href="{{route('admin.article')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}"
+                    <a href="{{route('admin.priceArticleList')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}"
                        .>Индекс</a></th>
                 <th>
-                    <a href="{{route('admin.article')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}"
-                       .>Номер</a></th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Название</a>
+                    <a href="{{route('admin.priceArticleList')}}?sort=name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Название</a>
                 </th>
                 <th>
-                    <a href="{{route('admin.article')}}?sort=category_id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Категория</a>
-                </th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=vendor_id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Производитель</a>
-                </th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=priceYE&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Цена
-                        УЕ</a></th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=priceGRN&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Цена
+                    <a href="{{route('admin.priceArticleList')}}?sort=priceGRN&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Цена
                         ГРН</a></th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=avaliable&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">В
-                        наличии</a></th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=published&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Опубликована</a>
+                <th class="text-center">
+                    <a href="{{route('admin.priceArticleList')}}?sort=avaliable&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Наличие</a>
                 </th>
-                <th>
-                    <a href="{{route('admin.article')}}?sort=order&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Приоритет</a>
+                <th class="text-center">
+                    <a href="{{route('admin.priceArticleList')}}?sort=hotline&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">hotline</a>
+                </th>
+                <th class="text-center">
+                    <a href="{{route('admin.priceArticleList')}}?sort=priceua&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">priceua</a>
                 </th>
             </tr>
             </thead>
@@ -102,15 +78,30 @@
                 <tr>
 
                     <td>{{$item->id}}</td>
-                    <td>{{$item->nomer}}</td>
+
                     <td style="font-size: 90%; padding: 5px 0 5px 0;">{{$item->name}}</td>
-                    <td>{{$item->Category->name}}</td>
-                    <td>{{$item->Vendor->name}}</td>
-                    <td>{{$item->priceYE}}</td>
-                    <td>{{$item->priceGRN}}</td>
-                    <td>{{$item->avaliable==0 ? 'Нет' : 'Да'}}</td>
-                    <td>{{$item->published==0 ? 'Нет' : 'Да'}}</td>
-                    <td>{{$item->order}}</td>
+
+                    <td class="priceCell" style="width: 250px;"><input style="width: 100px;" type="text"
+                                                                       name="price{{$item->id}}" data-id="{{$item->id}}"
+                                                                       value="{{$item->priceGRN}}" disabled>
+                        <a class="editPrice" href="#">редактировать</a>
+                        <a class="savePrice" style="display: none;" href="#">сохранить</a>
+                    </td>
+                    <td style="vertical-align: middle;" class="text-center" data-id="{{$item->id}}" data-value="{{$item->avaliable}}"
+                        data-type="avaliable"><span
+                                class="toggleable {{$item->avaliable==0 ? 'classNo' : 'classYes'}}">{{$item->avaliable==0 ? 'Нет' : 'Да'}}</span>
+                    </td>
+
+                    <td style="vertical-align: middle;" class="text-center"
+                        data-id="{{$item->id}}" data-type="hotline" data-value="{{$item->hotline}}"><span
+                                class="toggleable {{$item->hotline==0 ? 'classNo' : 'classYes'}}">{{$item->hotline==0 ? 'Нет' : 'Да'}}</span>
+                    </td>
+
+                    <td style="vertical-align: middle;" class="text-center"
+                        data-id="{{$item->id}}" data-type="priceua" data-value="{{$item->priceua}}"><span
+                                class="toggleable {{$item->priceua==0 ? 'classNo' : 'classYes'}}">{{$item->priceua==0 ? 'Нет' : 'Да'}}</span>
+                    </td>
+
                 </tr>
             @endforeach
 
@@ -119,16 +110,73 @@
 
 
         {{ $articles->appends(Request::input())->links() }}
-        {{--        {!! Form::open(['method'=>'GET','action'=>'Admin\ItemController@index','class'=>'form-horizontal']) !!}
-                <div class="form-group">
-                    {!! Form::label('name','Фильтр по названию:',['class'=>'control-label col-sm-2']) !!}
-                    <div class="col-sm-6">
-                        {!! Form::text('filter',null,['class'=>'form-control']) !!}
-                    </div>
-                    {!! Form::submit('Установить',['class'=>'btn btn-info']) !!}
-                </div>
-                {!! Form::close() !!}--}}
+
     </div>
 
+    <script>
+        $(document).ready(function () {
+            $(" .editPrice").on("click", priceEnable);
+            $(" .savePrice").on("click", priceSave);
+            $(" .toggleable").on("click", toggleValue);
+        });
+        function toggleValue() {
+            var id = $(this).parent().data("id");
+            var value = $(this).parent().data("value");
+            var type = $(this).parent().data("type");
+            //alert('click before'+ id +' '+ value +' '+ type);
+            if (value == 0) {
+                value = 1;
+                $(this).parent().data("value",1);
+                $(this).text('Да').removeClass("classNo").addClass("classYes");
+            } else {
+                value = 0;
+                $(this).parent().data("value",0);
+                $(this).text('Нет').removeClass("classYes").addClass("classNo");
+            }
 
+            var request = $.ajax({
+                url: "/admin/articleToggleJSON",
+                method: "GET",
+                data: {'id': id, 'value': value, 'type': type},
+                dataType: "json"
+            });
+            request.fail(function () {alert('ошибка!')});
+        }
+
+        function priceEnable() {
+            $(this).prev().css("background-color", "white").removeAttr("disabled");
+            $(" .editPrice ").css("display", "none");
+            $(this).next().css("display", "inline");
+        }
+
+        function priceSave() {
+            var articleID = $(this).prev().prev().data("id");
+            var newPrice = $(this).prev().prev().val();
+            var updatePrice = sendRequest(articleID, newPrice);
+            $(this).css("display", "none").prev().prev().css("background-color", "#ddd").attr("disabled", "disabled");
+            $(" .editPrice ").css("display", "inline");
+            //alert('save new price - '+newPrice+' id = '+ articleID);
+        }
+
+        function sendRequest(articleID, newPrice) {
+            var request = $.ajax({
+                url: "/admin/articlePriceJSON",
+                method: "GET",
+                data: {'id': articleID, 'price': newPrice},
+                dataType: "json"
+            });
+            request.fail(function (mesages) {
+                if (mesages.status == 422) {
+                    alert(mesages.responseText);
+                }
+                else {
+                    alert(mesages.responseJSON.message);
+                }
+            });
+            request.done(function (mesages) {
+                //alert('success!!!'+mesages.message);
+            });
+
+        }
+    </script>
 @endsection

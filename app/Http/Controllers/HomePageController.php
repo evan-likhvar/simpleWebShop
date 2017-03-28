@@ -17,7 +17,7 @@ class HomePageController extends FrontController
         $siteParameters = $this->getSiteParameters();
         $homeArticles = $this->getPromotions();
 
-        $announceCategory = Category::where('onHomePage','=','1')->get();
+        $announceCategory = Category::where('onHomePage','=','1')->where('published','=','1')->get();
 
         return view('layouts.homepage')->with(compact('announceCategory','homeArticles','siteMenu','cartInfo','siteParameters'));
     }

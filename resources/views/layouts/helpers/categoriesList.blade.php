@@ -14,34 +14,6 @@
                     <div class="text-right promo"><h4>Популярное в категории</h4></div>
 
 
-{{--                    <div class="row">
-
-                        @foreach($category->getTopArticles(3) as $aindex=>$article)
-
-                            <div class="col-sm-4 artBox">
-                                <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
-                                    <div class="col-sm-12">
-
-                                        <img class="img-responsive"
-                                             src="{{$article->getIntroImg('S','intro1')}}" alt="">
-
-
-                                        {{$article->name}}<br><br>
-                                        Цена - <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="row paddingTop">
-                        @foreach($category->getTopArticles(3)  as $aindex=>$article)
-
-                            <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"
-                                   href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
-                            </div>
-                        @endforeach
-                    </div>--}}
 
                     @include('layouts.helpers.articlePlates', ['articles' => $category->getTopArticles(3), 'perRow' => 3])
 
@@ -76,29 +48,7 @@
                     </div>
                     <div class="text-right promo"><h4>Популярное в категории</h4></div>
                     @include('layouts.helpers.articlePlates', ['articles' => $category->getTopArticles(3), 'perRow' => 3])
-{{--                    <div class="row">
-                        @foreach($category->getTopArticles(3)  as $aindex=>$article)
 
-
-                            <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">
-                                <div class="col-sm-4">
-                                    <img class="img-responsive"
-                                         src="{{$article->getIntroImg('S','intro1')}}" alt="">
-                                    {{$article->name}}<br><br>
-                                    Цена - <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                    <div class="row paddingTop">
-                        @foreach($category->getTopArticles(3)  as $aindex=>$article)
-
-                            <div class="col-sm-4">
-                                <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"
-                                   href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
-                            </div>
-                        @endforeach
-                    </div>--}}
 
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-2 paddingTop">

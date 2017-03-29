@@ -52,8 +52,8 @@
         --}}
         <div class="row">
 
-            <div class="row categoryList text-right"><h3>{{$category->name}}</h3></div>
-
+            <div class="row  text-right"><h3>{{$category->name}}</h3></div>
+<div class="row categoryList  text-right"><div class="text-justify"> {!! $category->description !!} </div></div>
             <div id="paramLeft" class="col-sm-3">
 
                 <h4>Параметры</h4>

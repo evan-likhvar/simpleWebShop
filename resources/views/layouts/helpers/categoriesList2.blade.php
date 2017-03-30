@@ -14,10 +14,10 @@
                              alt="">
                     </a>
                 </div>
-                <div class="col-sm-6 text-justify">
+                <div class="col-sm-7 text-justify">
                     {!!$category->description!!}
                 </div>
-                <div class="col-sm-4 text-justify">
+                <div class="col-sm-3 text-justify">
                     @include('layouts.helpers.articlePlates2', ['articles' => $category->getTopArticles(2)])
                 </div>
             </div>

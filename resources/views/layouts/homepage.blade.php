@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @if(count($announceCategory))
-                    @include('layouts.helpers.categoriesList', ['categories' => $announceCategory])
+                    @include('layouts.helpers.categoriesList2', ['categories' => $announceCategory])
                 @endif
                 @if(count($homeArticles))
                     {{--<div class="container">--}}

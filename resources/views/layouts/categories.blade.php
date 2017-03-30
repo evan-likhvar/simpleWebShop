@@ -33,6 +33,7 @@
                 {!! $category->description !!}
             </div>
         </div>
+
         <div class="row">
             <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @if(count($category->Children))

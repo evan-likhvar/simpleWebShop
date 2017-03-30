@@ -18,7 +18,7 @@
                     <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн<br>
                     {{--<div class="available"><span class="glyphicon glyphicon-ok"></span> в наличии</div>--}}
                     <div style="min-height: 25px">
-                    <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"
+                    <a style="font-size: 80%;" class="btn btn-success btn-xs col-sm-10 col-sm-offset-1" role="button"
                        href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>
                         </div>
                 </div>

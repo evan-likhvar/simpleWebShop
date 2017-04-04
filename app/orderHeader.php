@@ -8,8 +8,20 @@ use Illuminate\Support\Facades\DB;
 class orderHeader extends Model
 {
     //
+    //protected $Color;
+
+    public function getColorAttribute()
+    {
+        $color = 'white';
+        if ($this->status == 0) $color = 'orangered';
+        if ($this->status == 1) $color = 'yellow';
+        if ($this->status == 2) $color = 'greenyellow';
+        if ($this->status == 3) $color = 'green';
+        return $color;
+    }
+
     protected $fillable = [
-        'nomer','contact_name','phone','e_mail','payer','status','description'
+        'nomer','contact_name','phone','e_mail','payer','status','description','privat_description'
     ];
     public function orderRows()    {return $this->hasMany('App\orderRow');}
 

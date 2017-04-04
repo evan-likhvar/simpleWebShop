@@ -1,3 +1,5 @@
+h3 a:hover {color: $submenu-border;}
+
 .well {
   border: medium none;
   box-shadow: none;
@@ -7,16 +9,16 @@
   border-bottom: 3px solid;
 }
 .text-right {
-  border-image: linear-gradient(to right, #fff 0%, $brand-warning 100%);
+  border-image: linear-gradient(to right, #fff 0%, $bottom-line-image 100%);
   border-image-slice: 1;
 }
 .text-left {
-  border-image: linear-gradient(to left, #fff 0%, $brand-warning 100%);
+  border-image: linear-gradient(to left, #fff 0%, $bottom-line-image 100%);
   border-image-slice: 1;
 }
 
 .text-center {
-  border-image: radial-gradient( $brand-warning 50%, #fff 100%);
+  border-image: radial-gradient( $bottom-line-image 50%, #fff 100%);
   border-image-slice: 1;
 }
 
@@ -33,7 +35,7 @@
   padding: 10px 0 20px;
 }
 .img-thumbnail {
-  border: 1px solid $brand-warning;
+  border: 1px solid $submenu-border;
 }
 .paddingTop {
   padding-top: 15px;
@@ -43,10 +45,10 @@
   border-radius: 0;
 }
 #categoryArticles {
-  border-left: solid 1px $brand-warning;
+  border-left: solid 1px lighten($bottom-line-image, 50%);
   border-radius: 0px;
   > div {
-    border-bottom: solid 1px $brand-warning;
+    border-bottom: solid 1px lighten($bottom-line-image, 50%);
   }
   :last-child {
     border-bottom: none;

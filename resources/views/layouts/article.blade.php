@@ -41,7 +41,7 @@
                         {!! session('ItemAdded') !!}
                     </div>
                 @endif
-                <div class="well text-center" style="border: 1px solid #f09713;">
+                <div class="well text-center article-h2">
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
                 <div class="row" style="min-height: 20px;"></div>

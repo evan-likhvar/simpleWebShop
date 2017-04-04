@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\orderHeader;
+use App\SiteParameter;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -33,12 +34,16 @@ class OrderShipped extends Mailable implements ShouldQueue
     public function build()
     {
 
-//        return dd(Config::get('mail'));
+//        return dd(Config::get('mail'));    return json_decode(SiteParameter::first()->parameters,true);
+
+        $siteParameters = json_decode(SiteParameter::first()->parameters,true);
+
         return $this //->from('elikhvarshops@gmail.com')
             ->subject('заказ на сайте КУПЕРХАНТЕР.УКР')
             ->view('layouts.email.orderNotificator')
             ->with([
-                'order' => $this->order
+                'order' => $this->order,
+                'siteParameters' => $siteParameters
             ]);
     }
 }

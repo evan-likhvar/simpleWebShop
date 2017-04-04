@@ -15,7 +15,7 @@
 
         <tr>
             <td style="width:640px;vertical-align:top">
-                <table cellpadding="0" cellspacing="0" style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;border-top:3px solid #f09713;border-collapse:collapse;width:100%">
+                <table cellpadding="0" cellspacing="0" style="border-left:1px solid #cccccc;border-right:1px solid #cccccc;border-top:3px solid #003399;border-collapse:collapse;width:100%">
                     <tr>
                         <td style="padding:25px 30px 20px 27px;vertical-align:top;border-bottom:1px solid #cccccc;">
                             <h1 style="font-size:28px;line-height:32px;padding-bottom:15px;font-weight:normal;margin:0">{{$order->contact_name}}, спасибо за ваш заказ!</h1>
@@ -63,9 +63,11 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td style="font-size:15px;width:140px;vertical-align:top;padding-top:5px">{{$row->priceGRN}} грн</td>
+                                                                            {{--<td style="font-size:15px;width:140px;vertical-align:top;padding-top:5px">{{$row->priceGRN}} грн</td>--}}
+                                                                            <td style="font-size:15px;width:140px;vertical-align:top;padding-top:5px">{{number_format($row->priceGRN, 0,'', ' ')}} грн</td>
                                                                             <td style="font-size:15px;width:100px;vertical-align:top;padding-top:5px">{{$row->count}} шт.</td>
-                                                                            <td style="font-size:18px;width:200px;vertical-align:top;text-align:right;color:#333333;padding-top:5px">{{$row->priceGRN*$row->count}} грн </td>
+                                                                            <td style="font-size:18px;width:200px;vertical-align:top;text-align:right;color:#333333;padding-top:5px">{{number_format($row->priceGRN*$row->count, 0,'', ' ')}} грн </td>
+                                                                            {{--<td style="font-size:18px;width:200px;vertical-align:top;text-align:right;color:#333333;padding-top:5px">{{$row->priceGRN*$row->count}} грн </td>--}}
                                                                             <?php $total += $row->priceGRN*$row->count; ?>
                                                                         </tr>
                                                                     </table>
@@ -131,7 +133,7 @@
                                     </td>
                                     <td style="vertical-align:middle">
                                         <p style="margin:0;font-size:15px;line-height:24px">Будем рады ответить на Ваши вопросы:</p>
-                                        <p style="margin:0;padding:0;font-size:15px;line-height:24px">(044) 360-64-50,  (050) 600-10-70, (067) 703-73-00, (063) 667-99-22</p>
+                                        <p style="margin:0;padding:0;font-size:15px;line-height:24px">{{$siteParameters['phone1']}},  {{$siteParameters['phone2']}}, {{$siteParameters['phone3']}}, {{$siteParameters['phone4']}}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -158,7 +160,7 @@
             </td>
         </tr>
         <tr>
-            <td style="font-size:0;vertical-align:top;border-top:3px solid #f09713;">
+            <td style="font-size:0;vertical-align:top;border-top:3px solid #003399;">
 
             </td>
         </tr>

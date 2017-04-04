@@ -1,7 +1,7 @@
-// Alerts
+
 
 @mixin top-menu-decorator() {
-  background: $brand-warning none repeat scroll 0 0;
+  background: $menu-underline none repeat scroll 0 0;
   bottom: 0;
   content: "";
   height: 3px;

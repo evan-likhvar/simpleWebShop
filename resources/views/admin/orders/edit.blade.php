@@ -77,7 +77,13 @@
                             {{--{!! Form::text('description',null,['class'=>'form-control']) !!}--}}
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        {!! Form::label('privat_description','Внутренний комментарий:',['class'=>'control-label col-sm-2']) !!}
+                        <div class="col-sm-10">
+                            {!! Form::textarea('privat_description',null,['class'=>'form-control','size' => '2x2']) !!}
+                            {{--{!! Form::text('description',null,['class'=>'form-control']) !!}--}}
+                        </div>
+                    </div>
                 </div>
             </div>
             {{--header end--}}

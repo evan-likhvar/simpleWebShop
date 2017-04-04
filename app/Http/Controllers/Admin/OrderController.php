@@ -38,7 +38,7 @@ class OrderController extends AdminController
 
 
         $orders = orderHeader::orderBy($ordered,$order)->paginate(20);
-
+//return dd($orders);
 
         return view('admin.orders.index')->with(compact('orders','parGrp'));
     }

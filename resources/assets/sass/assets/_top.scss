@@ -1,7 +1,9 @@
+
+
 .topborder {
   border-bottom: solid 1px;
   .main-color {
-    color: $brand-success;
+    color: $bottom-line-image;
   }
 }
 
@@ -12,12 +14,13 @@
       padding-right: 50px;
     }
   }*/
+  color: $bottom-line-image;
   .menu-wrap {
     padding-bottom: 3px;
     display: inline-block;
     height: 100%;
     position: relative;
-
+    color: $bottom-line-image;
     li {
       padding: 12px 15px 0;
 
@@ -26,18 +29,19 @@
         text-transform: uppercase;
       }
       :hover, :focus {
-        color: $text-color;
+        color: $bottom-line-image;
       }
 
     }
     .active a {
+      color: $bottom-line-image;
       font-weight: bold;
     }
 
     .active {
 
       border-bottom: 3px solid transparent;
-      border-image: radial-gradient($brand-warning 60%, #fff 100%);
+      border-image: radial-gradient($menu-underline 60%, #fff 100%);
       border-image-slice: 1;
 
     }
@@ -64,7 +68,7 @@
 
 #submenu {
   #shadowBox {
-    border: 1px solid $brand-warning;
+    border: 1px solid $submenu-border;
     width: 24%;
     margin: 0 3px 6px 3px;
     display: inline-block;
@@ -72,10 +76,11 @@
     transition: .2s linear;
   }
   .shadow:hover {
-    //color: #fff;
-    box-shadow: 0 0 0 2px white inset, 0 0 0 4px $brand-warning inset;
+    color: $bottom-line-image;
+    box-shadow: 0 0 0 2px white inset, 0 0 0 4px $submenu-border inset;
   }
   .sub_active {
+    color: $bottom-line-image;
     background: lighten($brand-warning, 45%) none repeat scroll 0 0;
     font-weight: bold;
   }

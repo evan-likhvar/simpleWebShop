@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             @foreach ($orders as $item)
-                <tr>
+                <tr style="background-color: {{$item->Color}};">
                     <td >
                         <div style="width: 100px;">
                             <div style="width: 40px; float: left;">
@@ -57,4 +57,6 @@
         </table>
         {{ $orders->appends(Request::input())->links() }}
     </div>
+
+    <div style="color: greenyellow"
 @endsection

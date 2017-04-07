@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\URL;
 class FrontController extends Controller
 {
 
-    public function __construct()
+/*    public function __construct()
     {
 
             $this->middleware('auth');
-    }
+    }*/
 
     protected function getCartInfo():array {
         $cartInfo = array();

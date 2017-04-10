@@ -57,22 +57,22 @@ class PriceController extends AdminController
         $xmlstr = <<<XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <price>
-    <date>fyjuy</date>
+    <date>0000</date>
     <firmName>Мой КуперХантер</firmName>
-    <firmId>1234</firmId>
+    <firmId>30653</firmId>
     <categories>
         <category>
-            <id>1</id>
+            <id>124</id>
             <name>Бытовая техника</name>
         </category>
         <category>
-            <id>2</id>
-            <parentId>1</parentId>
+            <id>171</id>
+            <parentId>124</parentId>
             <name>Климатическая техника</name>
         </category>
 		<category>
-            <id>3</id>
-            <parentId>2</parentId>
+            <id>174</id>
+            <parentId>171</parentId>
             <name>Кондиционеры</name>
         </category>
     </categories>
@@ -84,10 +84,11 @@ XML;
 
         $hotLinePriceXML->date = date("Y-m-d H:i");
 
-    $articles = Article::where('hotline','=','1')->whereIn('category_id',[2,3,4,5,6,7,8])->get();
+    $articles = Article::where('hotline','=','1')->whereIn('category_id',[2])->get();
         foreach ($articles as $article) {
         $item = $hotLinePriceXML->items->addChild('item');
         $item->addChild('id', $article->id);
+            $item->addChild('categoryId', 171);
             if (isset($article->nomer)&&!empty($article->nomer)) {
                 $item->addChild('code', $article->nomer);
             }

@@ -49,12 +49,38 @@
                                 {{--{!! Form::text('e_mail',null,['class'=>'form-control']) !!}--}}
                             </div>
                         </div>
-{{--                        <div class="form-group">
-                            {!! Form::label('payer','Плательщик:', ['class'=>'control-label col-sm-4']) !!}
+
+
+                        <div class="form-group">
+                            {!! Form::label('payment_type','Оплата:', ['class'=>'control-label col-sm-4']) !!}
                             <div class="col-sm-8">
-                                {!! Form::text('payer',null,['class'=>'form-control']) !!}
+                                {{--{!! Form::text('payment_type',null,['class'=>'form-control']) !!}--}}
+                                {!! Form::select('payment_type', array('1' => 'Наличными, при получении', '2' => 'Безналичный расчет'), '1', ['class'=>'col-sm-12']) !!}
                             </div>
-                        </div>--}}
+                        </div>
+                            <div class="form-group">
+                                {!! Form::label('shipment','Доставка:', ['class'=>'control-label col-sm-4']) !!}
+                                <div class="col-sm-8">
+                                    {{--{!! Form::text('payment_type',null,['class'=>'form-control']) !!}--}}
+                                    {!! Form::select('shipment', array('1' => 'Доставка к подьезду', '2' => 'Доставка c установкой', '3' => 'Самовывоз'), '1', ['class'=>'col-sm-12']) !!}
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                            {!! Form::label('location ','Адрес доставки:', ['class'=>'control-label col-sm-4']) !!}
+                            <div class="col-sm-8">
+                                {!! Form::text('location',null,['class'=>'form-control ']) !!}
+                            </div>
+                        </div>
+
+{{--                            <div class="form-group">
+                                {!! Form::label('payer','Плательщик:', ['class'=>'control-label col-sm-4']) !!}
+                                <div class="col-sm-8">
+                                    {!! Form::text('payer',null,['class'=>'form-control col-sm-4']) !!}
+                                </div>
+                            </div>--}}
+
+
                         <div class="form-group">
                             {!! Form::label('description','Комментарий:', ['class'=>'control-label col-sm-4']) !!}
                             <div class="col-sm-8">

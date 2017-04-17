@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'elikhvarshops@gmail.com',
+        'address' => 'cooperhunter2017@gmail.com',
         'name' => 'магазин Купер&Хантер',
     ],
 

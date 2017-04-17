@@ -40,7 +40,7 @@ class OrderController extends FrontController
         unset($input['art']);
 
         if ( strlen((trim($input['e_mail'])))==0 )
-            $input['e_mail'] = 'elikhvarshops@gmail.com';
+            $input['e_mail'] = 'cooperhunter2017@gmail.com';
 
 
         //return dd($input);

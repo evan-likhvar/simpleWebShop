@@ -26,20 +26,20 @@ class orderHeader extends Model
         if ($this->status == 1) $StatusName = 'подтвержденный';
         if ($this->status == 2) $StatusName = 'выполняемый';
         if ($this->status == 3) $StatusName = 'завершенный';
-        if ($this->status == 3) $StatusName = 'отмененный';
+        if ($this->status == 4) $StatusName = 'отмененный';
         return $StatusName;
     }
     public function getPaymentNameAttribute()
     {
-        $PaymentName = 'opa-a';
+        $PaymentName = '----';
         if ($this->payment_type == 1) $PaymentName = 'наличными';
         if ($this->payment_type == 2) $PaymentName = 'безнал';
         return $PaymentName;
     }
     public function getShipmentNameAttribute()
     {
-        $ShipmentName = 'opa-a';
-        if ($this->shipment == 1) $ShipmentName = 'к подезду';
+        $ShipmentName = '----';
+        if ($this->shipment == 1) $ShipmentName = 'к подъезду';
         if ($this->shipment == 2) $ShipmentName = 'с установкой';
         if ($this->shipment == 3) $ShipmentName = 'самовывоз';
         return $ShipmentName;

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Session;
 class OrderController extends AdminController
 {
     //
+    protected $orderStatus = ['0'=>'Новый','1'=>'Подтвержденный','2'=>'Выполняемый','3'=>'Завершенный','4'=>'Отмененный'];
+    protected $paymentName = ['1'=>'Наличные','2'=>'Безналичные'];
+    protected $shipmentName = ['1'=>'к подъезду','2'=>'с установкой','3'=>'Самовывоз'];
+
     public function index(Request $request) {
 
         $parGrp = $this->parameterGroups;
@@ -23,20 +27,6 @@ class OrderController extends AdminController
         if ( isset($request->filter) && strlen($request->filter)>0) {$filter = $request->filter; }
         if ( isset($request->order) && strlen($request->order)>0) $order = $request->order;
 
-/*
-
-        if ( isset($request->filter) && $request->filter!=0  ) {
-            $filter = $request->filter;
-            $articles = Article::where('category_id','=', $request->filter)->orderBy($ordered,$order)->paginate(20);
-        } else {
-            $filter = 0;
-            $articles = Article::orderBy($ordered,$order)->paginate(20);
-        }
-
-
-        */
-
-
         $orders = orderHeader::orderBy($ordered,$order)->paginate(20);
 //return dd($orders);
 
@@ -48,8 +38,10 @@ class OrderController extends AdminController
         $parGrp = $this->parameterGroups;
         $orderHeader = orderHeader::findOrFail($order);
 
-        $orderStatus = ['0'=>'Новый','1'=>'Подтвержденный','2'=>'Выполняемый','3'=>'Завершенный','4'=>'Отмененный'];
-        return view('admin.orders.edit')->with(compact('orderHeader','parGrp','orderStatus'));
+        $orderStatus = $this->orderStatus;
+        $paymentName = $this->paymentName;
+        $shipmentName = $this->shipmentName;
+        return view('admin.orders.edit')->with(compact('orderHeader','parGrp','orderStatus','paymentName','shipmentName'));
 
     }
 
@@ -61,9 +53,11 @@ class OrderController extends AdminController
 
         $orderHeader->update($input);
 
-        $orderStatus = ['0'=>'Новый','1'=>'Подтвержденный','2'=>'Выполняемый','3'=>'Завершенный','4'=>'Отмененный'];
+        $orderStatus = $this->orderStatus;
+        $paymentName = $this->paymentName;
+        $shipmentName = $this->shipmentName;
 
-        return view('admin.orders.edit')->with(compact('orderHeader','parGrp','orderStatus'));
+        return view('admin.orders.edit')->with(compact('orderHeader','parGrp','orderStatus','paymentName','shipmentName'));
 
     }
 

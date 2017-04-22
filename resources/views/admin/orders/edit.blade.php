@@ -48,9 +48,13 @@
                         <div class="col-sm-2">
                             {!! Form::text('contact_name',null,['class'=>'form-control']) !!}
                         </div>
-                        {!! Form::label('payer','Плательщик:',['class'=>'control-label col-sm-2']) !!}
+                        {!! Form::label('payment_type','Оплата:',['class'=>'control-label col-sm-2']) !!}
                         <div class="col-sm-2">
-                            {!! Form::text('payer',null,['class'=>'form-control']) !!}
+                            {!! Form::select('payment_type',$paymentName,null,['class'=>'form-control']) !!}
+                        </div>
+                        {!! Form::label('shipment','Доставка:',['class'=>'control-label col-sm-2']) !!}
+                        <div class="col-sm-2">
+                            {!! Form::select('shipment',$shipmentName,null,['class'=>'form-control']) !!}
                         </div>
                     </div>
 
@@ -68,6 +72,10 @@
                         {!! Form::label('status','Статус заказа:',['class'=>'control-label col-sm-2']) !!}
                         <div class="col-sm-2">
                             {!! Form::select('status',$orderStatus,null,['class'=>'form-control']) !!}
+                        </div>
+                        {!! Form::label('location','Адрес:',['class'=>'control-label col-sm-2']) !!}
+                        <div class="col-sm-6">
+                            {!! Form::text('location',null,['class'=>'form-control']) !!}
                         </div>
                     </div>
                     <div class="form-group">

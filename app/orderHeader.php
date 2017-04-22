@@ -19,9 +19,34 @@ class orderHeader extends Model
         if ($this->status == 3) $color = 'green';
         return $color;
     }
+    public function getStatusNameAttribute()
+    {
+        $StatusName = 'новый';
+        if ($this->status == 0) $StatusName = 'новый';
+        if ($this->status == 1) $StatusName = 'подтвержденный';
+        if ($this->status == 2) $StatusName = 'выполняемый';
+        if ($this->status == 3) $StatusName = 'завершенный';
+        if ($this->status == 3) $StatusName = 'отмененный';
+        return $StatusName;
+    }
+    public function getPaymentNameAttribute()
+    {
+        $PaymentName = 'opa-a';
+        if ($this->payment_type == 1) $PaymentName = 'наличными';
+        if ($this->payment_type == 2) $PaymentName = 'безнал';
+        return $PaymentName;
+    }
+    public function getShipmentNameAttribute()
+    {
+        $ShipmentName = 'opa-a';
+        if ($this->shipment == 1) $ShipmentName = 'к подезду';
+        if ($this->shipment == 2) $ShipmentName = 'с установкой';
+        if ($this->shipment == 3) $ShipmentName = 'самовывоз';
+        return $ShipmentName;
+    }
 
     protected $fillable = [
-        'nomer','contact_name','phone','e_mail','payer','status','description','privat_description'
+        'nomer','contact_name','phone','e_mail','payer','status','description','privat_description','payment_type','shipment','location'
     ];
     public function orderRows()    {return $this->hasMany('App\orderRow');}
 

@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-sm-{{isset($siteParameters['promotionEnable']) ? 10 : 12}}">
                 @if(count($category->Children))
-                    @include('layouts.helpers.categoriesList', ['categories' => $category->Children->where('published','=','1')])
+                    @include('layouts.helpers.categoriesList2', ['categories' => $category->Children->where('published','=','1')])
                 @endif
             </div>
             @if(isset($siteParameters['promotionEnable']))

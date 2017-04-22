@@ -13,7 +13,7 @@ class SiteParameterController extends AdminController
 
         $parGrp = $this->parameterGroups;
         $parameter = json_decode(SiteParameter::first()->parameters,true);
-
+//return dd($parameter);
         return view('admin.siteParameters.edit')->with(compact('parameter','parGrp'));
     }
 

@@ -54,12 +54,12 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
+/*
     'from' => [
         'address' => 'cooperhunter2017@gmail.com',
         'name' => 'магазин Купер&Хантер',
     ],
-
+*/
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol

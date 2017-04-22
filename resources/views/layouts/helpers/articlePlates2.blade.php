@@ -1,8 +1,8 @@
 
-@foreach(array_chunk($articles->all(),2) as $articlesRow)
+@foreach(array_chunk($articles->all(),3) as $articlesRow)
     <div class="row article-row">
         @foreach($articlesRow as $article)
-            <div class="col-sm-6 text-center article-plate">
+            <div class="col-sm-4 text-center article-plate">
 
                 <div>
                     <a href="{{route('showArticle', ['article' => $article->getArticleLink()])}}">

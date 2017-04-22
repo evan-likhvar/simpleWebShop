@@ -23,7 +23,7 @@
                 @if(count($announceCategory))
                     @include('layouts.helpers.categoriesList2', ['categories' => $announceCategory])
                 @endif
-                @if(count($homeArticles))
+                @if(count($homeArticles) && isset($siteParameters['promotionEnable']))
                     {{--<div class="container">--}}
                     <div class="row well">
                         <div class="row  text-center categoryList"><h3>Популярные товары</h3></div>

@@ -54,7 +54,7 @@ class FrontController extends Controller
     {
         $siteMenu =array();
 
-        $siteMenu['mainMenu'] = Category::whereNull('parent_id')->get();
+        $siteMenu['mainMenu'] = Category::whereNull('parent_id')->where('published','1')->get();
         $siteMenu['paperMenu']  = papercategory::whereNull('parent_id')->get();
         $siteMenu['topActive'] = $this->getTopActiveMenu();
         $siteMenu['activeSubId']  = $this->getSubActiveMenu();

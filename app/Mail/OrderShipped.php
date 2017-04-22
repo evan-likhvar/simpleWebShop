@@ -38,12 +38,18 @@ class OrderShipped extends Mailable implements ShouldQueue
 
         $siteParameters = json_decode(SiteParameter::first()->parameters,true);
 
-        return $this //->from('elikhvarshops@gmail.com')
-            ->subject('заказ на сайте КУПЕРХАНТЕР.УКР')
+        $mail =  $this //->from('elikhvarshops@gmail.com')
+            ->subject($siteParameters['emailTitle'])
+            //->from('dfdf','werfgwrgwr')
+            ->from($siteParameters['emailSender'],$siteParameters['emailName'])
             ->view('layouts.email.orderNotificator')
             ->with([
                 'order' => $this->order,
                 'siteParameters' => $siteParameters
             ]);
+
+        //return dd($mail);
+
+        return $mail;
     }
 }

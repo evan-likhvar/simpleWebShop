@@ -5884,6 +5884,41 @@ h3 a:hover {
 #Remove span {
   color: red; }
 
+.categoryList h3 {
+  padding: 0;
+  margin-top: 0; }
+
+.paddingTop {
+  padding-top: 0; }
+  .paddingTop h5 {
+    margin: 0;
+    padding: 0; }
+    .paddingTop h5 a {
+      color: #003399; }
+      .paddingTop h5 a:hover {
+        color: #ff3300; }
+
+h3 {
+  margin: 0;
+  padding: 0; }
+  h3 a {
+    color: #003399;
+    text-decoration: none; }
+    h3 a:hover {
+      text-decoration: none;
+      color: #ff3300; }
+
+.categoryBlock img {
+  border: 1px solid #003399;
+  padding: 0;
+  margin-right: 15px;
+  transition: .2s linear; }
+  .categoryBlock img:hover {
+    border: 1px solid red;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #003399, 0 0 8px 2px #003399; }
+
 #infotab .nav-tabs > li.active > a, #infotab .nav-tabs > li.active > a:hover, #infotab .nav-tabs > li.active > a:focus {
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;

@@ -34,13 +34,12 @@ class OrderShipped extends Mailable implements ShouldQueue
     public function build()
     {
 
-//        return dd(Config::get('mail'));    return json_decode(SiteParameter::first()->parameters,true);
+        //return dd(Config::get('mail'),$this->order,$this,$this->to[0]['address']);    return json_decode(SiteParameter::first()->parameters,true);
 
         $siteParameters = json_decode(SiteParameter::first()->parameters,true);
 
-        $mail =  $this //->from('elikhvarshops@gmail.com')
+        $mail =  $this
             ->subject($siteParameters['emailTitle'])
-            //->from('dfdf','werfgwrgwr')
             ->from($siteParameters['emailSender'],$siteParameters['emailName'])
             ->view('layouts.email.orderNotificator')
             ->with([
@@ -48,7 +47,13 @@ class OrderShipped extends Mailable implements ShouldQueue
                 'siteParameters' => $siteParameters
             ]);
 
-        //return dd($mail);
+        if (($this->to[0]['address'] === 'evan.likhvar@gmail.com') || ($this->to[0]['address'] === $siteParameters['emailAdministrator']))
+            $mail = $this->view('layouts.email.orderNotificatorAdmin')->with([
+                'order' => $this->order,
+                'siteParameters' => $siteParameters
+            ]);
+
+        //return dd($siteParameters,$mail,$this->order);
 
         return $mail;
     }

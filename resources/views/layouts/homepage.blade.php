@@ -14,6 +14,7 @@
 @endsection
 @section('meta')<meta name="description" content="Весь ассортимент продукции Cooper&amp;Hunter - кондиционеры, осушители, вытяжки " />
 <meta name="keywords" content="кондиционер, вытяжка, осушитель, купить Cooper&amp;Hunter КуперХантер" />
+<meta name="yandex-verification" content="3af4a18ce1da17e1" />
 @endsection
 @section('content')
 

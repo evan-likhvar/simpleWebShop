@@ -94,7 +94,7 @@ XML;
         foreach ($articles as $article) {
             $hotLinePriceXML = $this->addHotLineUaChild($hotLinePriceXML,$article, $categoryId);
         }
-        $articles = Article::where('priceua','=','1')->whereIn('category_id',[4])->get();
+        $articles = Article::where('hotline','=','1')->whereIn('category_id',[4])->get();
         $categoryId = 180;
         foreach ($articles as $article) {
             $hotLinePriceXML = $this->addHotLineUaChild($hotLinePriceXML,$article, $categoryId);

@@ -18,7 +18,13 @@
         </div>
         <div class="col-sm-2 text-center">
             <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн<br><br>
-            <div class="available"><span class="glyphicon glyphicon-ok"></span> в наличии</div>
+            <div class="available">
+                @if($article->avaliable)
+                    <span style="color: #5cb85c" class="glyphicon glyphicon-ok"></span> <span style="color: #5cb85c">в наличии</span>
+                @else
+                    <span>наличие уточняйте</span>
+                @endif
+            </div>
             <br><br>
 
             <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"

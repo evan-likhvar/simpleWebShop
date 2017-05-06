@@ -16,7 +16,13 @@
                 </h4>
                 <div>
                     <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн<br>
-                    <div class="available"><span class="glyphicon glyphicon-ok"></span> в наличии</div>
+                    <div class="available">
+                        @if($article->avaliable)
+                            <span style="color: #5cb85c" class="glyphicon glyphicon-ok"></span> <span style="color: #5cb85c">в наличии</span>
+                        @else
+                            <span>наличие уточняйте</span>
+                        @endif
+                    </div>
                     <div style="min-height: 25px">
                     <a class="btn btn-success btn-xs col-sm-6 col-sm-offset-3" role="button"
                        href="{{route('addArticleToCart', ['article' => $article->getArticleLink()])}}">КУПИТЬ</a>

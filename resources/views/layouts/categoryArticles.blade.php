@@ -31,6 +31,7 @@
 --}}
 
 @section('meta')
+    {{--<meta name="csrf-token" content="{{ csrf_token() }}">--}}
     <meta name="description"
           content="{{strlen($category->metadescription)>10 ? $category->metadescription : strip_tags($category->description)}}"/>
     <meta name="keywords"
@@ -66,11 +67,12 @@
                         {!! Form::hidden('category',$category->id) !!}
                         {!! Form::close() !!}
                     </div>
+                    {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
                     <div class="col-md-6 col-sm-12">
-                        {!! Form::open(['method'=>'POST','action'=>['CategoryController@setParameters']]) !!}
-                        {{--{!! Form::submit('Применить фильтры',['class'=>'btn btn-xs btn-warning']) !!}--}}
+
                         <input class="btn btn-xs btn-warning" value="Применить фильтры" type="submit"
                                style=" white-space: normal; width: 100px;">
+
                     </div>
                 </div>
 

@@ -26,7 +26,7 @@
                 @endif
                 @if(count($homeArticles) && isset($siteParameters['promotionEnable']))
                     {{--<div class="container">--}}
-                    <div class="row well">
+{{--                    <div class="row well">
                         <div class="row  text-center categoryList"><h3>Популярные товары</h3></div>
                         @foreach(array_chunk($homeArticles->all(),4) as $articleRow)
                             <div class="row">
@@ -41,8 +41,8 @@
                                 @endforeach
                             </div>
                         @endforeach
-                    </div>
-
+                    </div>--}}
+<div style="height: 10px;"></div>
                 @endif
                 {{--</div>--}}
             </div>

@@ -48,7 +48,7 @@
             </div>
 
             @if(isset($siteParameters['promotionEnable']))
-            <div class="col-sm-2 well">
+            <div class="col-sm-2 well" style="border-left: 1px solid rgba(98, 159, 246, 0.41);border-radius: 0">
                 @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
             </div>
                 @endif

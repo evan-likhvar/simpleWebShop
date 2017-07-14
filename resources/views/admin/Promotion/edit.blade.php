@@ -13,8 +13,10 @@
         @endif
         <div class="row">
             <div class="col-sm-9">
-
                 {!! Form::model($promotion, ['method'=>'PATCH','action'=>['Admin\PromotionController@PromotionUpdate',$promotion->id],'class'=>'form-horizontal']) !!}
+                <div class="form-group">
+                    <a href="{{route('admin.promotion-article',[$promotion->id])}}" class="btn btn-info" role="button">Товаров в акции <span class="badge" style="color: red; font-weight: bold;">{{count($promotion->Articles)}}</span></a>
+                </div>
                 <div class="form-group">
                     {!! Form::label('name','Название акции:',['class'=>'control-label col-sm-2']) !!}
                     <div class="col-sm-10">
@@ -40,6 +42,10 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {!! Form::label('promotion_type','Тип акции:',['class'=>'control-label col-sm-2']) !!}
+                    <div class="col-sm-2">
+                        {!! Form::select('promotion_type',$promotion_type,null,['class'=>'form-control']) !!}
+                    </div>
                     {!! Form::label('is_published','Опубликована:', ['class'=>'control-label col-sm-2']) !!}
                     <div class="col-sm-1">
                         {!! Form::checkbox('is_published', null) !!}

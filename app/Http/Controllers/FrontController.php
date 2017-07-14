@@ -156,7 +156,7 @@ class FrontController extends Controller
 
     protected function getPromotions() {
 
-        return Promotion::where('is_published','1')->orderby('order','desc')->get();
+        return Promotion::where('is_published','1')->where('promotion_type','2')->orderby('order','desc')->get();
 
     }
 }

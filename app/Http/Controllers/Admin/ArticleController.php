@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use App\Category;
 use App\Parameter_group;
+use App\Promotion;
 use App\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -82,10 +83,15 @@ class ArticleController extends AdminController
 
         $vendors = Vendor::select('name','id')->get()->pluck('name','id')->toArray();
 
+        $articlePromotions = $article->Promotions;
+
+        $promotionAvaliable = Promotion::where('is_published','1')->where('promotion_type','1')->get()->diff($articlePromotions)->pluck('name','id')->toArray();;
+
+
         if (!Session::has('currentTab'))
             Session::put('currentTab','#text1');
 
-        return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters'));
+        return view('admin.articles.edit')->with(compact('article','parGrp','categories','vendors','files','parameterGroups','checkedParameters','articlePromotions','promotionAvaliable'));
     }
 
     public function create()
@@ -127,6 +133,8 @@ class ArticleController extends AdminController
 
 
 
+
+
         $article = Article::create($input);
         Session::flash('infomessage','Изменения сохранены');
 
@@ -153,7 +161,7 @@ class ArticleController extends AdminController
         $priceua = 0;
         $hotline = 0;
 
-    //    return dd($input);
+     //   return dd($input);
 
         if (empty(trim($input['priceGRN']))) {
             $input['priceGRN']=0;
@@ -235,7 +243,15 @@ class ArticleController extends AdminController
 
         //return dd($article,$input);
 
+
+
+
+
         if($article->update($input))
+
+            if (strlen($input['new_promotion']))
+                $article->Promotions()->attach($input['new_promotion']);
+
             Session::flash('infomessage','Изменения сохранены');
 
         return redirect()->back();
@@ -244,6 +260,8 @@ class ArticleController extends AdminController
     {
 
         $article = Article::findOrFail($id);
+
+        $article->Promotions()->detach();
 
         if($article->delete())
             Session::flash('infomessage',$article->name.' - deleted');

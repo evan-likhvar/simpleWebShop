@@ -18,8 +18,15 @@
                 <th>
                     <a href="{{route('admin.article')}}?sort=id&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}"
                        .>Индекс</a></th>
+
                 <th>
                     <a href="{{route('admin.article')}}?sort=name&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Название</a>
+                </th>
+                <th>
+                    Товаров в акции
+                </th>
+                <th>
+                    Тип акции
                 </th>
                 <th>
                     <a href="{{route('admin.article')}}?sort=published&order={{Request::input('order')=='desc' ? 'asc' : 'desc' }}&filter={{Request::input('filter')}}">Опубликована</a>
@@ -31,6 +38,7 @@
             </thead>
             <tbody>
             @foreach ($promotions as $item)
+
                 <tr>
                     <td>
                         <div style="width: 140px;">
@@ -47,6 +55,8 @@
                     </td>
                     <td>{{$item->id}}</td>
                     <td style="font-size: 90%; padding: 5px 0 5px 0;">{{$item->name}}</td>
+                    <td> {{count($item->Articles)}}</td>
+                    <td>{{$item->PromotionType->promotion_name}}</td>
                     <td>{{$item->is_published==0 ? 'Нет' : 'Да'}}</td>
                     <td>{{$item->order}}</td>
                 </tr>

@@ -44,7 +44,52 @@
                 <div class="well text-center article-h2">
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
-                <div class="row" style="min-height: 20px;"></div>
+                <div class="row" style="min-height: 20px; display: flex; align-items: center; {{count($article->Promotions)>0 ? 'padding-bottom: 40px':''}}">
+
+                    @if(count($article->Promotions))
+                        <div class="col-sm-2" >
+                            <img class="img-responsive blinking" src="/css/res/promo.png">
+                        </div>
+                        <div class="col-sm-10" style="vertical-align: middle; width: 100%;">
+
+                            <div class="runtext-container" >
+                                <div class="main-runtext">
+                                    <marquee direction="" onmouseover="this.stop();" onmouseout="this.start();">
+
+                                        <div class="holder">
+
+
+
+                                            @foreach($article->Promotions as $promotion)
+                                                <div class="text-container">
+                                                    &nbsp; &nbsp; <a href="{{route('showPromotion', ['promotion' => $promotion->id])}}">
+                                                        {!! $promotion->intro!!}&nbsp; &nbsp; </a>
+                                                </div>
+                                            @endforeach
+
+
+                                        </div>
+
+                                    </marquee>
+                                </div>
+                            </div>
+
+
+                        </div>
+{{--                        <div class="promo-flex-box">
+                            <div class="flex-img"><img class="img-responsive" src="/css/res/promo.png"></div>
+                            <div class="flex-text">
+                            </div>
+                        </div>--}}
+{{--                        <marquee behavior="slide" direction="left" bgcolor="#ffcc00">
+                        @foreach($article->Promotions as $promotion)
+                            {!! $promotion->intro!!} !!
+                        @endforeach
+
+                            </marquee>--}}
+
+                    @endif
+                </div>
                 <div id="gal" class="row">
                     @if(count($articleImages)>1)
                         <div class="col-sm-2">

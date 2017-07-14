@@ -10,7 +10,7 @@
     }
 </script>
 @endsection
-@section('title')<title>КуперХантер Украина. Весь ассортимент продукции от производителя</title>
+@section('title')<title>Купер&Хантер Украина. Весь ассортимент продукции от производителя</title>
 @endsection
 @section('meta')<meta name="description" content="Весь ассортимент продукции Cooper&amp;Hunter - кондиционеры, осушители, вытяжки " />
 <meta name="keywords" content="кондиционер, вытяжка, осушитель, купить Cooper&amp;Hunter КуперХантер" />

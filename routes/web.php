@@ -93,6 +93,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => 'admin'
     Route::get('/promotion/{promotion}/edit', 'PromotionController@editPromotion')->name('admin.editPromotion');
     Route::patch('/promotion/{promotion}', 'PromotionController@PromotionUpdate');
     Route::post('/promotion/storeMedia/{promotion}/{type?}', 'PromotionController@storeMedia');
+    Route::get('/promotion/promotion-article/{promotion}', 'PromotionController@indexPromotionArticle')->name('admin.promotion-article');
+    Route::delete('/promotion/{promotion}/{article}', 'PromotionController@PromotionArticleDestroy');
 });
 
 Route::get('/', 'HomePageController@index');

@@ -245,6 +245,23 @@
                                     {!! Form::text('created_at',null,['class'=>'form-control','disabled' => 'disabled']) !!}
                                 </div>
                             </div>
+
+
+                            <div class="form-group">
+                                {!! Form::label('created_at','Акции:', ['class'=>'control-label col-sm-3']) !!}
+                                <div class="col-sm-5">
+                                @foreach($articlePromotions as $articlePromotion)
+                                    {!! Form::text($articlePromotion->name,$articlePromotion->name,['class'=>'form-control','disabled' => 'disabled']) !!}
+                                @endforeach
+
+                                    {!! Form::select('new_promotion',[''=>'Добавить акцию']+$promotionAvaliable,null,['class'=>'form-control']) !!}
+                                </div>
+                            </div>
+
+
+
+
+
                         </div>
                         <div class="form-group">
                             {!! Form::label('metakey','Мета-кей:',['class'=>'control-label col-sm-2']) !!}

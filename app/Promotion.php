@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promotion extends Model
 {
-    protected $fillable = ['name','intro','description','order','is_published','promo_articles','promo_categories'];
+    protected $fillable = ['name','promotion_type','intro','description','order','is_published','promo_articles','promo_categories'];
+
+    public function PromotionType() {return $this->belongsTo('App\Promotion_type','promotion_type', 'id');}
+    public function Articles() {return $this->belongsToMany('App\Article');}
+
 
     public function getIntroImg($size,$name='intro1'){
         $path = '/images/promotion/'.$this->id.'/'.$name.'/';

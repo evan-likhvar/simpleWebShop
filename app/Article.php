@@ -15,6 +15,7 @@ class Article extends Model
 
     public function Vendor() {return $this->belongsTo('App\Vendor');}
     public function Category() {return $this->belongsTo('App\Category');}
+    public function Promotions() {return $this->belongsToMany('App\Promotion');}
 
     public static function recalculatePrices($course){
 

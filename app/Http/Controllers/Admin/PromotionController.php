@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\promotin_type;
 use App\Promotion;
+use App\Promotion_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -11,7 +13,9 @@ class PromotionController extends AdminController
     public function createNewPromotion()
     {
         $parGrp = $this->parameterGroups;
-        return view('admin.Promotion.new')->with(compact('parGrp'));
+        $promotion_type = Promotion_type::select('promotion_name','id')->get()->pluck('promotion_name','id')->toArray();;
+
+        return view('admin.Promotion.new')->with(compact('parGrp','promotion_type'));
     }
 
     public function PromotionStore(Request $request)
@@ -24,9 +28,10 @@ class PromotionController extends AdminController
         $image = $this->getOriginalImage('promotion',$promotion->id,'intro1');
         $files['intro1'] = $image['url'];
 
-        //return dd($promotion);
+        $promotion_type = Promotion_type::select('promotion_name','id')->get()->pluck('promotion_name','id')->toArray();;
 
-        return view('admin.Promotion.edit')->with(compact('parGrp','promotion','files'));
+
+        return view('admin.Promotion.edit')->with(compact('parGrp','promotion','files','promotion_type'));
     }
 
     public function PromotionUpdate(Request $request, $id){
@@ -51,8 +56,12 @@ class PromotionController extends AdminController
         $promotion = Promotion::FindOrFail($id);
         $image = $this->getOriginalImage('promotion',$promotion->id,'intro1');
         $files['intro1'] = $image['url'];
+        $promotion_type = Promotion_type::select('promotion_name','id')->get()->pluck('promotion_name','id')->toArray();;
 
-        return view('admin.Promotion.edit')->with(compact('parGrp','promotion','files'));
+        //dd($promotion_type);
+
+
+        return view('admin.Promotion.edit')->with(compact('parGrp','promotion','files','promotion_type'));
     }
 
     public function PromotionIndex(Request $request) {
@@ -72,6 +81,7 @@ class PromotionController extends AdminController
             $promotions = Promotion::orderBy($ordered,$order)->paginate(20);
         }
 
+
         return view('admin.Promotion.index')->with(compact('promotions','parGrp'));
     }
 
@@ -80,6 +90,23 @@ class PromotionController extends AdminController
 
         if($promotion->delete())
             Session::flash('infomessage',$promotion->name.' - deleted');
+
+        return redirect()->back();
+    }
+
+    public function indexPromotionArticle(Promotion $promotion) {
+        $parGrp = $this->parameterGroups;
+        $articles = $promotion->Articles;
+
+        return view('admin.Promotion.indexPromotionArticles')->with(compact('promotion','articles','parGrp'));
+    }
+
+    public function PromotionArticleDestroy(Promotion $promotion, int $article){
+
+
+        $promotion->Articles()->detach([$article]);
+
+       // dd($promotion,$article);
 
         return redirect()->back();
     }

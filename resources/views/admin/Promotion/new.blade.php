@@ -15,6 +15,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {!! Form::label('promotion_type','Тип акции:',['class'=>'control-label col-sm-1']) !!}
+                    <div class="col-sm-2">
+                        {!! Form::select('promotion_type',$promotion_type,null,['class'=>'form-control']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
                     {!! Form::label('intro','Краткое описание:',['class'=>'control-label col-sm-1']) !!}
                     <div class="col-sm-11">
                         {!! Form::textarea('intro',null,['class'=>'form-control','size' => '10x4']) !!}

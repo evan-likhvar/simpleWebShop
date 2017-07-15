@@ -6,6 +6,7 @@ use App\Article;
 use App\Category;
 use App\paper;
 use App\papercategory;
+use App\Promotion;
 use Illuminate\Http\Request;
 use SimpleXMLElement;
 
@@ -106,7 +107,7 @@ XML;
 
         fwrite($fnewsmap, $hotLinePriceXML->asXML());
         fclose($fnewsmap);
-
+        $this->hotLinePromoXML();
         return redirect()->back();
     }
     private function addHotLineUaChild($hotLinePriceXML,$article, $categoryId){
@@ -168,6 +169,7 @@ XML;
         fwrite($fnewsmap, $hotLinePriceXML->asXML());
         fclose($fnewsmap);
 
+
         return redirect()->back();
     }
 
@@ -217,6 +219,58 @@ XML;
 
 
         return redirect()->back();
+    }
+
+    public function hotLinePromoXML()
+    {
+        $xmlstr = <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<sales>
+
+</sales>
+XML;
+        $hotLinePromoXML = new SimpleXMLElement($xmlstr);
+
+        //$hotLinePriceXML->date = date("Y-m-d H:i");
+
+        $promotions = Promotion::where('is_published','=','1')->get();
+
+
+        foreach ($promotions as $promotion) {
+
+            if(count($promotion->Articles)){
+
+                $item = $hotLinePromoXML->addChild('sale');
+
+                $item->addChild('title',$this->cdata($promotion->name));
+                $item->addChild('description',$this->cdata(strip_tags($promotion->intro)));
+                $item->addChild('url',$this->cdata(route('showPromotion', ['promotion' => $promotion->id])));
+                //$item->addChild('image',);
+                $item->addChild('date_start',$this->cdata($promotion->promo_start));
+                $item->addChild('date_end',$this->cdata($promotion->promo_stop));
+                //$item->addChild('type',);
+                $promoProducts = $item->addChild('products');
+                foreach ($promotion->Articles as $article){
+                    $product = $promoProducts->addChild('product',$this->cdata(route('showArticle', ['article' => $article->id])));
+                    $product['id'] = $article->id;
+
+                }
+            }
+        }
+
+        $path = public_path().'/XML/hotLinePromo.xml';
+        fclose(fopen($path, "a+t"));
+        $fnewsmap = fopen($path, "w+t");
+        flock($fnewsmap, LOCK_EX);
+
+        fwrite($fnewsmap, $hotLinePromoXML->asXML());
+        fclose($fnewsmap);
+
+        return;
+    }
+
+    private function cdata($str){
+        return '<![CDATA['.$str.']]>';
     }
 
 }

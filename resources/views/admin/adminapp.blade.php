@@ -6,6 +6,7 @@
     {{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="/css/bootstrap/3.3.7/bootstrap.min.css" type="text/css" />--}}
     <link rel="stylesheet" href="/css/dropzone/4.3.0/dropzone.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
     <link rel="icon" type="image/png" href="/favicon.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -38,7 +39,20 @@
             border-color: darkred;
         }
     </style>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script>
+        $( function() {
+            $.datepicker.setDefaults({
+                dateFormat: 'yy-mm-dd',
+                numberOfMonths: [ 1, 2 ],
+                showButtonPanel: true,
+                changeYear: true
+            });
 
+            $( "#promo_start" ).datepicker();
+            $( "#promo_stop" ).datepicker();
+        } );
+    </script>
 </head>
 <body>
 <div class="container-fluid">

@@ -50,7 +50,7 @@
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
 
-                    {{--articles promotion--}}
+{{--                    --}}{{--articles promotion--}}{{--
                     <div class="row promo-for-article {{count($article->Promotions)>0 ? 'promo-wrap animated flipInX':'no-promo-wrap'}}">
                         @if(count($article->Promotions))
 
@@ -71,7 +71,7 @@
                             </div>
                         @endif
 
-                    </div>
+                    </div>--}}
 
 
                 <div id="gal" class="row">

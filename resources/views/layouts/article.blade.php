@@ -50,7 +50,28 @@
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
 
+                    {{--articles promotion--}}
+                    <div class="row promo-for-article {{count($article->Promotions)>0 ? 'promo-wrap animated flipInX':'no-promo-wrap'}}">
+                        @if(count($article->Promotions))
 
+                            <div class="col-sm-2 hidden-xs animatedLong infinite rubberBand ">
+                                <img class="img-responsive" src="/css/res/promo-sticker2.jpg">
+                            </div>
+
+                            <div class="col-sm-10 col-xs-12">
+                                <?php $count=3;?>
+                                @foreach($article->Promotions as $promotion)
+                                    <?php $count == 4 ? $count=1 : $count++; ?>
+                                    <div class="promo-text-container text-center animatedLong infinite jello{{$count}}">
+                                        &nbsp; &nbsp; <a
+                                                href="{{route('showPromotion', ['promotion' => $promotion->id])}}">
+                                            {!! $promotion->intro!!}&nbsp; &nbsp; </a>
+                                    </div>
+                                    @endforeach
+                            </div>
+                        @endif
+
+                    </div>
 
 
                 <div id="gal" class="row">
@@ -149,28 +170,7 @@
                     </div>
                 </div>
                 <div class="row" style="min-height: 20px;"></div>
-                    {{--articles promotion--}}
-                    <div class="row promo-for-article {{count($article->Promotions)>0 ? 'promo-wrap animated flipInX':'no-promo-wrap'}}">
-                        @if(count($article->Promotions))
 
-
-                            <div class="col-sm-10 col-xs-12">
-                            <?php $count=3;?>
-                            @foreach($article->Promotions as $promotion)
-                                <?php $count == 4 ? $count=1 : $count++; ?>
-                                    <div class="promo-text-container text-center animatedLong infinite jello{{$count}}">
-                                        &nbsp; &nbsp; <a
-                                                href="{{route('showPromotion', ['promotion' => $promotion->id])}}">
-                                            {!! $promotion->intro!!}&nbsp; &nbsp; </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                            <div class="col-sm-2 hidden-xs animatedLong infinite rubberBand ">
-                                <img class="img-responsive" src="/css/res/promo-sticker2.jpg">
-                            </div>
-
-                    </div>
 
                 <div id="infotab" class="row">
                     <ul class="nav nav-tabs left">

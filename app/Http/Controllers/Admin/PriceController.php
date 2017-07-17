@@ -121,7 +121,10 @@ XML;
         $item->addChild('name', str_replace('&','&amp;',$article->name));
         $item->addChild('description', str_replace('&','&amp;',$article->name));
         $item->addChild('url', 'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
-        $item->addChild('image', "http://www.куперхантер.укр".$article->getIntroImg('M'));
+       // setlocale(LC_CTYPE, 'ru_RU');
+        //$item->addChild('url2', iconv("UTF-8", "ASCII//IGNORE",'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
+
+        $item->addChild('image', "http://www.xn--80ajbrrjidqez.xn--j1amh".$article->getIntroImg('M'));
         $item->addChild('priceRUAH', $article->priceGRN);
         $item->addChild('stock', 'В наличии');
         return $hotLinePriceXML;

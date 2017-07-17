@@ -1,6 +1,7 @@
 {{--{{dd($articleImages)}}--}}
 @extends('layouts.app')
-@section('json-ld')<script type="application/ld+json">
+@section('json-ld')
+    <script type="application/ld+json">
 {
   "@context": "http://schema.org/",
   "@type": "Product",
@@ -12,12 +13,16 @@
     "name": "Cooper&Hunter"
   }
 }
-</script>
+
+    </script>
 @endsection
 @section('title')<title>{{$article->name}}</title>
 @endsection
-@section('meta')<meta name="description" content="{{strlen($article->metadescription)>10 ? $article->metadescription : strip_tags($article->description)}}" />
-<meta name="keywords" content="{{ strlen($article->metakey)>10 ? $article->metakey : $article->Category->name}} {{$article->name}}" />
+@section('meta')
+    <meta name="description"
+          content="{{strlen($article->metadescription)>10 ? $article->metadescription : strip_tags($article->description)}}"/>
+    <meta name="keywords"
+          content="{{ strlen($article->metakey)>10 ? $article->metakey : $article->Category->name}} {{$article->name}}"/>
 @endsection
 @section('content')
     <div class="container">
@@ -27,7 +32,7 @@
                 <div class="row" style="padding-left: 20px;">
                     <a href="/"> Главная </a> <b>></b>
                     @if(count($article->Category->parent))
-                    <a href="{{route('showCategory', ['category' => $article->Category->parent->getCategoryLink()])}}">{{ $article->Category->parent->name }}</a>
+                        <a href="{{route('showCategory', ['category' => $article->Category->parent->getCategoryLink()])}}">{{ $article->Category->parent->name }}</a>
                         <b>></b>
                     @endif
 
@@ -44,52 +49,31 @@
                 <div class="well text-center article-h2">
                     <h2 style="margin: 5px;">{{$article->name}}</h2>
                 </div>
-                <div class="row" style="min-height: 20px; display: flex; align-items: center; {{count($article->Promotions)>0 ? 'padding-bottom: 40px':''}}">
 
-                    @if(count($article->Promotions))
-                        <div class="col-sm-2" >
-                            <img class="img-responsive blinking" src="/css/res/promo.png">
-                        </div>
-                        <div class="col-sm-10" style="vertical-align: middle; width: 100%;">
+                    {{--articles promotion--}}
+                    <div class="row promo-for-article {{count($article->Promotions)>0 ? 'promo-wrap animated flipInX':'no-promo-wrap'}}">
+                        @if(count($article->Promotions))
 
-                            <div class="runtext-container" >
-                                <div class="main-runtext">
-                                    <marquee direction="" onmouseover="this.stop();" onmouseout="this.start();">
-
-                                        <div class="holder">
-
-
-
-                                            @foreach($article->Promotions as $promotion)
-                                                <div class="text-container">
-                                                    &nbsp; &nbsp; <a href="{{route('showPromotion', ['promotion' => $promotion->id])}}">
-                                                        {!! $promotion->intro!!}&nbsp; &nbsp; </a>
-                                                </div>
-                                            @endforeach
-
-
-                                        </div>
-
-                                    </marquee>
-                                </div>
+                            <div class="col-sm-2 hidden-xs animatedLong infinite rubberBand ">
+                                <img class="img-responsive" src="/css/res/promo-sticker1.jpg">
                             </div>
 
-
-                        </div>
-{{--                        <div class="promo-flex-box">
-                            <div class="flex-img"><img class="img-responsive" src="/css/res/promo.png"></div>
-                            <div class="flex-text">
+                            <div class="col-sm-10 col-xs-12">
+                                <?php $count=3;?>
+                                @foreach($article->Promotions as $promotion)
+                                    <?php $count == 4 ? $count=1 : $count++; ?>
+                                    <div class="promo-text-container text-center animatedLong infinite jello{{$count}}">
+                                        &nbsp; &nbsp; <a
+                                                href="{{route('showPromotion', ['promotion' => $promotion->id])}}">
+                                            {!! $promotion->intro!!}&nbsp; &nbsp; </a>
+                                    </div>
+                                    @endforeach
                             </div>
-                        </div>--}}
-{{--                        <marquee behavior="slide" direction="left" bgcolor="#ffcc00">
-                        @foreach($article->Promotions as $promotion)
-                            {!! $promotion->intro!!} !!
-                        @endforeach
+                        @endif
 
-                            </marquee>--}}
+                    </div>
 
-                    @endif
-                </div>
+
                 <div id="gal" class="row">
                     @if(count($articleImages)>1)
                         <div class="col-sm-2">
@@ -130,43 +114,46 @@
                         </div>
                         <div class="row" style="min-height: 20px;"></div>
                         @if(!empty($article->nomer))
-                        <div class="row">
-                            <div class="col-sm-4">Код товара</div>
-                            <div class="col-sm-8" style="font-size: 120%"><b>{{$article->nomer}}</b></div>
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-4">Код товара</div>
+                                <div class="col-sm-8" style="font-size: 120%"><b>{{$article->nomer}}</b></div>
+                            </div>
 
                         @endif
-<hr>
+                        <hr>
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-4">
-                            <div class="available">
-                                @if($article->avaliable)
-                                    <span style="color: #5cb85c" class="glyphicon glyphicon-ok"></span> <span style="color: #5cb85c">в наличии</span>
-                                @else
-                                    <span >наличие уточняйте</span>
-                                @endif
-                            </div>
+                                <div class="available">
+                                    @if($article->avaliable)
+                                        <span style="color: #5cb85c" class="glyphicon glyphicon-ok"></span> <span
+                                                style="color: #5cb85c">в наличии</span>
+                                    @else
+                                        <span>наличие уточняйте</span>
+                                    @endif
                                 </div>
+                            </div>
                         </div>
 
                         <div class="row" style="min-height: 20px;"></div>
 
                         <div class="row">
                             <div class="col-sm-4" style="font-size: 150%">Цена</div>
-                            <div class="col-sm-8" style="font-size: 150%"><b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн</div>
+                            <div class="col-sm-8" style="font-size: 150%">
+                                <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
+                            </div>
                         </div>
                         <hr>
                         <div class="row" style="min-height: 20px;"></div>
 
-{{--
-                        <a class="btn btn-success btn-sm col-sm-4 -col-sm-offset-1" role="button"
-                           href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
+                        {{--
+                                                <a class="btn btn-success btn-sm col-sm-4 -col-sm-offset-1" role="button"
+                                                   href="{{route('addArticleToCart', ['article' => $article->id])}}">КУПИТЬ</a>
 
 
-                        <div class="row">
-                            <input type="number" id="replyNumber" min="1" step="1" data-bind="value:replyNumber" />
-                        </div>
---}}
+                                                <div class="row">
+                                                    <input type="number" id="replyNumber" min="1" step="1" data-bind="value:replyNumber" />
+                                                </div>
+                        --}}
                         <div class="row">
                             {!! Form::open(['method'=>'POST','action'=>['ArticleController@addArticleToCart',$article->getArticleLink()],'class'=>'form-horizontal']) !!}
 
@@ -174,7 +161,7 @@
                                 {!! Form::number('count',1,['class'=>'form-control','min'=>"1", 'step'=>"1"]) !!}
                             </div>
                             <div class="col-sm-8 col-sm-offset-1">
-                            {!! Form::submit('КУПИТЬ',['class'=>'btn btn-success col-sm-7']) !!}
+                                {!! Form::submit('КУПИТЬ',['class'=>'btn btn-success col-sm-7']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -236,9 +223,9 @@
             </div>
 
             @if(isset($siteParameters['promotionEnable']))
-            <div class="col-sm-2  well">
-                @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
-            </div>
+                <div class="col-sm-2  well">
+                    @include('layouts.helpers.promoRight', ['Articles' => $homeArticles])
+                </div>
             @endif
         </div>
     </div>

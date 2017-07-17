@@ -1,0 +1,74 @@
+.promo-for-article {
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+
+  &.no-promo-wrap {
+    min-height: 20px;
+  }
+  &.promo-wrap {
+    line-height: 2em;
+    .promo-text-container a{
+      font-size: 1.3em;
+      padding: 15px 0;
+      color: red;
+      text-decoration: underline;
+      transition: all .5s;
+      //transition: color 100ms linear, color 1s linear;
+      &:hover {
+        color: blue;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.flipInX {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-name: flipInX;
+}
+.rubberBand {
+  animation-name: rubberBand;
+}
+
+.jello1 {
+  animation-name: jello1;
+  transform-origin: center;
+}
+
+.jello2 {
+  animation-name: jello2;
+  transform-origin: center;
+}
+.jello3 {
+  animation-name: jello3;
+  transform-origin: center;
+}
+
+.jello4 {
+  animation-name: jello4;
+  transform-origin: center;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animatedLong {
+  animation-duration: 10s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animatedLong.infinite {
+  animation-iteration-count: infinite;
+}
+
+
+
+

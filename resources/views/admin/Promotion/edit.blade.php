@@ -61,7 +61,7 @@
                     <div class="col-sm-2">
                         {!! Form::date('promo_start',null,['class'=>'form-control']) !!}
                     </div>
-                    {!! Form::label('promo_stop','Старт акции:',['class'=>'control-label col-sm-2']) !!}
+                    {!! Form::label('promo_stop','Стоп акции:',['class'=>'control-label col-sm-2']) !!}
                     <div class="col-sm-2">
                         {!! Form::date('promo_stop',null,['class'=>'form-control']) !!}
                     </div>

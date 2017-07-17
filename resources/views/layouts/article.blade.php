@@ -55,7 +55,7 @@
                         @if(count($article->Promotions))
 
                             <div class="col-sm-2 hidden-xs animatedLong infinite rubberBand ">
-                                <img class="img-responsive" src="/css/res/promo-sticker1.jpg">
+                                <img class="img-responsive" src="/css/res/promo-sticker2.jpg">
                             </div>
 
                             <div class="col-sm-10 col-xs-12">

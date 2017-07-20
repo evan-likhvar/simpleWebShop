@@ -61,12 +61,18 @@
                             <div class="col-sm-10 col-xs-12">
                                 <?php $count=3;?>
                                 @foreach($article->Promotions as $promotion)
+
+                                    @if($promotion->is_published == 1)
+
+
                                     <?php $count == 4 ? $count=1 : $count++; ?>
                                     <div class="promo-text-container text-center animatedLong infinite jello{{$count}}">
                                         &nbsp; &nbsp; <a
                                                 href="{{route('showPromotion', ['promotion' => $promotion->id])}}">
                                             {!! $promotion->intro!!}&nbsp; &nbsp; </a>
                                     </div>
+@endif
+
                                     @endforeach
                             </div>
                         @endif

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Category;
+//use App\Http\Controllers\Idna_convert;
+use App\Http\Controllers\Idna_convert\Idna_convert;
+use App\Http\Controllers\Idna_convert\my_convert;
 use App\paper;
 use App\papercategory;
 use App\Promotion;
@@ -55,6 +58,9 @@ class PriceController extends AdminController
 
     public function hotLinePriceXML()
     {
+
+        $converterToPuny = new my_convert();
+
         $xmlstr = <<<XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <price>
@@ -93,12 +99,12 @@ XML;
         $articles = Article::where('hotline','=','1')->whereIn('category_id',[2,3,10,13,14,15,17])->get();
         $categoryId = 171;
         foreach ($articles as $article) {
-            $hotLinePriceXML = $this->addHotLineUaChild($hotLinePriceXML,$article, $categoryId);
+            $hotLinePriceXML = $this->addHotLineUaChild($hotLinePriceXML,$article, $categoryId,$converterToPuny);
         }
         $articles = Article::where('hotline','=','1')->whereIn('category_id',[4])->get();
         $categoryId = 180;
         foreach ($articles as $article) {
-            $hotLinePriceXML = $this->addHotLineUaChild($hotLinePriceXML,$article, $categoryId);
+            $hotLinePriceXML = $this->addHotLineUaChild($hotLinePriceXML,$article, $categoryId,$converterToPuny);
         }
         $path = public_path().'/XML/hotLinePrice.xml';
         fclose(fopen($path, "a+t"));
@@ -110,7 +116,7 @@ XML;
         $this->hotLinePromoXML();
         return redirect()->back();
     }
-    private function addHotLineUaChild($hotLinePriceXML,$article, $categoryId){
+    private function addHotLineUaChild($hotLinePriceXML,$article, $categoryId,$converterToPuny){
         $item = $hotLinePriceXML->items->addChild('item');
         $item->addChild('id', $article->id);
         $item->addChild('categoryId', $categoryId);
@@ -121,8 +127,10 @@ XML;
         $item->addChild('name', str_replace('&','&amp;',$article->name));
         $item->addChild('description', str_replace('&','&amp;',$article->name));
         $item->addChild('url', 'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
-       // setlocale(LC_CTYPE, 'ru_RU');
-        //$item->addChild('url2', iconv("UTF-8", "ASCII//IGNORE",'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
+
+
+
+        $item->addChild('url2', $converterToPuny->encode('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
 
         $item->addChild('image', "http://www.xn--80ajbrrjidqez.xn--j1amh".$article->getIntroImg('M'));
         $item->addChild('priceRUAH', $article->priceGRN);

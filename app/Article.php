@@ -50,6 +50,13 @@ class Article extends Model
         return $this->id.'-'.$name;
     }
 
+    public function getCountActivePromotions() {
+
+        $itemPromotionCount = count($this->Promotions->where('is_published',1));
+
+        return $itemPromotionCount;
+
+    }
 
 
 }

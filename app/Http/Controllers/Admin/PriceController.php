@@ -130,7 +130,7 @@ XML;
 
 
 
-        $item->addChild('url2', $converterToPuny->encode('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
+        //$item->addChild('url2', $converterToPuny->encode('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
 
         $item->addChild('image', "http://www.xn--80ajbrrjidqez.xn--j1amh".$article->getIntroImg('M'));
         $item->addChild('priceRUAH', $article->priceGRN);

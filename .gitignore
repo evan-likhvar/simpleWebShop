@@ -2,7 +2,6 @@
 /public/storage
 /public/XML
 /*.txt
-/vendor
 /.idea
 Homestead.json
 Homestead.yaml

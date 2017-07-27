@@ -262,7 +262,7 @@ XML;
                 //$item->addChild('type',);
                 $promoProducts = $item->addChild('products');
                 foreach ($promotion->Articles as $article){
-                    $product = $promoProducts->addChild('product',$this->cdata(route('showArticle', ['article' => $article->id])));
+                    $product = $promoProducts->addChild('product',$this->cdata('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
                     $product['id'] = $article->id;
 
                 }

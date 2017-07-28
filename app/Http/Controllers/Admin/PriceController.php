@@ -269,24 +269,12 @@ XML;
                 $item->date_end = NULL; // VERY IMPORTANT! We need a node where to append
                 $item->date_end->addCData($promotion->promo_stop);
 
-                //$title = $item->addChild('title');
-                //$item->title = '<ethgtgrt>';//$this->cdata($promotion->name);
-
-                //$item->addChild('description',$this->cdata(strip_tags($promotion->intro)));
-                //$item->addChild('url',$this->cdata(route('showPromotion', ['promotion' => $promotion->id])));
-                //$item->addChild('image',);
-                //$item->addChild('date_start',$this->cdata($promotion->promo_start));
-                //$item->addChild('date_end',$this->cdata($promotion->promo_stop));
-                //$item->addChild('type',);
                 $promoProducts = $item->addChild('products');
                 foreach ($promotion->Articles as $article){
 
-
-                    $promoProducts->product = NULL; // VERY IMPORTANT! We need a node where to append
-                    $promoProducts->product->addCData('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
-                    //$product = $promoProducts->addChild('product',$this->cdata('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
-                    $promoProducts->product['id'] = $article->id;
-                    //$product['id'] = $article->id;
+                    $product = $promoProducts->addChild('product');
+                    $product->addCData('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
+                    $product['id'] = $article->id;
 
                 }
             }

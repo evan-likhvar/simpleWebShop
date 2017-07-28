@@ -10,6 +10,7 @@ use App\Http\Controllers\Idna_convert\my_convert;
 use App\paper;
 use App\papercategory;
 use App\Promotion;
+use App\Repo\xmlCDATA;
 use Illuminate\Http\Request;
 use SimpleXMLElement;
 
@@ -240,7 +241,7 @@ XML;
 
 </sales>
 XML;
-        $hotLinePromoXML = new SimpleXMLElement($xmlstr);
+        $hotLinePromoXML = new xmlCDATA($xmlstr);
 
         //$hotLinePriceXML->date = date("Y-m-d H:i");
 
@@ -253,17 +254,39 @@ XML;
 
                 $item = $hotLinePromoXML->addChild('sale');
 
-                $item->addChild('title',$this->cdata($promotion->name));
-                $item->addChild('description',$this->cdata(strip_tags($promotion->intro)));
-                $item->addChild('url',$this->cdata(route('showPromotion', ['promotion' => $promotion->id])));
+                $item->title = NULL; // VERY IMPORTANT! We need a node where to append
+                $item->title->addCData($promotion->name);
+
+                $item->description = NULL; // VERY IMPORTANT! We need a node where to append
+                $item->description->addCData(strip_tags($promotion->intro));
+
+                $item->url = NULL; // VERY IMPORTANT! We need a node where to append
+                $item->url->addCData(route('showPromotion', ['promotion' => $promotion->id]));
+
+                $item->date_start = NULL; // VERY IMPORTANT! We need a node where to append
+                $item->date_start->addCData($promotion->promo_start);
+
+                $item->date_end = NULL; // VERY IMPORTANT! We need a node where to append
+                $item->date_end->addCData($promotion->promo_stop);
+
+                //$title = $item->addChild('title');
+                //$item->title = '<ethgtgrt>';//$this->cdata($promotion->name);
+
+                //$item->addChild('description',$this->cdata(strip_tags($promotion->intro)));
+                //$item->addChild('url',$this->cdata(route('showPromotion', ['promotion' => $promotion->id])));
                 //$item->addChild('image',);
-                $item->addChild('date_start',$this->cdata($promotion->promo_start));
-                $item->addChild('date_end',$this->cdata($promotion->promo_stop));
+                //$item->addChild('date_start',$this->cdata($promotion->promo_start));
+                //$item->addChild('date_end',$this->cdata($promotion->promo_stop));
                 //$item->addChild('type',);
                 $promoProducts = $item->addChild('products');
                 foreach ($promotion->Articles as $article){
-                    $product = $promoProducts->addChild('product',$this->cdata('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
-                    $product['id'] = $article->id;
+
+
+                    $promoProducts->product = NULL; // VERY IMPORTANT! We need a node where to append
+                    $promoProducts->product->addCData('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
+                    //$product = $promoProducts->addChild('product',$this->cdata('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
+                    $promoProducts->product['id'] = $article->id;
+                    //$product['id'] = $article->id;
 
                 }
             }

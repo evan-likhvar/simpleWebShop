@@ -9,7 +9,7 @@ class Article extends Model
 {
 
     protected $fillable = [
-        'hotline','priceua','category_id','vendor_id','name','priceYE','priceGRN','published','order','description','techDescription','additionInfo','extraInfo','nomer','metakey','metadescription','avaliable','fullDescription'
+        'hotline','priceua','category_id','vendor_id','name','priceYE','priceGRN','published','order','description','techDescription','additionInfo','extraInfo','guarantee','nomer','metakey','metadescription','avaliable','fullDescription'
     ];
 
 

@@ -34,6 +34,13 @@ h3 a:hover {color: $submenu-border;}
   border-top: solid 1px $brand-warning;
   padding: 10px 0 20px;
 }
+.promo-right-header {
+  padding-bottom: 5px;
+  margin-top: -5px;
+  color: rgb(255, 0, 0);
+  font-style: italic;
+}
+
 .img-thumbnail {
   border: 1px solid $submenu-border;
 }

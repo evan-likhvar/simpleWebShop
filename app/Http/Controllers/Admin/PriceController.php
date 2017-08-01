@@ -130,12 +130,16 @@ XML;
         $item->addChild('url', 'http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink()));
 
 
+        //<guarantee type="manufacturer">12</guarantee>
 
         //$item->addChild('url2', $converterToPuny->encode('http://www.куперхантер.укр/купить/'.str_replace('&','&amp;',$article->getArticleLink())));
 
         $item->addChild('image', "http://www.xn--80ajbrrjidqez.xn--j1amh".$article->getIntroImg('M'));
         $item->addChild('priceRUAH', $article->priceGRN);
         $item->addChild('stock', 'В наличии');
+        //$item->addChild('guarantee', '24');
+        $tmp = $item->addChild('guarantee', '24');
+        $tmp['type'] = "manufacturer";
         return $hotLinePriceXML;
     }
     public function priceUAPriceXML()

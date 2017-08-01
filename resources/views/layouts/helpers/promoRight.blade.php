@@ -1,4 +1,4 @@
-<div class="row text-center "><h3>Акции</h3></div>
+<div class="row text-center promo-right-header"><h3>Акции</h3></div>
 @foreach($Articles as $article)
     <a href="{{route('showPromotion', ['article' => $article->getArticleLink()])}}">
         <div class="col-sm-12 promoRight text-center">

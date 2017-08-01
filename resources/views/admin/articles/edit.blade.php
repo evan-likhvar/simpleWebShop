@@ -241,8 +241,12 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('created_at','Дата создания:', ['class'=>'control-label col-sm-3']) !!}
-                                <div class="col-sm-5">
+                                <div class="col-sm-3">
                                     {!! Form::text('created_at',null,['class'=>'form-control','disabled' => 'disabled']) !!}
+                                </div>
+                                {!! Form::label('guarantee','Гарантия:', ['class'=>'control-label col-sm-2']) !!}
+                                <div class="col-sm-3">
+                                    {!! Form::text('guarantee',null,['class'=>'form-control']) !!}
                                 </div>
                             </div>
 

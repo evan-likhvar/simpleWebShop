@@ -113,7 +113,7 @@
 
                     {{--<a class="fancybox-effects-1" href="{{$article->getIntroImg('L','intro2')}}"><img src="{{$article->getIntroImg('M','intro2')}}" alt="" /></a>--}}
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 article-main-info">
 
                         <div class="row">
                             <div class="col-sm-4">Модель</div>
@@ -147,6 +147,12 @@
                             <div class="col-sm-4" style="font-size: 150%">Цена</div>
                             <div class="col-sm-8" style="font-size: 150%">
                                 <b>{{number_format($article->priceGRN, 0,'', ' ')}}</b> грн
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="font-size: 90%">Гарантия</div>
+                            <div class="col-sm-8" style="font-size: 90%">
+                                {{$article->guarantee}}
                             </div>
                         </div>
                         <hr>

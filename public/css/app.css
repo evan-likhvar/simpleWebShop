@@ -6037,6 +6037,12 @@ h3 a:hover {
   border-top: solid 1px #f09713;
   padding: 10px 0 20px; }
 
+.promo-right-header {
+  padding-bottom: 5px;
+  margin-top: -5px;
+  color: red;
+  font-style: italic; }
+
 .img-thumbnail {
   border: 1px solid #ff3300; }
 
@@ -6446,6 +6452,10 @@ div#paging ul.pagination {
 
 .article-h2 {
   border: 1px solid #ff3300; }
+
+.article-main-info hr {
+  margin-top: 18px;
+  margin-bottom: 18px; }
 
 .promo-for-article {
   padding-bottom: 15px;
